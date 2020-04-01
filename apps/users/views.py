@@ -38,7 +38,7 @@ from .tokens import account_activation_token
 # User = get_user_model()
 
 class SignupView(FormView):
-    template_name = "users/signup.html"
+    template_name = "users/login-signup.html"
     form_class = SignupForm
     success_url = reverse_lazy("login")
     activation_email_template = "registration/account_activation_email.html"
@@ -100,7 +100,7 @@ def verify_email(request):
 
 
 class LoginView(FormView):
-    template_name = "users/login.html"
+    template_name = "users/login-signup"
     form_class = LoginForm
     success_url = reverse_lazy("projects")
 
