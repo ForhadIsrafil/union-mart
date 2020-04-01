@@ -25,6 +25,7 @@ class Comment():
     details = models.CharField(max_length=255)
 
 
+
 class Card():
     user_id = models.Foreignkey()
     product_id = models.Foreignkey(Product)
