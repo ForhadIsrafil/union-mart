@@ -45,7 +45,7 @@ class SignupView(FormView):
 
     def send_confirmation_link(self, user):
         current_site = get_current_site(self.request)
-        mail_subject = "Activate your codefolio account."
+        mail_subject = "Activate your union-mart account."
         message = render_to_string(
             self.activation_email_template,
             {
@@ -70,7 +70,7 @@ class SignupView(FormView):
         user.is_active = False
         user.set_password(form.cleaned_data["password"])
         user.save()
-
+        self.send_confirmation_link(user)
         messages.add_message(
             self.request,
             messages.INFO,

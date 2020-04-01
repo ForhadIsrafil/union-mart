@@ -11,22 +11,23 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from environs import Env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+env = Env()
+env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's#^m5+=uyuug&bph7)23$*+mmj$wi=8imga@lo$t*ily+8o%zg'
+
+SECRET_KEY = env.str('SECRET_KEY', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.str('DEBUG', default='False')
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 # Application definition
 
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.core',
     'apps.product',
+    'social_django',  # <-
+
 ]
 
 MIDDLEWARE = [
@@ -50,9 +53,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'union_mart.urls'
+
+AUTHENTICATION_BACKENDS = [
+    # 'social_core.backends.linkedin.LinkedinOAuth2',
+    # 'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 TEMPLATES = [
     {
@@ -65,6 +77,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.login_redirect',  # <-- Here
             ],
         },
     },
@@ -72,6 +87,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'union_mart.wsgi.application'
 
+# ===============SSL==================
+# Force https redirect
+SECURE_SSL_REDIRECT = env.str('SECURE_SSL_REDIRECT', default='True')
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Force HTTPS in the final URIs
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
+# ===============SSL==================
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -82,7 +105,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -102,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = env.str('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD', default='')
+DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL', default='')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -116,8 +142,41 @@ USE_L10N = True
 
 USE_TZ = True
 
+# ====================
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+# ====================
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# static
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+# Media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# File and Data size
+DATA_UPLOAD_MAX_MEMORY_SIZE = env.int("DATA_UPLOAD_MAX_MEMORY_SIZE", default=20024200)
+FILE_UPLOAD_MAX_MEMORY_SIZE = env.int("FILE_UPLOAD_MAX_MEMORY_SIZE", default=20024200)
+
+# facebook ===============================
+# SOCIAL_AUTH_FACEBOOK_KEY = env.int('SOCIAL_AUTH_FACEBOOK_KEY', default='')  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = env.str('SOCIAL_AUTH_FACEBOOK_SECRET', default='')  # App Secret
+#
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', ]  # add this
+# SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {  # add this
+#     'fields': 'id, name, email, picture.type(large), link'
+# }
+# SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [  # add this
+#     ('name', 'name'),
+#     ('email', 'email'),
+#     ('picture', 'picture'),
+#     ('link', 'profile_url'),
+# ]
+# facebook ===============================
