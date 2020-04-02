@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-<<<<<<< HEAD
+from apps.users import views as user_views
 from django.urls import path, include
 
 urlpatterns = [
@@ -25,17 +25,4 @@ urlpatterns = [
     path('users/', include('apps.users.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
-from django.urls import path
-from apps.users import views as user_views
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("login/", user_views.LoginView.as_view(), name="login"),
-
-    path("signup/", user_views.SignupView.as_view(), name="signup"),
-
-    path("verify-email/", user_views.verify_email, name="verify_email"),
-
-]
->>>>>>> ecf13ffb53a260d550d120a6c1a2a6bbf5f8d645

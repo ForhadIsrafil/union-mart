@@ -1,31 +1,32 @@
+from apps.users.views import User
 from django.db import models
+
 
 # Create your models here.
 
-class Product():
+class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    price = models.PositiveIntegerField(max_length=20)
-    stock = models.PositiveIntegerField(max_length=20)
+    price = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField()
     type = models.CharField(max_length=20)
     offer = models.CharField(max_length=50)
     delevery_charge = models.CharField(max_length=20)
-    photo = models.FileField(upload_to=None, max_length=254, **options)
+    photo = models.FileField(upload_to=None, max_length=254)  # **options
     free_delivery = models.BooleanField(default=False)
 
 
-class ProductPhoto():
-    product_id = models.Foreignkey(Product)
-    image = models.FileField()
+class ProductPhoto(models.Model):
+    product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='media/product_image')
 
 
-class Comment():
-    user_id = models.Foreignkey()
-    product_id = models.Foreignkey(Product)
-    details = models.CharField(max_length=255)
+# class Comment(models.Model):
+#     user_id = models.Foreignkey()
+#     product_id = models.Foreignkey(Product)
+#     details = models.CharField(max_length=255)
 
 
-
-class Card():
-    user_id = models.Foreignkey()
-    product_id = models.Foreignkey(Product)
+class Card(models.Model):
+    user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)

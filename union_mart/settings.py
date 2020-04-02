@@ -32,6 +32,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.product',
     'social_django',  # <-
+    'phonenumber_field',
 
 ]
 
@@ -58,6 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'union_mart.urls'
+AUTH_USER_MODEL = 'users.User'
 
 AUTHENTICATION_BACKENDS = [
     # 'social_core.backends.linkedin.LinkedinOAuth2',
@@ -148,6 +151,8 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
 # ====================
+PHONENUMBER_DB_FORMAT = 'RNATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'BD'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
