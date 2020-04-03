@@ -156,3 +156,4 @@ temp
 .media
 .media/product-images/*
 ./media
+./static
