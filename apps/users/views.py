@@ -2,14 +2,14 @@ import json
 import io
 from datetime import datetime
 import requests
+from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model, login, logout, authenticate
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.mail import EmailMessage
 from django.db import models, transaction
@@ -19,88 +19,48 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.utils.encoding import force_bytes, force_text
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic import FormView, TemplateView, UpdateView, View
 from django.contrib.sessions.models import Session
 
-from PIL import Image
-from io import BytesIO
-
 from apps.users.models import User
-from .forms import (DeleteAccountForm, LoginForm, SignupForm, VerifyUserNameForm, VerifyEmailForm, UpdateUserInfoForm, )
-from .tokens import account_activation_token
+from .forms import (DeleteAccountForm, LoginForm, SignupForm, UpdateUserInfoForm, )
 
 
 # User = get_user_model()
 
 class SignupView(FormView):
-    template_name = "users/signup.html"
+    template_name = "users/login-signup.html"
     form_class = SignupForm
     success_url = reverse_lazy("login")
-    activation_email_template = "registration/account_activation_email.html"
-
-    def send_confirmation_link(self, user):
-        current_site = get_current_site(self.request)
-        mail_subject = "Activate your codefolio account."
-        message = render_to_string(
-            self.activation_email_template,
-            {
-                "protocol": "https" if self.request.is_secure() else "http",
-                "user": user,
-                "domain": current_site.domain,
-                "uid": urlsafe_base64_encode(force_bytes(user.id)),
-                "token": account_activation_token.make_token(user),
-            },
-        )
-        to_email = user.email
-        email = EmailMessage(mail_subject, message, to=[to_email])
-        email.send()
-
-    def form_invalid(self, form):
-        if self.request.is_ajax():
-            return JsonResponse(form.errors, status=400)
-        return super().form_invalid(form)
 
     def form_valid(self, form):
-        user = form.save(commit=False)
-        user.is_active = False
-        user.set_password(form.cleaned_data["password"])
-        user.save()
+        user = SignupForm(data=self.request.POST)
+        if user.is_valid():
+            user.is_active = True
+            user.set_password(form.cleaned_data["password"])
+            user.save()
+            login(self.request, user)
+            next_url = self.request.GET.get("next")
+            if next_url:
+                return HttpResponseRedirect(next_url)
+        else:
+            return render(self.request, self.template_name, {'form': user.errors})
 
         messages.add_message(
             self.request,
             messages.INFO,
             _(
-                "Please activate your account first by clicking the link to the email we have sent to you."
+                "Your account successfully created! And enjoy shopping!"
             ),
         )
         return super().form_valid(form)
 
 
-@require_POST
-def verify_user_name(request):
-    form = VerifyUserNameForm(data=request.POST)
-    if form.is_valid():
-        return JsonResponse({"valid": True})
-    else:
-        return JsonResponse(form.errors, status=400)
-
-
-@require_POST
-def verify_email(request):
-    form = VerifyEmailForm(data=request.POST)
-    if form.is_valid():
-        return JsonResponse({"valid": True})
-    else:
-        return JsonResponse(form.errors, status=400)
-
-
 class LoginView(FormView):
-    template_name = "users/login.html"
+    template_name = "users/login-signup"
     form_class = LoginForm
     success_url = reverse_lazy("projects")
 
@@ -120,7 +80,7 @@ class LoginView(FormView):
     def post(self, request):
         username = request.POST["username"]
         password = request.POST["password"]
-        if "@" in username:
+        if username:
             try:
                 user = User.objects.get(email=username)
             except User.DoesNotExist:
@@ -145,7 +105,7 @@ class LoginView(FormView):
             else:
                 messages.error(
                     request,
-                    "Please activate your account first by clicking the link to the email we have sent to you.",
+                    "Please use correct credential to login.",
                 )
                 return render(request, self.template_name, {"form": LoginForm})
         else:
@@ -166,13 +126,8 @@ class LoginView(FormView):
         return super().form_valid(form)
 
 
-# class ActivateAccountView(TemplateView):
-#     template_name = "registration/account_activation.html"
-#
-#     def get(self, request,):
-
-
-class UserProfileView(LoginRequiredMixin, UpdateView):
+@login_required
+class UserProfileView(UpdateView):
     model = User
     fields = ("first_name", "last_name", "email")
     template_name = "users/profile.html"
@@ -183,7 +138,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.fields["first_name"].required = False
+        form.fields["first_name"].required = True
         form.fields["last_name"].required = False
         return form
 
@@ -194,17 +149,14 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class UploadProfileImageView(LoginRequiredMixin, View):
+@login_required
+class UploadProfileImageView(View):
     def post(self, request, *args, **kwargs):
         user = self.request.user
-        blob_file = request.FILES["image"]
+        image = request.FILES["image"]
         file_name = request.POST["file_name"]
 
-        img = Image.open(BytesIO(blob_file.read()))
-        new_img = img.resize((180, 180))
-        user.image = default_storage.save(
-            user_image_upload_path(user, file_name), ContentFile(image_to_byte_array(new_img))
-        )
+        user.image = image
         user.save()
 
         if self.request.is_ajax():
@@ -212,14 +164,8 @@ class UploadProfileImageView(LoginRequiredMixin, View):
         return super().post(request, *args, **kwargs)
 
 
-def image_to_byte_array(image: Image):
-    imgByteArr = io.BytesIO()
-    image.save(imgByteArr, format='png')
-    imgByteArr = imgByteArr.getvalue()
-    return imgByteArr
-
-
-class ChangePasswordView(PasswordChangeView):
+@login_required
+class ChangePasswordView(PasswordChangeView):  # changing existing password
     template_name = "users/change_password.html"
     success_url = reverse_lazy("change_password")
 
@@ -230,7 +176,8 @@ class ChangePasswordView(PasswordChangeView):
         return super().form_valid(form)
 
 
-class DeleteAccountView(LoginRequiredMixin, FormView):
+@login_required
+class DeleteAccountView(FormView):
     template_name = "users/delete_account.html"
     form_class = DeleteAccountForm
     success_url = reverse_lazy("signup")
@@ -247,20 +194,13 @@ class DeleteAccountView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = "users/dashboard.html"
-
-
 def logoutUser(request):
-    user_name = request.user.user_name
-
     logout(request)
     request.session.flush()
-
     return redirect('/')
 
 
-class PasswordResetView(auth_views.PasswordResetView):
+class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot password , get email and send mail
     @method_decorator(csrf_protect)
     def dispatch(self, *args, **kwargs):
         email = self.request.POST.get('email')
@@ -271,4 +211,5 @@ class PasswordResetView(auth_views.PasswordResetView):
         return super().dispatch(*args, **kwargs)
 
 
-User = get_user_model()
+class DashboardView(TemplateView):  # LoginRequiredMixin
+    template_name = "users/dashboard.html"

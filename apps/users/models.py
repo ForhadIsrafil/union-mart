@@ -13,6 +13,7 @@ from apps.core.lib.behaviors import UUIDable, Timestampable
 
 # from .random_images import data
 from random import randrange
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class UserManager(BaseUserManager):
@@ -51,15 +52,33 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class User(AbstractBaseUser):
-    # image = models.ImageField(
-    #     _("image"), blank=True, null=True, upload_to=user_image_upload_path)
-
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email address'), unique=True)
+    first_name = models.CharField(_('first name'), max_length=30)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    user_name = models.CharField(_("user name"), max_length=150, blank=True, unique=True,
+                                 help_text=_("User name can only contain letters, numbers and hyphen."))
+    is_staff = models.BooleanField(
+        _("staff status"),
+        default=False,
+        help_text=_("Designates whether the user can log into this admin site."),
+    )
+    is_active = models.BooleanField(
+        _("active"),
+        default=True,
+        help_text=_(
+            "Designates whether this user should be treated as active. "
+            "Unselect this instead of deleting accounts."
+        ),
+    )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
-    nickname = models.CharField(max_length=20, null=True, blank=True)
-    bio = models.TextField(null=True, blank=True)
+    image = models.ImageField(_("image"), blank=True, null=True, upload_to="media/profile_image/")
+    phone_number = PhoneNumberField()
 
     objects = UserManager()
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     class Meta:
         verbose_name = _("user")
