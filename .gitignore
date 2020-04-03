@@ -154,4 +154,4 @@ api/temp
 temp
 .idea/workspace.xml
 .media
-.media/product-images/
+.media/product-images/*
