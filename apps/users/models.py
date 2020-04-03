@@ -36,6 +36,21 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
+    def create_superuser(self, email, password, **extra_fields):
+        if password is None:
+            raise TypeError(_("Superusers must have a password."))
+
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError(_("Superuser must have is_staff=True."))
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError(_("Superuser must have is_superuser=True."))
+
+        return self._create_user(email, password, **extra_fields)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
@@ -61,7 +76,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = PhoneNumberField()
 
     objects = UserManager()
-    USERNAME_FIELD = 'user_name'
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     class Meta:
@@ -77,3 +93,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}".strip()
+
+    def set_to_user(self):
+        self.is_staff = False
+        self.is_superuser = False
+        self.is_active = True

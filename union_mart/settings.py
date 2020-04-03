@@ -33,6 +33,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     'grappelli',
+    'nested_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,7 +73,7 @@ AUTHENTICATION_BACKENDS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,15 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'union_mart.wsgi.application'
-
-# ===============SSL==================
-# Force https redirect
-SECURE_SSL_REDIRECT = env.str('SECURE_SSL_REDIRECT', default='True')
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# Force HTTPS in the final URIs
-SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
-# ===============SSL==================
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -151,13 +143,16 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
 # ====================
-PHONENUMBER_DB_FORMAT = 'RNATIONAL'
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'BD'
+GRAPPELLI_ADMIN_TITLE = 'Union-Mart'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 # static
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -185,3 +180,16 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = env.int("FILE_UPLOAD_MAX_MEMORY_SIZE", default=200
 #     ('link', 'profile_url'),
 # ]
 # facebook ===============================
+
+
+# ======
+SECURE_SSL_REDIRECT = False
+# ======
+# ===============SSL==================
+# Force https redirect
+# SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT', default=False)  # it was True
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Force HTTPS in the final URIs
+# SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
+# ===============SSL==================

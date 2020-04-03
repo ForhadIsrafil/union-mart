@@ -1,9 +1,13 @@
 from django import forms
 # from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import (AuthenticationForm, )
+from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm, UserCreationForm)
 from django.utils.translation import ugettext_lazy as _
 from apps.users.models import User
 from phonenumber_field.phonenumber import PhoneNumber, to_python
+
+
+class UserFormValidationMixin(object):
+    error_messages = {"password_mismatch": _("The two password fields didn't match.")}
 
 
 class EmailFormMixin(forms.Form):
@@ -66,4 +70,31 @@ class UpdateUserInfoForm(forms.ModelForm):
             user.set_password(password)
             if commit:
                 user.save()
+        return user
+
+
+class AdminUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = User
+
+
+class AdminUserCreationForm(UserCreationForm, UserFormValidationMixin):
+    email = forms.EmailField(
+        label=_("Email"),
+        widget=forms.EmailInput,
+        help_text=_("Enter the email of that User"),
+    )
+
+    class Meta:
+        model = User
+        fields = ("email",)
+
+    def save(self, commit=True):
+        user = super(AdminUserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        user.set_to_user()
+
+        if commit:
+            user.save()
+
         return user
