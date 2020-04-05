@@ -32,7 +32,7 @@ from .forms import (DeleteAccountForm, LoginForm, SignupForm, UpdateUserInfoForm
 # User = get_user_model()
 
 class SignupView(FormView):
-    template_name = "users/login-signup.html"
+    template_name = "users/signup.html"
     form_class = SignupForm
     success_url = reverse_lazy("login")
 
@@ -60,7 +60,7 @@ class SignupView(FormView):
 
 
 class LoginView(FormView):
-    template_name = "users/login-signup"
+    template_name = "users/login.html"
     form_class = LoginForm
     success_url = reverse_lazy("projects")
 

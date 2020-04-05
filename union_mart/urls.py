@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("grappelli/", include("grappelli.urls")),  # grappelli URLS
     path("_nested_admin/", include("nested_admin.urls")),
-    path('products/', include('apps.product.urls')),
-    path('users/', include('apps.users.urls')),
+    path('', include('apps.product.urls')),
+    path('', include('apps.users.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

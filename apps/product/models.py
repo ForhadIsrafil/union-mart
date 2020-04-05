@@ -11,7 +11,7 @@ class Product(models.Model):
     type = models.CharField(verbose_name=_('Product Type'), max_length=20)
     offer = models.CharField(max_length=50)
     delevery_charge = models.CharField(max_length=20)
-    # default_photo = models.FileField(upload_to='product_image', max_length=254)  # **options
+    default_photo = models.ImageField(upload_to='product_image', help_text="Product default image.")  # **options
     free_delivery = models.BooleanField(default=False)
 
     class Meta:
