@@ -119,10 +119,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-EMAIL_BACKEND = env.str('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
-EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', default='')
-EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD', default='')
-DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL', default='')
+# =========== Email ============
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=False)
+EMAIL_HOST = env.str("EMAIL_HOST", default="mail.unionmartbd.com")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
+EMAIL_PORT = env("EMAIL_PORT", default=465)
+# DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="noreply@unionmartbd.com")
+# =========== Email ============
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
