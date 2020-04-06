@@ -1,8 +1,8 @@
+from apps.users.models import User
 from django import forms
 # from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm, UserCreationForm)
 from django.utils.translation import ugettext_lazy as _
-from apps.users.models import User
 from phonenumber_field.phonenumber import PhoneNumber, to_python
 
 
@@ -25,16 +25,16 @@ class EmailFormMixin(forms.Form):
 
 
 class SignupForm(forms.ModelForm):
-    image = forms.ImageField(required=False)
+    # image = forms.ImageField(required=False)
 
     class Meta:
         model = User
-        fields = ("first_name", "user_name", "email", "password", "phone_number", "image")
+        fields = ("first_name", "user_name", "email", "password", "phone_number", "date_of_birth")
 
-    def clean_phone_number(self):
-        phone_number = self.cleaned_data["phone_number"]
-        if not PhoneNumber.is_valid(to_python(phone_number)) or User.objects.filter(phone_number=phone_number).exists():
-            return forms.ValidationError(_("The phone-number is not valid or already exist!"))
+    # def clean_phone_number(self):
+    #     phone_number = self.cleaned_data["phone_number"]
+    #     if not PhoneNumber.is_valid(to_python(phone_number)) or User.objects.filter(phone_number=phone_number).exists():
+    #         return forms.ValidationError(_("The phone-number is not valid or already exist!"))
 
 
 class LoginForm(AuthenticationForm):
