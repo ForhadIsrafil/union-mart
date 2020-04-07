@@ -17,7 +17,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from apps.users import views as user_views
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +26,13 @@ urlpatterns = [
     path("_nested_admin/", include("nested_admin.urls")),
     path('', include('apps.product.urls')),
     path('', include('apps.users.urls')),
+
+    path("login/", user_views.LoginView.as_view(), name="login"),
+    re_path(r"^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$",
+            auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm", ),
+    path("password-reset/complete/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete", ),
+    path("password-reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done", ),
+    path("password-reset/", user_views.PasswordResetView.as_view(), name="password_reset"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

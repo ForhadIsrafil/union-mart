@@ -190,11 +190,12 @@ def logoutUser(request):
     return redirect('/')
 
 
-class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot password , get email and send mail
+class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot password , get email and send acivation-mail
     @method_decorator(csrf_protect)
     def dispatch(self, *args, **kwargs):
+        # import pdb;pdb.set_trace()
         email = self.request.POST.get('email')
-        user_email = User.objects.filter(Q(email=email) | Q(user_name=email)).values('email')
+        user_email = User.objects.filter(email=email).values('email')
         user_email = user_email[0]['email'] if user_email else user_email
         self.request.POST._mutable = True
         self.request.POST['email'] = user_email
