@@ -64,10 +64,10 @@ ROOT_URLCONF = 'union_mart.urls'
 AUTH_USER_MODEL = 'users.User'
 
 AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
     # 'social_core.backends.linkedin.LinkedinOAuth2',
     # 'social_core.backends.instagram.InstagramOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
 ]
 
 TEMPLATES = [
