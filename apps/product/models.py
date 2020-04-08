@@ -5,53 +5,55 @@ from django.utils.translation import ugettext_lazy as _
 
 class Product(models.Model):
     CATEGORY_CHOICES = (
-        ('Men', 'men'),
-        ('Women', 'women')
-        ('Construction', 'construction')
-        ('Home_Decorations', 'home_decorations')
-        ('Electronic', 'electronic')
-        ('Others', 'others')
-        ('Kids_World', 'kids_world')
+        ('MEN', 'men'),
+        ('WOMEN', 'women'),
+        ('CONSTRUCTION', 'construction'),
+        ('HOME DECORATION', 'home decorations'),
+        ('ELECTRONICS', 'electronics'),
+        ('OTHERS', 'others'),
+        ('KIDS WORLD', 'kids world')
     )
 
     SUB_CATEGORY_CHOICES = (
-        ('Watch', 'watch'),
-        ('Belt', 'betl')
-        ('Wallet', 'wallet')
-        ('Shoe', 'shoe')
-        ('Sunglass', 'sunglass')
-        ('Ornaments', 'ornaments')
-        ('Phrase', 'phrase')
-        ('Safety_Equipment’s ', 'safey_equipments')
-        ('Tools', 'tools')
-        ('Machinery', 'machinery')
-        ('Hardware', 'hardware')
-        ('Sanitary', 'sanitary')
-        ('Washing_Device', 'washing_device')
-        ('Water_Purifiers', 'water_purifiers')
-        ('Kitchen_&_Cleaning', 'kitchen_&_cleaning')
-        ('CC_Camera', 'cc_camera')
-        ('Earphone', 'earphone')
-        ('Scale', 'scale')
-        ('Storage_Device', 'storage_device')
-        ('Network_Device', 'network_device')
-        ('Health_Care', 'health_care')
-        ('Stationery', 'stationery')
-        ('Rain_Coat', 'rain_coat')
-        ('Kid’s_Toys', 'kid_toys')
-        ('Bag', 'bag')
+        ('WATCH', 'watch'),
+        ('BELT', 'belt'),
+        ('WALLET', 'wallet'),
+        ('WHOE', 'shoe'),
+        ('SUNGLASS', 'sunglass'),
+        ('ORNAMENTS', 'ornaments'),
+        ('PHRASE', 'phrase'),
+        ('SAFETY EQUIPMENTS', 'safey equipments'),
+        ('TOOLS', 'tools'),
+        ('MACHINERY', 'machinery'),
+        ('HARDWARE', 'hardware'),
+        ('SANITARY', 'sanitary'),
+        ('WASHING DEVICE', 'washing device'),
+        ('WATER PURIFIERS', 'water purifiers'),
+        ('KITCHEN & CLEANING', 'kitchen & cleaning'),
+        ('CC CAMERA', 'CC Camera'),
+        ('Earphone', 'Earphone'),
+        ('SCALE', 'scale'),
+        ('STORAGE DEVICE', 'storage device'),
+        ('NETWORK DEVICE', 'network device'),
+        ('HEALTH CARE', 'health care'),
+        ('STATIONERY', 'stationery'),
+        ('RAIN COAT', 'rain coat'),
+        ('KIDS TOYS', 'kid toys'),
+        ('BAG', 'bag'),
     )
+
     name = models.CharField(verbose_name=_('Product Name'), max_length=255)
     description = models.TextField(max_length=255)
     price = models.PositiveIntegerField(verbose_name=_('Product Price'))
     stock = models.PositiveIntegerField(verbose_name=_('Stock of Products'))
     category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20, default=CATEGORY_CHOICES[0])
     sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20, default=SUB_CATEGORY_CHOICES[0])
-    offer = models.CharField(max_length=50)
+    offer = models.CharField(max_length=50, null=True, blank=True)
     delevery_charge = models.CharField(max_length=20)
     default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
     free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
+    trend = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _("Product")

@@ -6,8 +6,9 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
+
 # from .random_images import data
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 # from apps.core.storages import DownloadableS3Boto3Storage
@@ -56,7 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     user_name = models.CharField(_("user name"), max_length=150, blank=True, unique=True,
                                  help_text=_("User name can only contain letters, numbers and hyphen."))
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
 
     is_staff = models.BooleanField(
         _("staff status"),

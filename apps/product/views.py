@@ -15,12 +15,17 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, RedirectView, TemplateView, View
 from django.views.generic.base import ContextMixin, TemplateResponseMixin
-from .models import Product, Card, ProductPhoto
+from .models import Product, Card, ProductPhoto, UpdateNews, Slider
 
 
 def home(request):
+    slider_ins = Slider.objects.all().order_by('-id')
     product_ins = Product.objects.all().order_by('-upload_date')
-    return render(request, 'index.html', {'products': product_ins})
+    context = {
+        'products': product_ins,
+        'sliders': slider_ins
+    }
+    return render(request, 'index.html', context)
 
 
 def product(request):

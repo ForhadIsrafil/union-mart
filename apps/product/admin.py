@@ -4,7 +4,7 @@ from django.contrib import admin
 
 class ProductPhotoInline(admin.TabularInline):
     model = ProductPhoto
-    extra = 0
+    extra = 1
 
 
 @admin.register(Product)
