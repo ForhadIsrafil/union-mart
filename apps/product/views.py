@@ -1,8 +1,26 @@
-from django.shortcuts import render
+import datetime
+import json
+import time
+import os
+from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
+from django.contrib import messages
+from django.db.models import Count, Q
+from django.db import models, transaction
+from django.http import JsonResponse, Http404, HttpResponse
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import DetailView, ListView, RedirectView, TemplateView, View
+from django.views.generic.base import ContextMixin, TemplateResponseMixin
+from .models import Product, Card, ProductPhoto
 
 
-def index(request):
-    return render(request, 'index.html', {})
+def home(request):
+    product_ins = Product.objects.all().order_by('-upload_date')
+    return render(request, 'index.html', {'products': product_ins})
 
 
 def product(request):

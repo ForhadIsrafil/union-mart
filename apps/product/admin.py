@@ -1,11 +1,5 @@
-from apps.product.models import Product, ProductPhoto, Card
+from apps.product.models import Product, ProductPhoto, Slider, UpdateNews
 from django.contrib import admin
-import nested_admin
-import csv
-from io import StringIO
-
-from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
 
 
 class ProductPhotoInline(admin.TabularInline):
@@ -16,4 +10,14 @@ class ProductPhotoInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ProductPhotoInline,)
-    list_display = ('name', 'price', 'stock', 'type',)
+    list_display = ('name', 'price', 'stock', 'category',)
+
+
+@admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ('title', 'sub_title')
+
+
+@admin.register(UpdateNews)
+class UpdateNewsAdmin(admin.ModelAdmin):
+    list_display = ('news',)

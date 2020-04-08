@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('apps.product.urls')),
     path('', include('apps.users.urls')),
 
+    # user related
     path("login/", user_views.LoginView.as_view(), name="login"),
     re_path(r"^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$",
             auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm", ),
