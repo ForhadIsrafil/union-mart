@@ -1,10 +1,10 @@
-from apps.product.models import Product, ProductPhoto, Slider, UpdateNews
+from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend
 from django.contrib import admin
 
 
 class ProductPhotoInline(admin.TabularInline):
     model = ProductPhoto
-    extra = 1
+    extra = 3
 
 
 @admin.register(Product)
@@ -21,3 +21,8 @@ class SliderAdmin(admin.ModelAdmin):
 @admin.register(UpdateNews)
 class UpdateNewsAdmin(admin.ModelAdmin):
     list_display = ('news',)
+
+
+@admin.register(Trend)
+class TrendAdmin(admin.ModelAdmin):
+    list_display = ('trend_name', 'image', 'position')

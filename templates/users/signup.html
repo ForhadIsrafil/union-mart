@@ -657,7 +657,7 @@
                            placeholder="Email address" required=""
                            type="email">
                     <input autofocus="" class="form-control bg-dark" id="input_phone" name="phone_number"
-                           placeholder="Phone" maxlength="11"
+                           placeholder="Phone" maxlength="11" minlength="11"
                            required=""
                            type="text">
                     <input autofocus="" class="form-control bg-dark" id="input_date" name="date_of_birth"
@@ -671,7 +671,7 @@
                     </button>
                     <!-- <p>Don't have an account!</p>  -->
                     <!--                <button class="btn btn-primary btn-block" type="button"><i class="fas fa-user-plus"></i>-->
-                    <a class="btn btn-primary btn-block" href="{% url 'users:login' %}"><i class="fas fa-user-plus">Already
+                    <a class="btn btn-primary btn-block" href="{% url 'login' %}"><i class="fas fa-user-plus">Already
                         Have a
                         account? Log in here</i></a>
                     <!--                </button>-->

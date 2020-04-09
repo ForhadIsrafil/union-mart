@@ -53,7 +53,7 @@ class Product(models.Model):
     default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
     free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
-    trend = models.BooleanField(default=False)
+    trend_name = models.CharField(max_length=50, null=True, blank=True)
 
     class Meta:
         verbose_name = _("Product")
@@ -120,6 +120,30 @@ class Slider(models.Model):
         verbose_name = _("Slider")
         verbose_name_plural = _("Slider")
 
+    def __str__(self):
+        return self.title
+
 
 class UpdateNews(models.Model):
     news = models.CharField(max_length=100)
+    position = models.PositiveSmallIntegerField(null=True)
+
+    class Meta:
+        verbose_name = _("Updated News")
+        verbose_name_plural = _("Updated News")
+
+    def __str__(self):
+        return self.news
+
+
+class Trend(models.Model):
+    trend_name = models.CharField(max_length=50, null=True, blank=True)
+    image = models.ImageField(upload_to='trend_images')
+    position = models.PositiveSmallIntegerField(null=True)
+
+    class Meta:
+        verbose_name = _("Trend")
+        verbose_name_plural = _("Trends")
+
+    def __str__(self):
+        return self.trend_name
