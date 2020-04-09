@@ -8,11 +8,13 @@ def home(request):
     product_ins = Product.objects.all().order_by('-upload_date')
     updated_news_ins = UpdateNews.objects.all().order_by('-id')
     trend_ins = Trend.objects.all().order_by('-id')
+    women_ins = product_ins.filter(category='Women')[:3]
     context = {
         'products': product_ins,
         'sliders': slider_ins,
         'updated_news': updated_news_ins,
-        'trends': trend_ins
+        'trends': trend_ins,
+        'womens': women_ins,
     }
     return render(request, 'index.html', context)
 
