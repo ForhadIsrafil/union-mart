@@ -1,21 +1,6 @@
-import datetime
-import json
-import time
-import os
-from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
-from django.contrib import messages
-from django.db.models import Count, Q
-from django.db import models, transaction
-from django.http import JsonResponse, Http404, HttpResponse
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
-from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import DetailView, ListView, RedirectView, TemplateView, View
-from django.views.generic.base import ContextMixin, TemplateResponseMixin
-from .models import Product, Card, ProductPhoto, UpdateNews, Slider, Trend
+from django.shortcuts import render
+
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto
 
 
 def home(request):
@@ -33,11 +18,22 @@ def home(request):
 
 
 def product(request):
-    return render(request, 'product.html', {})
+    product_ins = Product.objects.all().order_by('-id')
+    context = {
+        'products': product_ins
+    }
+    return render(request, 'product.html', context)
 
 
-def product_details(request):
-    return render(request, 'product-detail.html', {})
+def product_details(request, product_id):
+    product_ins = Product.objects.filter(id=product_id).first()
+    product_photo_ins = ProductPhoto.objects.filter(product_id=product_id).order_by('-id')
+
+    context = {
+        'product_details': product_ins,
+        'product_images': product_photo_ins,
+    }
+    return render(request, 'product-detail.html', context)
 
 
 def shoping_cart(request):
