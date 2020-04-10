@@ -11,8 +11,9 @@ def home(request):
     women_ins = product_ins.filter(category='Women')[:3]
     men_ins = product_ins.filter(category='Men')[:3]
     bag_ins = product_ins.filter(sub_category='Bag')[:3]
-    watch_ins = product_ins.filter(sub_category='Watch')[:3]
     shoe_ins = product_ins.filter(sub_category='Shoe')[:3]
+    watch_ins = product_ins.filter(sub_category='Watch')[:3]
+
     context = {
         'products': product_ins,
         'sliders': slider_ins,
