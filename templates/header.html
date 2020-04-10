@@ -69,10 +69,10 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Men's</a>
+								<a href="{% url 'product:home' %}">Men's</a>
 								<ul class="sub-menu">
-									<li><a href="#">Watch</a></li>
-									<li><a href="#">Belt</a></li>
+									<li><a href="sub_product/watch.html">Watch</a></li>
+									<li><a href="sub_product/belt.html">Belt</a></li>
 									<li><a href="#">Wallet</a></li>
 									<li><a href="#">Shoe</a></li>
 									<li><a href="#">Sunglass</a></li>
@@ -84,7 +84,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Women's</a>
+								<a href="{% url 'product:home' %}">Women's</a>
 								<ul class="sub-menu">
 									<li><a href="#">Watch</a></li>
 									<li><a href="#">Ornaments</a></li>
@@ -100,7 +100,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Construction</a>
+								<a href="{% url 'product:home' %}">Construction</a>
 								<ul class="sub-menu">
 									<li><a href="#">Safety Equipment’s </a></li>
 									<li><a href="#">Tools</a></li>
@@ -116,7 +116,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Home Decorations</a>
+								<a href="{% url 'product:home' %}">Home Decorations</a>
 								<ul class="sub-menu">
 									<li><a href="#">Washing Device</a></li>
 									<li><a href="#">Water Purifiers</a></li>
@@ -130,7 +130,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Electronic</a>
+								<a href="{% url 'product:home' %}">Electronic</a>
 								<ul class="sub-menu">
 									<li><a href="#">CC Camera</a></li>
 									<li><a href="#">Earphone</a></li>
@@ -146,7 +146,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Others</a>
+								<a href="{% url 'product:home' %}">Others</a>
 								<ul class="sub-menu">
 									<li><a href="#">Health Care</a></li>
 									<li><a href="#">Stationery</a></li>
@@ -160,7 +160,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Kids World</a>
+								<a href="{% url 'product:home' %}">Kids World</a>
 								<ul class="sub-menu">
 									<li><a href="#">Kid’s Toys</a></li>
 									<li><a href="#">Watch</a></li>
@@ -198,7 +198,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="{% static '/images/icons/logo-01.png' %}" alt="IMG-LOGO"></a>
+				<a href="index.html">Union Mart.BD</a>
 			</div>
 
 			<!-- Icon header -->
@@ -223,7 +223,7 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="{% url 'product:home' %}">Home</a>
 					<ul class="sub-menu-m">
 				<!-- 	<li><a href="#">Mens</a></li> -->
 
@@ -234,7 +234,7 @@
 				</li>
 				<ul class="main-menu-m">
 					<li>
-						<a href="index.html">Men's</a>
+						<a href="{% url 'product:home' %}">Men's</a>
 						<ul class="sub-menu-m">
 							<li><a href="#">Watch</a></li>
 							<li><a href="#">Belt</a></li>
@@ -251,7 +251,7 @@
 					</ul>
 					<ul class="main-menu-m">
 						<li>
-							<a href="index.html">Women's</a>
+							<a href="{% url 'product:home' %}">Women's</a>
 							<ul class="sub-menu-m">
 								li><a href="#">Watch</a></li>
 									<li><a href="#">Ornaments</a></li>
@@ -268,7 +268,7 @@
 						</ul>
 						<ul class="main-menu-m">
 							<li>
-								<a href="index.html">Constructions</a>
+								<a href="{% url 'product:home' %}">Constructions</a>
 								<ul class="sub-menu-m">
 									<li><a href="#">Safety Equipment’s </a></li>
 									<li><a href="#">Tools</a></li>
@@ -284,7 +284,7 @@
 							</ul>
 							<ul class="main-menu-m">
 								<li>
-									<a href="index.html">Home Decorations</a>
+									<a href="{% url 'product:home' %}">Home Decorations</a>
 									<ul class="sub-menu-m">
 										<li><a href="#">Washing Device</a></li>
 										<li><a href="#">Water Purifiers</a></li>
@@ -298,7 +298,7 @@
 								</ul>
 								<ul class="main-menu-m">
 									<li>
-										<a href="index.html">Electronics</a>
+										<a href="{% url 'product:home' %}">Electronics</a>
 										<ul class="sub-menu-m">
 											<li><a href="#">CC Camera</a></li>
 											<li><a href="#">Earphone</a></li>
@@ -315,7 +315,7 @@
 									</ul>
 									<ul class="main-menu-m">
 										<li>
-											<a href="index.html">Others</a>
+											<a href="{% url 'product:home' %}">Others</a>
 											<ul class="sub-menu-m">
 												<li><a href="#">Health Care</a></li>
 												<li><a href="#">Stationery</a></li>
@@ -330,7 +330,7 @@
 										</ul>
 										<ul class="main-menu-m">
 											<li>
-												<a href="index.html">Kid’s WOrld</a>
+												<a href="{% url 'product:home' %}">Kid’s WOrld</a>
 												<ul class="sub-menu-m">
 													<li><a href="#">Kid’s Toys</a></li>
 													<li><a href="#">Watch</a></li>
@@ -390,13 +390,13 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="about.html" class="stext-102 cl2 hov-cl1 trans-04">
 							About US
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="contact.html" class="stext-102 cl2 hov-cl1 trans-04">
 						Contact US
 						</a>
 					</li>
