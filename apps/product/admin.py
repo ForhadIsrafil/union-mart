@@ -10,7 +10,7 @@ class ProductPhotoInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ProductPhotoInline,)
-    list_display = ('name', 'price', 'stock', 'category', 'sub_category',)
+    list_display = ('name', 'price', 'stock', 'category', 'sub_category', 'stock', 'upload_date',)
 
 
 @admin.register(Slider)

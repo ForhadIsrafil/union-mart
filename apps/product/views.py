@@ -32,16 +32,50 @@ def home(request):
 def product(request):
     category = request.GET.get('category', None)
     sub_category = request.GET.get('sub_category', None)
+    search_product = request.POST.get('search_product', None)
+    product_ins = Product.objects.all().order_by('-upload_date')
+    # print('search_product ', search_product)
+
+    if search_product:
+        if category and sub_category:
+            product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category) & Q(description__icontains=search_product))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+            }
+            return render(request, 'product.html', context)
+        elif category:
+            product_ins = product_ins.filter(Q(category=category) & Q(description__icontains=search_product))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+            }
+            return render(request, 'product.html', context)
+        else:
+            product_ins = product_ins.filter(Q(sub_category=sub_category) & Q(description__icontains=search_product))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+            }
+            return render(request, 'product.html', context)
 
     if category and sub_category:
-        product_ins = Product.objects.filter(Q(category=category) & Q(sub_category=sub_category)).order_by('-upload_date')
+        product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category))
     elif category:
-        product_ins = Product.objects.filter(category=category).order_by('-upload_date')
+        product_ins = product_ins.filter(category=category)
+    elif sub_category:
+        product_ins = product_ins.filter(sub_category=sub_category)
+
     else:
-        product_ins = Product.objects.all().order_by('-upload_date')
+        product_ins = product_ins
 
     context = {
-        'products': product_ins
+        'products': product_ins,
+        'category': category,
+        'sub_category': sub_category,
     }
     return render(request, 'product.html', context)
 
