@@ -52,7 +52,7 @@
 				<nav class="limiter-menu-desktop p-l-45">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<a href="{% url 'product:home' %}" class="logo">
 						<h3 style="color: aliceblue;">Unionmart.BD</h3>
 					</a>
 
@@ -73,10 +73,10 @@
 								<ul class="sub-menu">
 									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
 									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Belt">Belt</a></li>
-									<li><a href="#">Wallet</a></li>
-									<li><a href="#">Shoe</a></li>
-									<li><a href="#">Sunglass</a></li>
-									<li><a href="#">Bag</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Wallet">Wallet</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Shoe">Shoe</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Sunglass">Sunglass</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Bag">Bag</a></li>
 							</li>
 
 							</ul>
@@ -86,12 +86,12 @@
 							<li>
 								<a href="{% url 'product:product' %}?category=Women">Women's</a>
 								<ul class="sub-menu">
-									<li><a href="#">Watch</a></li>
-									<li><a href="#">Ornaments</a></li>
-									<li><a href="#">Phrase</a></li>
-									<li><a href="#">shoe</a></li>
-									<li><a href="#">Bag</a></li>
-									<li><a href="#">sunglass</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Ornaments">Ornaments</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Phrase">Phrase</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=shoe">shoe</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Bag">Bag</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=sunglass">sunglass</a></li>
 								</ul>
 							</li>
 
@@ -102,11 +102,11 @@
 							<li>
 								<a href="{% url 'product:home' %}">Construction</a>
 								<ul class="sub-menu">
-									<li><a href="#">Safety Equipment’s </a></li>
-									<li><a href="#">Tools</a></li>
-									<li><a href="#">Machinery </a></li>
-									<li><a href="#">Hardware</a></li>
-									<li><a href="#">Sanitary </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Safety Equipments">Safety Equipment’s </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Tools">Tools</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Machinery">Machinery </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Hardware">Hardware</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Sanitary">Sanitary </a></li>
 
 								</ul>
 							</li>
@@ -118,9 +118,9 @@
 							<li>
 								<a href="{% url 'product:home' %}">Home Decorations</a>
 								<ul class="sub-menu">
-									<li><a href="#">Washing Device</a></li>
-									<li><a href="#">Water Purifiers</a></li>
-									<li><a href="#">Kitchen & Cleaning  </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Washing Device">Washing Device</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Water Purifiers">Water Purifiers</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Cleaning">Kitchen & Cleaning  </a></li>
 
 								</ul>
 							</li>
@@ -132,12 +132,11 @@
 							<li>
 								<a href="{% url 'product:home' %}">Electronic</a>
 								<ul class="sub-menu">
-									<li><a href="#">CC Camera</a></li>
-									<li><a href="#">Earphone</a></li>
-									<li><a href="#">Scale</a></li>
-									<li><a href="#">Storage Device</a></li>
-									<li><a href="#">Network Device</a></li>
-									<li><a href="#">Network Device</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & CC Camera">CC Camera</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Earphone">Earphone</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Scale">Scale</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Storage Device">Storage Device</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Network Device">Network Device</a></li>
 								</ul>
 							</li>
 
@@ -148,9 +147,9 @@
 							<li>
 								<a href="{% url 'product:home' %}">Others</a>
 								<ul class="sub-menu">
-									<li><a href="#">Health Care</a></li>
-									<li><a href="#">Stationery</a></li>
-									<li><a href="#">Rain Coat</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Health Caret">Health Care</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Stationeryt">Stationery</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Rain Coat">Rain Coat</a></li>
 
 								</ul>
 							</li>
@@ -162,9 +161,8 @@
 							<li>
 								<a href="{% url 'product:home' %}">Kids World</a>
 								<ul class="sub-menu">
-									<li><a href="#">Kid’s Toys</a></li>
-									<li><a href="#">Watch</a></li>
-									<li><a href="#">Watch</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kids Toys">Kid’s Toys</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
 
 								</ul>
 							</li>
@@ -236,12 +234,12 @@
 					<li>
 						<a href="{% url 'product:home' %}">Men's</a>
 						<ul class="sub-menu-m">
-							<li><a href="#">Watch</a></li>
-							<li><a href="#">Belt</a></li>
-							<li><a href="#">Wallet</a></li>
-							<li><a href="#">Shoe</a></li>
-							<li><a href="#">Sunglass</a></li>
-							<li><a href="#">Bag</a></li>
+							<li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
+							<li><a href="{% url 'product:product' %}?category=Men&sub_category=Belt">Belt</a></li>
+							<li><a href="{% url 'product:product' %}?category=Men&sub_category=Wallet">Wallet</a></li>
+							<li><a href="{% url 'product:product' %}?category=Men&sub_category=Shoe">Shoe</a></li>
+							<li><a href="{% url 'product:product' %}?category=Men&sub_category=Sunglass">Sunglass</a></li>
+							<li><a href="{% url 'product:product' %}?category=Men&sub_category=Bag">Bag</a></li>
 
 						</ul>
 						<span class="arrow-main-menu-m">
@@ -253,12 +251,12 @@
 						<li>
 							<a href="{% url 'product:home' %}">Women's</a>
 							<ul class="sub-menu-m">
-								li><a href="#">Watch</a></li>
-									<li><a href="#">Ornaments</a></li>
-									<li><a href="#">Phrase</a></li>
-									<li><a href="#">shoe</a></li>
-									<li><a href="#">Bag</a></li>
-									<li><a href="#">sunglass</a></li>
+								li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Ornaments">Ornaments</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Phrase">Phrase</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=shoe">shoe</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Bag">Bag</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=sunglass">sunglass</a></li>
 
 							</ul>
 							<span class="arrow-main-menu-m">
@@ -270,11 +268,11 @@
 							<li>
 								<a href="{% url 'product:home' %}">Constructions</a>
 								<ul class="sub-menu-m">
-									<li><a href="#">Safety Equipment’s </a></li>
-									<li><a href="#">Tools</a></li>
-									<li><a href="#">Machinery </a></li>
-									<li><a href="#">Hardware</a></li>
-									<li><a href="#">Sanitary </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Safety Equipments">Safety Equipment’s </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Tools">Tools</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Machinery">Machinery </a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Hardware">Hardware</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Sanitary">Sanitary </a></li>
 
 								</ul>
 								<span class="arrow-main-menu-m">
@@ -286,9 +284,9 @@
 								<li>
 									<a href="{% url 'product:home' %}">Home Decorations</a>
 									<ul class="sub-menu-m">
-										<li><a href="#">Washing Device</a></li>
-										<li><a href="#">Water Purifiers</a></li>
-										<li><a href="#">Kitchen & Cleaning  </a></li>
+										<li><a href="{% url 'product:product' %}?category=Men&sub_category=Washing Device">Washing Device</a></li>
+										<li><a href="{% url 'product:product' %}?category=Men&sub_category=Water Purifiers">Water Purifiers</a></li>
+										<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Cleaning">Kitchen & Cleaning</a></li>
 
 									</ul>
 									<span class="arrow-main-menu-m">
@@ -300,12 +298,11 @@
 									<li>
 										<a href="{% url 'product:home' %}">Electronics</a>
 										<ul class="sub-menu-m">
-											<li><a href="#">CC Camera</a></li>
-											<li><a href="#">Earphone</a></li>
-											<li><a href="#">Scale</a></li>
-											<li><a href="#">Storage Device</a></li>
-											<li><a href="#">Network Device</a></li>
-											<li><a href="#">Network Device</a></li>
+											<li><a href="{% url 'product:product' %}?category=Men&sub_category=CC Camera">CC Camera</a></li>
+											<li><a href="{% url 'product:product' %}?category=Men&sub_category=Earphone">Earphone</a></li>
+											<li><a href="{% url 'product:product' %}?category=Men&sub_category=Scale">Scale</a></li>
+											<li><a href="{% url 'product:product' %}?category=Men&sub_category=Storage Device">Storage Device</a></li>
+											<li><a href="{% url 'product:product' %}?category=Men&sub_category=Network Device">Network Device</a></li>
 
 										</ul>
 										<span class="arrow-main-menu-m">
@@ -317,10 +314,10 @@
 										<li>
 											<a href="{% url 'product:home' %}">Others</a>
 											<ul class="sub-menu-m">
-												<li><a href="#">Health Care</a></li>
-												<li><a href="#">Stationery</a></li>
-												<li><a href="#">Rain Coat</a></li>
-												<li><a href="#">Choco Snacks</a></li>
+												<li><a href="{% url 'product:product' %}?category=Men&sub_category=Health Care">Health Care</a></li>
+												<li><a href="{% url 'product:product' %}?category=Men&sub_category=Stationery">Stationery</a></li>
+												<li><a href="{% url 'product:product' %}?category=Men&sub_category=Rain Coat">Rain Coat</a></li>
+												<li><a href="{% url 'product:product' %}?category=Men&sub_category=Choco Snacks">Choco Snacks</a></li>
 
 											</ul>
 											<span class="arrow-main-menu-m">
@@ -332,9 +329,8 @@
 											<li>
 												<a href="{% url 'product:home' %}">Kid’s WOrld</a>
 												<ul class="sub-menu-m">
-													<li><a href="#">Kid’s Toys</a></li>
-													<li><a href="#">Watch</a></li>
-													<li><a href="#">Watch</a></li>
+													<li><a href="{% url 'product:product' %}?category=Men&sub_category=Kid’s Toys">Kid’s Toys</a></li>
+													<li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
 												</ul>
 												<span class="arrow-main-menu-m">
 													<i class="fa fa-angle-right" aria-hidden="true"></i>
