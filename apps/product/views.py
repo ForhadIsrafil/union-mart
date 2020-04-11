@@ -9,12 +9,21 @@ def home(request):
     updated_news_ins = UpdateNews.objects.all().order_by('-id')
     trend_ins = Trend.objects.all().order_by('-id')
     women_ins = product_ins.filter(category='Women')[:3]
+    men_ins = product_ins.filter(category='Men')[:3]
+    bag_ins = product_ins.filter(sub_category='Bag')[:3]
+    shoe_ins = product_ins.filter(sub_category='Shoe')[:3]
+    watch_ins = product_ins.filter(sub_category='Watch')[:3]
+
     context = {
         'products': product_ins,
         'sliders': slider_ins,
         'updated_news': updated_news_ins,
         'trends': trend_ins,
         'womens': women_ins,
+        'mens': men_ins,
+        'bags': bag_ins,
+        'shoes': shoe_ins,
+        'watches': watch_ins,
     }
     return render(request, 'index.html', context)
 
