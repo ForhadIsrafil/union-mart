@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto
@@ -29,7 +30,16 @@ def home(request):
 
 
 def product(request):
-    product_ins = Product.objects.all().order_by('-id')
+    category = request.GET.get('category', None)
+    sub_category = request.GET.get('sub_category', None)
+
+    if category and sub_category:
+        product_ins = Product.objects.filter(Q(category=category) & Q(sub_category=sub_category)).order_by('-upload_date')
+    elif category:
+        product_ins = Product.objects.filter(category=category).order_by('-upload_date')
+    else:
+        product_ins = Product.objects.all().order_by('-upload_date')
+
     context = {
         'products': product_ins
     }

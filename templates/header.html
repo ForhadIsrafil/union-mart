@@ -69,10 +69,10 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="{% url 'product:home' %}">Men's</a>
+								<a href="{% url 'product:product' %}?category=Men">Men's</a>
 								<ul class="sub-menu">
-									<li><a href="sub_product/watch.html">Watch</a></li>
-									<li><a href="sub_product/belt.html">Belt</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
+									<li><a href="{% url 'product:product' %}?category=Men&sub_category=Belt">Belt</a></li>
 									<li><a href="#">Wallet</a></li>
 									<li><a href="#">Shoe</a></li>
 									<li><a href="#">Sunglass</a></li>
@@ -84,7 +84,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="{% url 'product:home' %}">Women's</a>
+								<a href="{% url 'product:product' %}?category=Women">Women's</a>
 								<ul class="sub-menu">
 									<li><a href="#">Watch</a></li>
 									<li><a href="#">Ornaments</a></li>
