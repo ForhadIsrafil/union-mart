@@ -4,7 +4,7 @@
     <title>Unionmartbd</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-{#  <link rel="icon" type="image/png" href="{% static '/images/icons/favicon.png' %}"/>#}
+    {#  <link rel="icon" type="image/png" href="{% static '/images/icons/favicon.png' %}"/>#}
     {#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">#}
     {#    <link rel="stylesheet" type="text/css"#}
     {#          href="{% static '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">#}
@@ -21,7 +21,7 @@
     {#    <link rel="stylesheet" type="text/css"#}
     {#          href="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">#}
     {#    <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">#}
-{#   <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">#}
+    {#   <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">#}
 
     <!--===============================================================================================-->
     {% include 'header.html' %}
@@ -942,7 +942,7 @@
 
         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter=".all_products">
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" id="linkid" data-filter=".all_products">
                     All Products
                 </button>
 
@@ -970,11 +970,10 @@
 
             </div>
 
-
         </div>
 
         <div class="row isotope-grid">
-        {% for product in products %}
+            {% for product in products %}
                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item all_products">
                     <!-- Block2 -->
                     <div class="block2">
@@ -1664,15 +1663,15 @@
         </div>
 
         <!-- Pagination -->
-{#        <div class="flex-c-m flex-w w-full p-t-38">#}
-{#            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">#}
-{#                1#}
-{#            </a>#}
-{##}
-{#            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">#}
-{#                2#}
-{#            </a>#}
-{#        </div>#}
+        {#        <div class="flex-c-m flex-w w-full p-t-38">#}
+        {#            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">#}
+        {#                1#}
+        {#            </a>#}
+        {##}
+        {#            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">#}
+        {#                2#}
+        {#            </a>#}
+        {#        </div>#}
     </div>
 </section>
 
@@ -2081,4 +2080,11 @@
 {#            })#}
 {#    });#}
 {#</script>#}
+
+{# load isotop button clicked start#}
+<script>window.onload = function () {
+    document.getElementById("linkid").click();
+};</script>
+{# load isotop button clicked end#}
+
 </html>
