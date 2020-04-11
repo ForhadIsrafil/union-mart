@@ -35,9 +35,9 @@ class Product(models.Model):
         ('Scale', 'Scale'),
         ('Storage Device', 'Storage Device'),
         ('Network Device', 'Network Device'),
-        ('Health Care', 'Health Care'),
-        ('Stationery', 'Stationery'),
-        ('Rain Coa', 'Rain Coat'),
+        ('Health Caret', 'Health Care'),
+        ('Stationeryt', 'Stationery'),
+        ('Rain Coat', 'Rain Coat'),
         ('Kids Toys', 'Kids Toys'),
         ('Bag', 'Bag'),
     )
