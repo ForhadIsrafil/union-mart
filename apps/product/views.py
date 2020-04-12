@@ -33,12 +33,42 @@ def product(request):
     category = request.GET.get('category', None)
     sub_category = request.GET.get('sub_category', None)
     search_product = request.POST.get('search_product', None)
-    price_filter = request.GET.get('price', None)
-    if price_filter:
-        price_filter = price_filter.split('-')
-        print(price_filter)
+    price_filter_first = request.GET.get('price', None)
 
     product_ins = Product.objects.all().order_by('-upload_date')
+
+    if price_filter_first:
+        price_filter = price_filter_first.split('-')
+        if category and sub_category:
+            product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+                'price': price_filter_first,
+            }
+            return render(request, 'product.html', context)
+        elif category:
+            product_ins = product_ins.filter(Q(category=category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+                'price': price_filter_first,
+
+            }
+            return render(request, 'product.html', context)
+        else:
+            product_ins = product_ins.filter(Q(sub_category=sub_category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+                'price': price_filter_first,
+
+            }
+            return render(request, 'product.html', context)
+
     if search_product:
         if category and sub_category:
             product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category) & Q(description__icontains=search_product))
@@ -46,7 +76,7 @@ def product(request):
                 'products': product_ins,
                 'category': category,
                 'sub_category': sub_category,
-                'price': price_filter,
+                'price': price_filter_first,
             }
             return render(request, 'product.html', context)
         elif category:
@@ -55,7 +85,7 @@ def product(request):
                 'products': product_ins,
                 'category': category,
                 'sub_category': sub_category,
-                'price': price_filter,
+                'price': price_filter_first,
 
             }
             return render(request, 'product.html', context)
@@ -65,7 +95,7 @@ def product(request):
                 'products': product_ins,
                 'category': category,
                 'sub_category': sub_category,
-                'price': price_filter,
+                'price': price_filter_first,
 
             }
             return render(request, 'product.html', context)
@@ -84,7 +114,7 @@ def product(request):
         'products': product_ins,
         'category': category,
         'sub_category': sub_category,
-        'price': price_filter,
+        'price': price_filter_first,
 
     }
     return render(request, 'product.html', context)

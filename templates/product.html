@@ -597,7 +597,7 @@
 
             <!-- Search product -->
 
-            <form  method="post"  action="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}{% endif %}" class="dis-none panel-search w-full p-t-10 p-b-15">{% csrf_token %}
+            <form method="post" action="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}{% endif %}" class="dis-none panel-search w-full p-t-10 p-b-15">{% csrf_token %}
                 <div class="bor8 dis-flex p-l-15">
                     <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="submit">
                         <i class="zmdi zmdi-search"></i>
@@ -666,31 +666,31 @@
                             </li>
 
                             <li class="p-b-6">
-                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}{% if price %}price={{ price }}{% else %}price=50-1000{% endif %}" class="filter-link stext-106 trans-04">
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}price=50-1000" class="filter-link stext-106 trans-04">
                                     $50 - $1000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}price=1000-3000" class="filter-link stext-106 trans-04">
                                     $1000 - $3000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}price=3000-5000" class="filter-link stext-106 trans-04">
                                     $3000 - $5000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}price=5000-8000" class="filter-link stext-106 trans-04">
                                     $5000 - $8000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}price=8000-10000" class="filter-link stext-106 trans-04">
                                     $8000+
                                 </a>
                             </li>
