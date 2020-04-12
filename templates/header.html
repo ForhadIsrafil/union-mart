@@ -86,12 +86,12 @@
                         <li>
                             <a href="{% url 'product:product' %}?category=Women">Women's</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Ornaments">Ornaments</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Phrase">Phrase</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=shoe">shoe</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Bag">Bag</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=sunglass">sunglass</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Women&sub_category=Watch">Watch</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Women&sub_category=Ornaments">Ornaments</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Women&sub_category=Phrase">Phrase</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Women&sub_category=shoe">shoe</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Women&sub_category=Bag">Bag</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Women&sub_category=sunglass">sunglass</a></li>
                             </ul>
                         </li>
 
@@ -100,27 +100,13 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="{% url 'product:home' %}">Construction</a>
+                            <a href="{% url 'product:home' %}?category=Constructions">Constructions</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Safety Equipments">Safety Equipment’s </a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Tools">Tools</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Machinery">Machinery </a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Hardware">Hardware</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Sanitary">Sanitary </a></li>
-
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="menu-desktop">
-                    <ul class="main-menu">
-                        <li>
-                            <a href="{% url 'product:home' %}">Home Decorations</a>
-                            <ul class="sub-menu">
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Washing Device">Washing Device</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Water Purifiers">Water Purifiers</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Cleaning">Kitchen & Cleaning </a></li>
+                                <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Safety Equipments">Safety Equipment’s </a></li>
+                                <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Tools">Tools</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Machinery">Machinery </a></li>
+                                <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Hardware">Hardware</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Sanitary">Sanitary </a></li>
 
                             </ul>
                         </li>
@@ -130,13 +116,12 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="{% url 'product:home' %}">Electronic</a>
+                            <a href="{% url 'product:home' %}?category=Home Decorations">Home Decorations</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & CC Camera">CC Camera</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Earphone">Earphone</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Scale">Scale</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Storage Device">Storage Device</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Network Device">Network Device</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Home Decorations&sub_category=Washing Device">Washing Device</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Home Decorations&sub_category=Water Purifiers">Water Purifiers</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Home Decorations&sub_category=Kitchen & Cleaning">Kitchen & Cleaning </a></li>
+
                             </ul>
                         </li>
 
@@ -145,11 +130,26 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="{% url 'product:home' %}">Others</a>
+                            <a href="{% url 'product:home' %}?category=Electronics">Electronic</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Health Caret">Health Care</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Stationeryt">Stationery</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Rain Coat">Rain Coat</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Kitchen & CC Camera">CC Camera</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Kitchen & Earphone">Earphone</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Kitchen & Scale">Scale</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Kitchen & Storage Device">Storage Device</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Kitchen & Network Device">Network Device</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="menu-desktop">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="{% url 'product:home' %}?category=Others">Others</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'product:product' %}?category=Others&sub_category=Health Caret">Health Care</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Others&sub_category=Stationery">Stationery</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Others&sub_category=Rain Coat">Rain Coat</a></li>
 
                             </ul>
                         </li>
@@ -161,8 +161,8 @@
                         <li>
                             <a href="{% url 'product:product' %}?category=Kids World">Kids World</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kids Toys">Kid’s Toys</a></li>
-                                <li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Kids World&sub_category=Kids Toys">Kid’s Toys</a></li>
+                                <li><a href="{% url 'product:product' %}?category=Kids World&sub_category=Watch">Watch</a></li>
 
                             </ul>
                         </li>
@@ -229,7 +229,7 @@
             </li>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Men's</a>
+                    <a href="{% url 'product:home' %}?category=Men">Men's</a>
                     <ul class="sub-menu-m">
                         <li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
                         <li><a href="{% url 'product:product' %}?category=Men&sub_category=Belt">Belt</a></li>
@@ -246,14 +246,14 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Women's</a>
+                    <a href="{% url 'product:home' %}?category=Women">Women's</a>
                     <ul class="sub-menu-m">
-                        li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Ornaments">Ornaments</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Phrase">Phrase</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=shoe">shoe</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Bag">Bag</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=sunglass">sunglass</a></li>
+                        li><a href="{% url 'product:product' %}?category=Women&sub_category=Watch">Watch</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Women&sub_category=Ornaments">Ornaments</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Women&sub_category=Phrase">Phrase</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Women&sub_category=shoe">shoe</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Women&sub_category=Bag">Bag</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Women&sub_category=sunglass">sunglass</a></li>
 
                     </ul>
                     <span class="arrow-main-menu-m">
@@ -263,13 +263,13 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Constructions</a>
+                    <a href="{% url 'product:home' %}?category=Constructions">Constructions</a>
                     <ul class="sub-menu-m">
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Safety Equipments">Safety Equipment’s </a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Tools">Tools</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Machinery">Machinery </a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Hardware">Hardware</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Sanitary">Sanitary </a></li>
+                        <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Safety Equipments">Safety Equipment’s </a></li>
+                        <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Tools">Tools</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Machinery">Machinery </a></li>
+                        <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Hardware">Hardware</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Constructions&sub_category=Sanitary">Sanitary </a></li>
 
                     </ul>
                     <span class="arrow-main-menu-m">
@@ -279,11 +279,11 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Home Decorations</a>
+                    <a href="{% url 'product:home' %}?category=Home Decorations">Home Decorations</a>
                     <ul class="sub-menu-m">
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Washing Device">Washing Device</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Water Purifiers">Water Purifiers</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kitchen & Cleaning">Kitchen & Cleaning</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Home Decorations&sub_category=Washing Device">Washing Device</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Home Decorations&sub_category=Water Purifiers">Water Purifiers</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Home Decorations&sub_category=Kitchen & Cleaning">Kitchen & Cleaning</a></li>
 
                     </ul>
                     <span class="arrow-main-menu-m">
@@ -293,13 +293,13 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Electronics</a>
+                    <a href="{% url 'product:home' %}?category=Electronics">Electronics</a>
                     <ul class="sub-menu-m">
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=CC Camera">CC Camera</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Earphone">Earphone</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Scale">Scale</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Storage Device">Storage Device</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Network Device">Network Device</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=CC Camera">CC Camera</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Earphone">Earphone</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Scale">Scale</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Storage Device">Storage Device</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Electronics&sub_category=Network Device">Network Device</a></li>
 
                     </ul>
                     <span class="arrow-main-menu-m">
@@ -309,12 +309,12 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Others</a>
+                    <a href="{% url 'product:home' %}?category=Others">Others</a>
                     <ul class="sub-menu-m">
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Health Care">Health Care</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Stationery">Stationery</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Rain Coat">Rain Coat</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Choco Snacks">Choco Snacks</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Others&sub_category=Health Care">Health Care</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Others&sub_category=Stationery">Stationery</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Others&sub_category=Rain Coat">Rain Coat</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Others&sub_category=Choco Snacks">Choco Snacks</a></li>
 
                     </ul>
                     <span class="arrow-main-menu-m">
@@ -324,10 +324,10 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}">Kid’s WOrld</a>
+                    <a href="{% url 'product:home' %}?category=Kids World">Kid’s WOrld</a>
                     <ul class="sub-menu-m">
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Kid’s Toys">Kid’s Toys</a></li>
-                        <li><a href="{% url 'product:product' %}?category=Men&sub_category=Watch">Watch</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Kids World&sub_category=Kid’s Toys">Kid’s Toys</a></li>
+                        <li><a href="{% url 'product:product' %}?category=Kids World&sub_category=Watch">Watch</a></li>
                     </ul>
                     <span class="arrow-main-menu-m">
 													<i class="fa fa-angle-right" aria-hidden="true"></i>

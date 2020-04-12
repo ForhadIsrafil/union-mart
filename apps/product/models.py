@@ -7,8 +7,8 @@ class Product(models.Model):
     CATEGORY_CHOICES = (
         ('Men', 'Men'),
         ('Women', 'Women'),
-        ('Construction', 'Construction'),
-        ('Home Eecorations', 'Home Eecorations'),
+        ('Constructions', 'Constructions'),
+        ('Home Decorations', 'Home Decorations'),
         ('Electronics', 'Electronics'),
         ('Others', 'Others'),
         ('Kids World', 'Kids World')
@@ -36,7 +36,7 @@ class Product(models.Model):
         ('Storage Device', 'Storage Device'),
         ('Network Device', 'Network Device'),
         ('Health Caret', 'Health Care'),
-        ('Stationeryt', 'Stationery'),
+        ('Stationery', 'Stationery'),
         ('Rain Coat', 'Rain Coat'),
         ('Kids Toys', 'Kids Toys'),
         ('Bag', 'Bag'),
