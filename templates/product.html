@@ -660,38 +660,38 @@
 
                         <ul>
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}{% endif %}" class="filter-link stext-106 trans-04 filter-link-active">
                                     All
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    $0.00 - $50.00
+                                <a href="{% url 'product:product' %}?{% if category %}category={{ category }}&{% endif %}{% if sub_category %}sub_category={{ sub_category }}&{% endif %}{% if price %}price={{ price }}{% else %}price=50-1000{% endif %}" class="filter-link stext-106 trans-04">
+                                    $50 - $1000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
-                                    $50.00 - $100.00
+                                    $1000 - $3000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
-                                    $100.00 - $150.00
+                                    $3000 - $5000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
-                                    $150.00 - $200.00
+                                    $5000 - $8000
                                 </a>
                             </li>
 
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
-                                    $200.00+
+                                    $8000+
                                 </a>
                             </li>
                         </ul>

@@ -33,9 +33,12 @@ def product(request):
     category = request.GET.get('category', None)
     sub_category = request.GET.get('sub_category', None)
     search_product = request.POST.get('search_product', None)
-    product_ins = Product.objects.all().order_by('-upload_date')
-    # print('search_product ', search_product)
+    price_filter = request.GET.get('price', None)
+    if price_filter:
+        price_filter = price_filter.split('-')
+        print(price_filter)
 
+    product_ins = Product.objects.all().order_by('-upload_date')
     if search_product:
         if category and sub_category:
             product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category) & Q(description__icontains=search_product))
@@ -43,6 +46,7 @@ def product(request):
                 'products': product_ins,
                 'category': category,
                 'sub_category': sub_category,
+                'price': price_filter,
             }
             return render(request, 'product.html', context)
         elif category:
@@ -51,6 +55,8 @@ def product(request):
                 'products': product_ins,
                 'category': category,
                 'sub_category': sub_category,
+                'price': price_filter,
+
             }
             return render(request, 'product.html', context)
         else:
@@ -59,6 +65,8 @@ def product(request):
                 'products': product_ins,
                 'category': category,
                 'sub_category': sub_category,
+                'price': price_filter,
+
             }
             return render(request, 'product.html', context)
 
@@ -76,6 +84,8 @@ def product(request):
         'products': product_ins,
         'category': category,
         'sub_category': sub_category,
+        'price': price_filter,
+
     }
     return render(request, 'product.html', context)
 
