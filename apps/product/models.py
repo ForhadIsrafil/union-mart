@@ -147,3 +147,10 @@ class Trend(models.Model):
 
     def __str__(self):
         return self.trend_name
+
+
+class SocialLink(models.Model):
+    facebook = models.URLField(max_length=250)
+    twitter = models.URLField(max_length=250)
+    youtube = models.URLField(max_length=250)
+    instagram = models.URLField(max_length=250)
