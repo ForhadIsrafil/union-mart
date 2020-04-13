@@ -1,53 +1,40 @@
 import json
-import io
-from datetime import datetime
-import requests
-from django.contrib.auth.decorators import login_required
 
-from django.conf import settings
+from apps.users.models import User
 from django.contrib import messages
-from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.files.storage import default_storage
-from django.core.mail import EmailMessage
-from django.db import models, transaction
+from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect, render, get_object_or_404
-from django.template.loader import render_to_string
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import FormView, TemplateView, UpdateView, View
-from django.contrib.sessions.models import Session
 
-from apps.users.models import User
-from .forms import (DeleteAccountForm, LoginForm, SignupForm, UpdateUserInfoForm, )
+from .forms import (DeleteAccountForm, LoginForm, SignupForm, )
 
-
-# User = get_user_model()
 
 class SignupView(FormView):
-    template_name = "users/login-signup.html"
+    template_name = "users/signup.html"
     form_class = SignupForm
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("users:login")
 
     def form_valid(self, form):
-        user = SignupForm(data=self.request.POST)
-        if user.is_valid():
-            user.is_active = True
-            user.set_password(form.cleaned_data["password"])
-            user.save()
-            login(self.request, user)
-            next_url = self.request.GET.get("next")
-            if next_url:
-                return HttpResponseRedirect(next_url)
-        else:
-            return render(self.request, self.template_name, {'form': user.errors})
+        # import pdb;pdb.set_trace()
+        user = form.save(commit=False)
+        user.is_active = True
+        user.phone_number = '+88' + form.cleaned_data["phone_number"]
+        user.set_password(form.cleaned_data["password"])
+        user.save()
+        # login(self.request, user)
+        next_url = self.request.GET.get("next")
+        # if next_url:
+        #     return HttpResponseRedirect(next_url)
 
         messages.add_message(
             self.request,
@@ -60,9 +47,9 @@ class SignupView(FormView):
 
 
 class LoginView(FormView):
-    template_name = "users/login-signup"
+    template_name = "users/login.html"
     form_class = LoginForm
-    success_url = reverse_lazy("projects")
+    success_url = reverse_lazy("product:product")
 
     def get_success_url(self):
         next_url = self.request.GET.get("next")
@@ -78,6 +65,7 @@ class LoginView(FormView):
             return HttpResponse(json.dumps({"error": "invalid email or password"}))
 
     def post(self, request):
+        # import pdb;pdb.set_trace()
         username = request.POST["username"]
         password = request.POST["password"]
         if username:
@@ -97,11 +85,13 @@ class LoginView(FormView):
                 user.is_active = True
                 user.save()
             if user.is_active:
-                login(request, user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 next_url = self.request.GET.get("next")
 
                 if next_url:
                     return HttpResponseRedirect(next_url)
+                else:
+                    return redirect(self.success_url)
             else:
                 messages.error(
                     request,
@@ -200,11 +190,12 @@ def logoutUser(request):
     return redirect('/')
 
 
-class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot password , get email and send mail
+class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot password , get email and send acivation-mail
     @method_decorator(csrf_protect)
     def dispatch(self, *args, **kwargs):
+        # import pdb;pdb.set_trace()
         email = self.request.POST.get('email')
-        user_email = User.objects.filter(Q(email=email) | Q(user_name=email)).values('email')
+        user_email = User.objects.filter(email=email).values('email')
         user_email = user_email[0]['email'] if user_email else user_email
         self.request.POST._mutable = True
         self.request.POST['email'] = user_email

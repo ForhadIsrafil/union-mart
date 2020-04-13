@@ -4,16 +4,15 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django.utils.functional import cached_property
 from django.utils import timezone
-from apps.core.lib.behaviors import UUIDable, Timestampable
-# from apps.core.storages import DownloadableS3Boto3Storage
-# from .upload_to import user_image_upload_path
+from django.utils.translation import ugettext_lazy as _
+
 
 # from .random_images import data
-from random import randrange
-from phonenumber_field.modelfields import PhoneNumberField
+
+
+# from apps.core.storages import DownloadableS3Boto3Storage
+# from .upload_to import user_image_upload_path
 
 
 class UserManager(BaseUserManager):
@@ -58,6 +57,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     user_name = models.CharField(_("user name"), max_length=150, blank=True, unique=True,
                                  help_text=_("User name can only contain letters, numbers and hyphen."))
+    date_of_birth = models.DateField(null=True, blank=True)
+
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
@@ -73,7 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
     image = models.ImageField(_("image"), blank=True, null=True, upload_to="media/profile_image/")
-    phone_number = PhoneNumberField()
+    phone_number = models.CharField(max_length=11)
 
     objects = UserManager()
     EMAIL_FIELD = "email"
