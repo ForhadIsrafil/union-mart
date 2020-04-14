@@ -136,10 +136,11 @@ def product_details(request, product_id):
         'product_details': product_ins,
         'product_images': product_photo_ins,
     }
+
     return render(request, 'product-detail.html', context)
 
 
-def shoping_cart(request):
+def cart_list(request):
 
     return render(request, 'shoping-cart.html', {})
 
