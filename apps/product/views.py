@@ -131,6 +131,7 @@ def product(request):
 def product_details(request, product_id):
     product_ins = Product.objects.filter(id=product_id).first()
     product_photo_ins = ProductPhoto.objects.filter(product_id=product_id).order_by('-id')
+    print("I am here")
 
     context = {
         'product_details': product_ins,
@@ -151,3 +152,6 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html', {})
+
+def header2(request):
+    return render(request, 'header2.html', {})

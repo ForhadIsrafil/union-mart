@@ -2019,6 +2019,16 @@
     $('.js-addcart-detail').each(function () {
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function () {
+            {#$.ajax({#}
+            {#    type: "POST",#}
+            {#    url: "/product-details/<int:product_id>/",#}
+            {#    data: {#}
+            {#        'video': $('#test').val() // from form#}
+            {#    },#}
+            {#    success: function () {#}
+            {#        $('#message').html("<h2>Contact Form Submitted!</h2>")#}
+            {#    }#}
+            {#})#}
             swal(nameProduct, "is added to cart !", "success");
         });
     });

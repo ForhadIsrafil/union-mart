@@ -156,7 +156,14 @@ class SocialLink(models.Model):
     youtube = models.URLField(max_length=250)
     instagram = models.URLField(max_length=250)
     contact_mail = models.EmailField(max_length=120)
-    information_mail = models.URLField(max_length=250)
+    information_mail = models.EmailField(max_length=250)
     customer_care = models.URLField(max_length=250)
     complain_suggesion = models.URLField(max_length=250)
     order_confirmation = models.URLField(max_length=250)
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
+    description = models.TextField()
+
