@@ -154,3 +154,8 @@ class SocialLink(models.Model):
     twitter = models.URLField(max_length=250)
     youtube = models.URLField(max_length=250)
     instagram = models.URLField(max_length=250)
+    contact_mail = models.URLField(max_length=250)
+    information_mail = models.URLField(max_length=250)
+    customer_care = models.URLField(max_length=250)
+    complain_suggesion = models.URLField(max_length=250)
+    order_confirmation = models.URLField(max_length=250)
