@@ -140,6 +140,7 @@ def product_details(request, product_id):
 
 
 def shoping_cart(request):
+
     return render(request, 'shoping-cart.html', {})
 
 
