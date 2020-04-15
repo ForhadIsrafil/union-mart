@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Card
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart
 
 
 def home(request):
@@ -15,6 +15,7 @@ def home(request):
     bag_ins = product_ins.filter(sub_category='Bag')[:3]
     shoe_ins = product_ins.filter(sub_category='Shoe')[:3]
     watch_ins = product_ins.filter(sub_category='Watch')[:3]
+    cart_count = Cart.objects.filter(user_id=request.user.id).count()
 
     context = {
         'products': product_ins,
@@ -26,6 +27,7 @@ def home(request):
         'bags': bag_ins,
         'shoes': shoe_ins,
         'watches': watch_ins,
+        'cart_count': cart_count if cart_count else 0,
     }
     return render(request, 'index.html', context)
 
@@ -135,9 +137,9 @@ def product_details(request, product_id):
 
     quantity = request.GET.get('quantity_id')
     if quantity:
-        check_card_ins = Card.objects.filter(user_id=request.user.id, product_id=product_ins.id).exists()
+        check_card_ins = Cart.objects.filter(user_id=request.user.id, product_id=product_ins.id).exists()
         if not check_card_ins:
-            card = Card(user_id=request.user.id, product_id=product_ins.id, quantity=quantity)
+            card = Cart(user_id=request.user.id, product_id=product_ins.id, quantity=quantity)
             card.save()
             return JsonResponse({'valid': True, 'message': 'success.'})
         else:
@@ -154,7 +156,17 @@ def product_details(request, product_id):
 
 
 def cart_list(request):
-    return render(request, 'shoping-cart.html', {})
+    cart_ins = Cart.objects.filter(user_id=request.user.id).order_by('-quantity')
+    context = {
+        'carts': cart_ins
+    }
+    delete_cart_id = request.GET.get('delete_cart_id')
+    if delete_cart_id:
+        cart_ins = cart_ins.filter(id=delete_cart_id).first()
+        cart_ins.delete()
+        # return JsonResponse({'valid': True, 'message': 'success.'})
+
+    return render(request, 'shoping-cart.html', context)
 
 
 def about(request):

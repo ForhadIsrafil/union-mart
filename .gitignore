@@ -157,3 +157,4 @@ temp
 .media/product-images/*
 ./media
 ./static
+order_data_list.json
