@@ -26,21 +26,20 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
-    <script src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
-    <script src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
-    <script src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/vendor/select2/select2.min.js' %}"></script>
-    <script src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
-    <script src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
-    <script src="{% static '/vendor/slick/slick.min.js' %}"></script>
-    <script src="{% static '/js/slick-custom.js' %}"></script>
-    <script src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
-    <script src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
-    <script src="{% static '/js/main.js' %}"></script>
-    <script src="{% static '/js/log.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
 </head>
 <body class="animsition">
 
@@ -174,7 +173,7 @@
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
                     <div class="flex-c-m h-full p-r-25 bor6">
-                        <a href="{% url 'product:cart_list' %}"class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
+                        <a href="{% url 'product:carts' %}"class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </a>
                     </div>
@@ -402,67 +401,67 @@
                 </li>
             </ul>
 
-            <div class="sidebar-gallery w-full p-tb-30">
-					<span class="mtext-101 cl5">
-					UNIONMART BD
-					</span>
-
-                <div class="flex-w flex-sb p-t-36 gallery-lb">
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-01.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-01.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-02.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-02.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-03.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-03.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-04.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-04.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-05.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-05.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-06.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-06.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-07.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-07.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-08.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-08.jpg');"></a>
-                    </div>
-
-                    <!-- item gallery sidebar -->
-                    <div class="wrap-item-gallery m-b-10">
-                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-09.jpg' %}" data-lightbox="gallery"
-                           style="background-image: url('images/gallery-09.jpg');"></a>
-                    </div>
-                </div>
-            </div>
+{#            <div class="sidebar-gallery w-full p-tb-30">#}
+{#					<span class="mtext-101 cl5">#}
+{#					UNIONMART BD#}
+{#					</span>#}
+{##}
+{#                <div class="flex-w flex-sb p-t-36 gallery-lb">#}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-01.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-01.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-02.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-02.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-03.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-03.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-04.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-04.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-05.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-05.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-06.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-06.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-07.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-07.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-08.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-08.jpg');"></a>#}
+{#                    </div>#}
+{##}
+{#                    <!-- item gallery sidebar -->#}
+{#                    <div class="wrap-item-gallery m-b-10">#}
+{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-09.jpg' %}" data-lightbox="gallery"#}
+{#                           style="background-image: url('images/gallery-09.jpg');"></a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 
             <div class="sidebar-gallery w-full">
 					<span class="mtext-101 cl5">
@@ -563,7 +562,7 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     $(".js-select2").each(function () {
         $(this).select2({
             minimumResultsForSearch: 20,
@@ -582,21 +581,20 @@
         });
     });
 </script>
-<script src="{% static '/js/main.js' %}"></script>
-<script src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
-<script src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
-<script src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static '/vendor/select2/select2.min.js' %}"></script>
-<script src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
-<script src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
-<script src="{% static '/vendor/slick/slick.min.js' %}"></script>
-<script src="{% static '/js/slick-custom.js' %}"></script>
-<script src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
-<script src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
-<script src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
-<script src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
-<script src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
-<script src="{% static '/js/main.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
 </body>
 </html>
