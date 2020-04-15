@@ -144,9 +144,11 @@ def product_details(request, product_id):
             return JsonResponse({'valid': False, 'message': 'This product is already added.'})
 
     if product_ins:
+        related_products = Product.objects.filter(category=product_ins.category, sub_category=product_ins.sub_category).exclude(id=product_ins.id).order_by('-upload_date')[:20]
         context = {
             'product_details': product_ins,
             'product_images': product_photo_ins,
+            'related_products': related_products,
         }
         return render(request, 'product-detail.html', context)
 
