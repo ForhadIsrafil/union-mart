@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
-
+from .send_data_to_spread_sheet import send_to_spreadsheet
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart
 
 
@@ -156,16 +156,22 @@ def product_details(request, product_id):
 
 
 def cart_list(request):
+    delete_cart_id = request.GET.get('delete_cart_id')
+    num_product1 = request.GET.get('num-product1')
+
     cart_ins = Cart.objects.filter(user_id=request.user.id).order_by('-quantity')
     context = {
         'carts': cart_ins
     }
-    delete_cart_id = request.GET.get('delete_cart_id')
+
     if delete_cart_id:
         cart_ins = cart_ins.filter(id=delete_cart_id).first()
         cart_ins.delete()
         # return JsonResponse({'valid': True, 'message': 'success.'})
+    if num_product1:
+        product_ins = Product.objects.all().first()
 
+        send_to_spreadsheet(product_ins)
     return render(request, 'shoping-cart.html', context)
 
 

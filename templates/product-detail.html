@@ -1535,13 +1535,13 @@
                 data: "quantity_id=" + quantity_id,
                 success: function (response) {
                     if (response.valid == false) {
-                        swal(nameProduct, response.message);
+                        swal(nameProduct, response.message, "info");
                     } else {
                         swal(nameProduct, "is added to cart!", "success");
                     }
                 },
                 error: function (jqXHR) {
-                    swal("Error!", "Something wrong! Please try again.", "success");
+                    swal("Error!", "Something wrong! Please try again. Are you logged in?", "error");
                 }
             })
 
