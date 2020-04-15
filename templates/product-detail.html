@@ -1535,10 +1535,8 @@
                 success: function (response) {
                     if (response.valid == false) {
                         swal(nameProduct, response.message);
-
                     } else {
-                        swal(nameProduct, "is added to cart !", "success");
-
+                        swal(nameProduct, "is added to cart!", "success");
                     }
                 },
                 error: function (jqXHR) {
