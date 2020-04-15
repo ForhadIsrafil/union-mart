@@ -840,7 +840,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.34;  
+  -moz-transition: all 0.3s;
   transition: all 0.4s;
 
   box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
@@ -897,7 +897,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.34;  
+  -moz-transition: all 0.3s;
   transition: all 0.4s;
 }
 
@@ -936,7 +936,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.34;  
+  -moz-transition: all 0.3s;
   transition: all 0.4s;
 
   box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
@@ -3329,8 +3329,7 @@ input.num-product::-webkit-inner-spin-button {
   /*---------------------------------------------*/
   .respon3 {
     padding: 20px;
-  }
-
+  }}
 /*=========================================================
 	10 -> FOOTER
 ===========================================================*/
