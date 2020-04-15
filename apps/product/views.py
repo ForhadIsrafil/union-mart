@@ -1,7 +1,8 @@
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Card
 
 
 def home(request):
@@ -131,18 +132,26 @@ def product(request):
 def product_details(request, product_id):
     product_ins = Product.objects.filter(id=product_id).first()
     product_photo_ins = ProductPhoto.objects.filter(product_id=product_id).order_by('-id')
-    print("I am here")
 
-    context = {
-        'product_details': product_ins,
-        'product_images': product_photo_ins,
-    }
+    quantity = request.GET.get('quantity_id')
+    if quantity:
+        check_card_ins = Card.objects.filter(user_id=request.user.id, product_id=product_ins.id).exists()
+        if not check_card_ins:
+            card = Card(user_id=request.user.id, product_id=product_ins.id, quantity=quantity)
+            card.save()
+            return JsonResponse({'valid': True, 'message': 'success.'})
+        else:
+            return JsonResponse({'valid': False, 'message': 'This product is already added.'})
 
-    return render(request, 'product-detail.html', context)
+    if product_ins:
+        context = {
+            'product_details': product_ins,
+            'product_images': product_photo_ins,
+        }
+        return render(request, 'product-detail.html', context)
 
 
 def cart_list(request):
-
     return render(request, 'shoping-cart.html', {})
 
 
@@ -152,6 +161,7 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html', {})
+
 
 def header2(request):
     return render(request, 'header2.html', {})
