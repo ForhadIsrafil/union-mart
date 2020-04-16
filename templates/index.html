@@ -1941,27 +1941,7 @@
         </div>
     </div>
 </div>
-
-<!--===============================================================================================-->
-{#	<script src="js/main.js"></script>#}
-<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
-
-</body>
-<script>
+<script type="text/javascript">
     $(".js-select2").each(function () {
         $(this).select2({
             minimumResultsForSearch: 20,
@@ -1969,10 +1949,10 @@
         });
     })
 </script>
-<script>
+<script type="text/javascript">
     $('.parallax100').parallax100();
 </script>
-<script>
+<script type="text/javascript">
     $('.gallery-lb').each(function () { // the containers for all your galleries
         $(this).magnificPopup({
             delegate: 'a', // the selector for gallery item
@@ -1984,7 +1964,7 @@
         });
     });
 </script>
-<script>
+<script type="text/javascript">
     $('.js-addwish-b2').on('click', function (e) {
         e.preventDefault();
     });
@@ -2017,7 +1997,7 @@
         });
     });
 </script>
-<script>
+<script type="text/javascript">
     $('.js-pscroll').each(function () {
         $(this).css('position', 'relative');
         $(this).css('overflow', 'hidden');
@@ -2032,9 +2012,28 @@
         })
     });
 </script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+
+</body>
+
 
 {# load isotop button clicked start#}
-<script>window.onload = function () {
+<script type="text/javascript">window.onload = function () {
     document.getElementById("linkid").click();
 };</script>
 {# load isotop button clicked end#}

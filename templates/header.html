@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
     <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -36,7 +37,6 @@
     <script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
-    <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
@@ -570,10 +570,10 @@
         });
     })
 </script>
-<script>
+<script type="text/javascript">
     $('.parallax100').parallax100();
 </script>
-<script>
+<script type="text/javascript">
     $('.js-addcart-detail').each(function () {
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function () {
@@ -581,20 +581,20 @@
         });
     });
 </script>
-<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+{#<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/js/main.js' %}"></script>#}
 </body>
 </html>
