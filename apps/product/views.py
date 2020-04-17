@@ -213,5 +213,9 @@ def contact(request):
     return render(request, 'contact.html', {})
 
 
-def header2(request):
-    return render(request, 'header2.html', {})
+def payment(request):
+    return render(request, 'payment.html', {})
+
+
+def privacy(request):
+    return render(request, 'privacy.html', {})
