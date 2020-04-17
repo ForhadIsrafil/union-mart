@@ -1,8 +1,10 @@
+import math
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
-from .send_data_to_spread_sheet import send_to_spreadsheet
+
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart
+from .send_data_to_spread_sheet import send_to_spreadsheet
 
 
 def home(request):
@@ -160,17 +162,45 @@ def cart_list(request):
     num_product1 = request.GET.get('num-product1')
 
     cart_ins = Cart.objects.filter(user_id=request.user.id).order_by('-quantity')
+    product_arr = []
+    total_price = 0
+    for cart in cart_ins:
+        temp = {}
+        temp['name'] = cart.product.name
+        temp['price'] = cart.product.price
+        temp['default_photo_url'] = cart.product.default_photo.url
+        temp['quantity'] = cart.quantity
+        temp['discount'] = cart.product.discount
+        if cart.product.discount:
+            per_discount_tk = cart.product.price * cart.product.discount / 100
+            # print('per_discount_tk ', per_discount_tk)
+            total_discount = cart.quantity * per_discount_tk
+            # print('total_discount ', total_discount)
+
+            temp['per_total'] = (cart.product.price * cart.quantity) - math.floor(total_discount)
+            # print(' total ', (cart.product.price * cart.quantity) - total_discount)
+
+            total_price += (cart.product.price * cart.quantity) - math.floor(total_discount)
+            # print('total_price 1111 ', total_price)
+
+        else:
+            temp['per_total'] = cart.product.price * cart.quantity
+            total_price += cart.product.price * cart.quantity
+            # print('total_price ', total_price)
+        product_arr.append(temp)
+
     context = {
-        'carts': cart_ins
+        'carts': product_arr,
+        'total_price': total_price,
     }
 
     if delete_cart_id:
         cart_ins = cart_ins.filter(id=delete_cart_id).first()
         cart_ins.delete()
-        # return JsonResponse({'valid': True, 'message': 'success.'})
+
     if num_product1:
         product_ins = Product.objects.all().first()
-
+        # send to spread sheet
         send_to_spreadsheet(product_ins)
     return render(request, 'shoping-cart.html', context)
 

@@ -1541,7 +1541,10 @@
                     }
                 },
                 error: function (jqXHR) {
-                    swal("Error!", "Something wrong! Please try again. Are you logged in?", "error");
+                    swal("Error!", "Please login", "error");
+                    setTimeout(function () {
+                        window.location = {% url 'login' %};
+                    }, 2000);
                 }
             })
 
