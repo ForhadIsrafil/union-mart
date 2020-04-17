@@ -140,6 +140,7 @@ class UserProfileView(UpdateView):
         return super().form_valid(form)
 
 
+
 @login_required
 class UploadProfileImageView(View):
     def post(self, request, *args, **kwargs):

@@ -49,7 +49,7 @@ class Product(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20, default=CATEGORY_CHOICES[0])
     sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20, default=SUB_CATEGORY_CHOICES[0])
     offer = models.CharField(max_length=50, null=True, blank=True)
-    delevery_charge = models.CharField(max_length=20)
+    delevery_charge = models.CharField(max_length=20, null=True, blank=True)
     default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
     free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
@@ -159,12 +159,18 @@ class SocialLink(models.Model):
     contact_mail = models.EmailField(max_length=120)
     information_mail = models.EmailField(max_length=250)
     customer_care = models.URLField(max_length=250)
-    complain_suggesion = models.URLField(max_length=250)
+    complain_suggestion = models.URLField(max_length=250)
     order_confirmation = models.URLField(max_length=250)
+
+    class Meta:
+        verbose_name = _("Social Link")
+        verbose_name_plural = _("Social Links")
+
+    def __str__(self):
+        return self.facebook
 
 
 class Review(models.Model):
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
     description = models.TextField()
-
