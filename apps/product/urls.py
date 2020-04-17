@@ -10,6 +10,5 @@ urlpatterns = [
     path('carts/', cart_list, name='carts'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
-    path('header2/', header2, name='header2'),
 
 ]
