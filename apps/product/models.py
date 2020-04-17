@@ -54,6 +54,7 @@ class Product(models.Model):
     free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
     trend_name = models.CharField(max_length=50, null=True, blank=True)
+    discount = models.SmallIntegerField(blank=True, null=True)
 
     class Meta:
         verbose_name = _("Product")

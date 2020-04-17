@@ -2,7 +2,7 @@ import json
 
 from apps.users.models import User
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
@@ -22,7 +22,7 @@ from .forms import (DeleteAccountForm, LoginForm, SignupForm, )
 class SignupView(FormView):
     template_name = "users/signup.html"
     form_class = SignupForm
-    success_url = reverse_lazy("users:login")
+    success_url = reverse_lazy("login")
 
     def form_valid(self, form):
         # import pdb;pdb.set_trace()
@@ -49,7 +49,7 @@ class SignupView(FormView):
 class LoginView(FormView):
     template_name = "users/login.html"
     form_class = LoginForm
-    success_url = reverse_lazy("product:product")
+    success_url = reverse_lazy("product:home")
 
     def get_success_url(self):
         next_url = self.request.GET.get("next")
@@ -85,6 +85,7 @@ class LoginView(FormView):
                 user.is_active = True
                 user.save()
             if user.is_active:
+                user = authenticate(request, username=username, password=password)
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 next_url = self.request.GET.get("next")
 

@@ -75,6 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
     image = models.ImageField(_("image"), blank=True, null=True, upload_to="media/profile_image/")
     phone_number = models.CharField(max_length=11)
+    discount = models.SmallIntegerField(blank=True, null=True)
 
     objects = UserManager()
     EMAIL_FIELD = "email"

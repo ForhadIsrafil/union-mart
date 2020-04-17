@@ -60,7 +60,6 @@
                     <ul class="main-menu">
                         <li>
                             <a href="{% url 'product:home' %}">Home</a>
-
                         </li>
 
                     </ul>
@@ -173,10 +172,22 @@
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
                     <div class="flex-c-m h-full p-r-25 bor6">
-                        <a href="{% url 'product:carts' %}"class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
+                        <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </a>
                     </div>
+                    {% if user.is_authenticated %}
+                        <div class="flex-c-m h-full p-lr-10">
+                            <div class="cl0  p-lr-8">
+                                {% if user.first_name %}{{ user.first_name }}
+                                {% elif user.last_name %} {{ user.last_name }}
+                                {% else %} {{ user.user_name }}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    {% endif %}
+
 
                     <div class="flex-c-m h-full p-lr-19">
                         <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
@@ -323,7 +334,7 @@
             </ul>
             <ul class="main-menu-m">
                 <li>
-                    <a href="{% url 'product:home' %}?category=Kids World">Kid’s WOrld</a>
+                    <a href="{% url 'product:home' %}?category=Kids World">Kid’s World</a>
                     <ul class="sub-menu-m">
                         <li><a href="{% url 'product:product' %}?category=Kids World&sub_category=Kid’s Toys">Kid’s Toys</a></li>
                         <li><a href="{% url 'product:product' %}?category=Kids World&sub_category=Watch">Watch</a></li>
@@ -401,67 +412,67 @@
                 </li>
             </ul>
 
-{#            <div class="sidebar-gallery w-full p-tb-30">#}
-{#					<span class="mtext-101 cl5">#}
-{#					UNIONMART BD#}
-{#					</span>#}
-{##}
-{#                <div class="flex-w flex-sb p-t-36 gallery-lb">#}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-01.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-01.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-02.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-02.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-03.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-03.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-04.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-04.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-05.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-05.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-06.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-06.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-07.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-07.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-08.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-08.jpg');"></a>#}
-{#                    </div>#}
-{##}
-{#                    <!-- item gallery sidebar -->#}
-{#                    <div class="wrap-item-gallery m-b-10">#}
-{#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-09.jpg' %}" data-lightbox="gallery"#}
-{#                           style="background-image: url('images/gallery-09.jpg');"></a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+            {#            <div class="sidebar-gallery w-full p-tb-30">#}
+            {#					<span class="mtext-101 cl5">#}
+            {#					UNIONMART BD#}
+            {#					</span>#}
+            {##}
+            {#                <div class="flex-w flex-sb p-t-36 gallery-lb">#}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-01.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-01.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-02.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-02.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-03.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-03.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-04.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-04.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-05.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-05.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-06.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-06.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-07.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-07.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-08.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-08.jpg');"></a>#}
+            {#                    </div>#}
+            {##}
+            {#                    <!-- item gallery sidebar -->#}
+            {#                    <div class="wrap-item-gallery m-b-10">#}
+            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-09.jpg' %}" data-lightbox="gallery"#}
+            {#                           style="background-image: url('images/gallery-09.jpg');"></a>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
 
             <div class="sidebar-gallery w-full">
 					<span class="mtext-101 cl5">
