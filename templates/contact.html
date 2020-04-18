@@ -4,24 +4,25 @@
 	<title>Unionmartbd</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{% static '/images/icons/favicon.png' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static '/fonts/iconic/css/material-design-iconic-font.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/animate/animate.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/css-hamburgers/hamburgers.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/animsition/css/animsition.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/select2/select2.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/daterangepicker/daterangepicker.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/slick/slick.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/vendor/MagnificPopup/magnific-popup.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+{#    <link rel="icon" type="image/png" href="{% static '/images/icons/favicon.png' %}"/>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static '/fonts/iconic/css/material-design-iconic-font.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/fonts/linearicons-v1.0.0/icon-font.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/animate/animate.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/css-hamburgers/hamburgers.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/animsition/css/animsition.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/select2/select2.min.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/daterangepicker/daterangepicker.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/slick/slick.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/vendor/MagnificPopup/magnific-popup.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">#}
+{#    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">#}
+    {% include 'header.html' %}
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -556,8 +557,8 @@
 
 <!-- Contact Section Start -->
 <!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92">
+		<h2 class="ltext-105 cl0 txt-center text-dark">
 			Contact
 		</h2>
 	</section>	
@@ -961,7 +962,7 @@
 			</div>
 		</div>
 	</div>
-
+{% include 'footer.html' %}
 <!--===============================================================================================-->	
 {#	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>#}
 <!--===============================================================================================-->
