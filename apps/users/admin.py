@@ -28,7 +28,7 @@ class UserAdmin(AuthUserAdmin):
 
     list_filter = ("is_superuser", "is_active", "is_staff", "date_joined", "last_login", "user_name")
 
-    search_fields = ["email", "first_name", "last_name"]
+    search_fields = ["email", "first_name", "last_name", "user_name"]
     ordering = ("date_joined",)
 
     fieldsets = (

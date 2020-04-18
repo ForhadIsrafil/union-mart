@@ -40,6 +40,7 @@ def home(request):
 def product(request):
     category = request.GET.get('category', None)
     sub_category = request.GET.get('sub_category', None)
+    trend = request.GET.get('trend', None)
     search_product = request.POST.get('search_product', None)
     price_filter_first = request.GET.get('price', None)
 
@@ -66,6 +67,18 @@ def product(request):
 
             }
             return render(request, 'product.html', context)
+
+        elif trend:
+            product_ins = product_ins.filter(Q(category=category) & Q(trend=trend))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+                # 'price': price_filter_first,
+
+            }
+            return render(request, 'product.html', context)
+
         else:
             product_ins = product_ins.filter(Q(sub_category=sub_category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
             context = {
@@ -78,8 +91,6 @@ def product(request):
             return render(request, 'product.html', context)
 
     if search_product:
-        # import pdb;
-        # pdb.set_trace()
         strip_regex = search_product.strip()
         arr_regex = strip_regex.split(' ')
         str_regex = ''

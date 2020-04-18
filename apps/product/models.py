@@ -112,6 +112,10 @@ class Cart(models.Model):
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
     quantity = models.SmallIntegerField(default=1)
 
+    class Meta:
+        verbose_name = _("Cart")
+        verbose_name_plural = _("Carts")
+
 
 class Slider(models.Model):
     title = models.CharField(max_length=40)
