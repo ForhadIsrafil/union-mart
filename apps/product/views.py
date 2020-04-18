@@ -1,9 +1,12 @@
 import math
+
+from apps.users.models import User
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review
 from .send_data_to_spread_sheet import send_to_spreadsheet
 
 
@@ -37,6 +40,7 @@ def home(request):
 def product(request):
     category = request.GET.get('category', None)
     sub_category = request.GET.get('sub_category', None)
+    trend = request.GET.get('trend', None)
     search_product = request.POST.get('search_product', None)
     price_filter_first = request.GET.get('price', None)
 
@@ -63,6 +67,18 @@ def product(request):
 
             }
             return render(request, 'product.html', context)
+
+        elif trend:
+            product_ins = product_ins.filter(Q(category=category) & Q(trend=trend))
+            context = {
+                'products': product_ins,
+                'category': category,
+                'sub_category': sub_category,
+                # 'price': price_filter_first,
+
+            }
+            return render(request, 'product.html', context)
+
         else:
             product_ins = product_ins.filter(Q(sub_category=sub_category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
             context = {
@@ -75,8 +91,6 @@ def product(request):
             return render(request, 'product.html', context)
 
     if search_product:
-        # import pdb;
-        # pdb.set_trace()
         strip_regex = search_product.strip()
         arr_regex = strip_regex.split(' ')
         str_regex = ''
@@ -135,9 +149,27 @@ def product(request):
 
 def product_details(request, product_id):
     product_ins = Product.objects.filter(id=product_id).first()
+    reviews = Review.objects.filter(product_id=product_id).order_by('-id')
     product_photo_ins = ProductPhoto.objects.filter(product_id=product_id).order_by('-id')
+    related_products = Product.objects.filter(category=product_ins.category, sub_category=product_ins.sub_category).exclude(id=product_ins.id).order_by('-upload_date')[:20]
 
+    user_review = reviews.filter(user_id=request.user.id).first()
+    # import pdb;
+    # pdb.set_trace()
     quantity = request.GET.get('quantity_id')
+    review = request.POST.get('review')
+    if review:
+        review_ins = Review(user_id=request.user.id, product_id=product_id, description=review.strip())
+        review_ins.save()
+        context = {
+            'product_details': product_ins,
+            'product_images': product_photo_ins,
+            'related_products': related_products,
+            'reviews': reviews,
+            'user_review': user_review,
+        }
+        return render(request, 'product-detail.html', context)
+
     if quantity:
         check_card_ins = Cart.objects.filter(user_id=request.user.id, product_id=product_ins.id).exists()
         if not check_card_ins:
@@ -148,22 +180,57 @@ def product_details(request, product_id):
             return JsonResponse({'valid': False, 'message': 'This product is already added.'})
 
     if product_ins:
-        related_products = Product.objects.filter(category=product_ins.category, sub_category=product_ins.sub_category).exclude(id=product_ins.id).order_by('-upload_date')[:20]
         context = {
             'product_details': product_ins,
             'product_images': product_photo_ins,
             'related_products': related_products,
+            'reviews': reviews,
+            'user_review': user_review,
         }
         return render(request, 'product-detail.html', context)
 
 
+@login_required
 def cart_list(request):
+    user = User.objects.filter(id=request.user.id).first()
     delete_cart_id = request.GET.get('delete_cart_id')
     num_product1 = request.GET.get('num-product1')
 
     cart_ins = Cart.objects.filter(user_id=request.user.id).order_by('-quantity')
     product_arr = []
     total_price = 0
+    if user.has_discount:
+        for cart in cart_ins:
+            temp = {}
+            temp['name'] = cart.product.name
+            temp['price'] = cart.product.price
+            temp['default_photo_url'] = cart.product.default_photo.url
+            temp['quantity'] = cart.quantity
+            temp['discount'] = user.discount
+            if user.discount:
+                per_discount_tk = cart.product.price * user.discount / 100
+                # print('per_discount_tk ', per_discount_tk)
+                total_discount = cart.quantity * per_discount_tk
+                # print('total_discount ', total_discount)
+
+                temp['per_total'] = (cart.product.price * cart.quantity) - math.floor(total_discount)
+                # print(' total ', (cart.product.price * cart.quantity) - total_discount)
+
+                total_price += (cart.product.price * cart.quantity) - math.floor(total_discount)
+                # print('total_price 1111 ', total_price)
+
+            else:
+                temp['per_total'] = cart.product.price * cart.quantity
+                total_price += cart.product.price * cart.quantity
+                # print('total_price ', total_price)
+            product_arr.append(temp)
+
+        context = {
+            'carts': product_arr,
+            'total_price': total_price,
+        }
+        return render(request, 'shoping-cart.html', context)
+
     for cart in cart_ins:
         temp = {}
         temp['name'] = cart.product.name
@@ -205,7 +272,7 @@ def cart_list(request):
     return render(request, 'shoping-cart.html', context)
 
 
-def about(request):
+def about(request, ):
     return render(request, 'about.html', {})
 
 

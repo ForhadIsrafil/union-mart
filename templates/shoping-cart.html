@@ -596,7 +596,7 @@
                                             {#                                            </div>#}
                                         </div>
                                     </td>
-                                    <td class="txt-center m-l-100">{% if cart.discount %}{% else %}-{% endif %}</td>
+                                    <td class="txt-center m-l-100">{% if cart.discount %}{{ cart.discount }} %{% else %}-{% endif %}</td>
                                     <td class="column-6">{{ cart.per_total }}</td>
                                     <td class="m-r-25">
                                         <button type="button" class="close" aria-label="Close">

@@ -5,14 +5,8 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
-
-
-# from .random_images import data
-
-
-# from apps.core.storages import DownloadableS3Boto3Storage
-# from .upload_to import user_image_upload_path
 
 
 class UserManager(BaseUserManager):
@@ -100,3 +94,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.is_staff = False
         self.is_superuser = False
         self.is_active = True
+
+    @cached_property
+    def has_discount(self):
+        if self.discount:
+            return True
+        else:
+            return False
