@@ -85,28 +85,6 @@ class ProductPhoto(models.Model):
         return f"{self.product.id} - {self.product.name}"
 
 
-# class Subcategory(models.Model):
-#     SUB_CATEGORY_CHOICES = (
-#         ('Belt', 'belt'),
-#         ('Watch', 'Watch')
-#     )
-#     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
-#     category = models.CharField(max_length=40)
-# 
-#     class Meta:
-#         verbose_name = _("Sub-category")
-#         verbose_name_plural = _("Sub-categories")
-# 
-#     def __str__(self):
-#         return f"{self.product.id} - {self.category}"
-
-
-# class Comment(models.Model):
-#     user_id = models.Foreignkey()
-#     product_id = models.Foreignkey(Product)
-#     details = models.CharField(max_length=255)
-
-
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
@@ -178,3 +156,27 @@ class Review(models.Model):
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
     description = models.TextField()
+
+
+class PaymentPhoneNumber(models.Model):
+    SERVICE_NAME_CHOICES = (("Bkash", "Bkash"), ("Rocket", "Rocket"), ("Nagad", "Nagad"),)
+
+    phone_number = models.PositiveSmallIntegerField(help_text="Phone Number.", max_length=11, null=True, blank=True)
+    service_name = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
+    image = models.ImageField(upload_to="service_image")
+
+    class Meta:
+        verbose_name = _("Payment Phone Number")
+        verbose_name_plural = _("Payment Phone Numbers")
+
+    def __str__(self):
+        return self.service_name
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+
+        return reverse(
+            "product:invoice",
+            # args=[self.chapter.course.slug, self.chapter.position, self.position],
+            # args=[self.id],
+        )

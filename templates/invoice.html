@@ -1,16 +1,31 @@
 {% load static %}
 <html lang="en">
 <head>
-	<title>Unionmartbd</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
     <!--===============================================================================================-->
-    {% include 'header.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" type="font" href="{% static '/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/animate/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/animsition/css/animsition.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/daterangepicker/daterangepicker.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/MagnificPopup/magnific-popup.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    {#    {% include 'header.html' %}#}
 </head>
 <body class="animsition">
 
 <!-- invoice Srtart -->
-<div class="sec-banner bg0 p-t-150 p-b-10">
+{#<div class="sec-banner bg0 p-t-150 p-b-10">#}
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-10 p-b-30 m-lr-auto">
@@ -25,7 +40,7 @@
                 <div>
                     <table class="border col-md-6 col-lg-12 p-b-30 m-lr-auto">
                         <tr>
-                            <td class="text-center border" colspan="2"> <b>Customer Information</b></td>
+                            <td class="text-center border" colspan="2"><b>Customer Information</b></td>
                         </tr>
                         <tr>
                             <td>Invoice No</td>
@@ -107,25 +122,25 @@
 
         </div>
     </div>
-</div>
+{#</div>#}
 
-{% include 'footer.html' %}
+{#{% include 'footer.html' %}#}
 
 
-    <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+{#<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>#}
 <script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>#}
 <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
 
 </body>

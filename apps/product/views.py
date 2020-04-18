@@ -4,9 +4,9 @@ from apps.users.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber
 from .send_data_to_spread_sheet import send_to_spreadsheet
 
 
@@ -202,6 +202,7 @@ def cart_list(request):
     if user.has_discount:
         for cart in cart_ins:
             temp = {}
+            temp['product_id'] = cart.product.id
             temp['name'] = cart.product.name
             temp['price'] = cart.product.price
             temp['default_photo_url'] = cart.product.default_photo.url
@@ -233,6 +234,7 @@ def cart_list(request):
 
     for cart in cart_ins:
         temp = {}
+        temp['product_id'] = cart.product.id
         temp['name'] = cart.product.name
         temp['price'] = cart.product.price
         temp['default_photo_url'] = cart.product.default_photo.url
@@ -281,7 +283,15 @@ def contact(request):
 
 
 def payment(request):
-    return render(request, 'payment.html', {})
+    service_name = request.GET.get('service_name')
+    payment_pnumber = PaymentPhoneNumber.objects.filter(service_name=service_name).first()
+    if payment_pnumber:
+        context = {
+            "payment_pnumber": payment_pnumber
+        }
+        return render(request, 'payment.html', context)
+    else:
+        return redirect('product:carts')
 
 
 def privacy(request):

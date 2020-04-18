@@ -1,38 +1,38 @@
 {% load static %}
 <html lang="en">
 <head>
-	<title>Unionmartbd</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unionmartbd</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-{#    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">#}
-{#    <!--===============================================================================================-->#}
-{#    <link rel="stylesheet" type="text/css" href="css/util.css">#}
-{#    <link rel="stylesheet" type="text/css" href="css/main.css">#}
+    {#    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">#}
+    {#    <!--===============================================================================================-->#}
+    {#    <link rel="stylesheet" type="text/css" href="css/util.css">#}
+    {#    <link rel="stylesheet" type="text/css" href="css/main.css">#}
     <!--===============================================================================================-->
     {% include 'header.html' %}
 </head>
@@ -568,35 +568,35 @@
 {#</div>#}
 
 <!-- payment Srtart -->
-<div class="sec-banner bg0 p-t-240 p-b-10">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
-                <!-- Block1 -->
-                <div class="block1 wrap-pic-w">
-                    <h2>Pay With Bkash</h2> <br> <br>
-                    <img src="{% static 'images/bkash-logo-FBB258B90F-seeklogo.com.png' %}" alt="IMG-BANNER">
-                    <h4>Please Pay in this following number</h4>
-                    <h3>01701045945</h3>
-                    <br> <br>
+{#<div class="sec-banner bg0 p-t-240 p-b-10">#}
+<div class="container m-t-18">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
+            <!-- Block1 -->
+            <div class="block1 wrap-pic-w mt-1">
+                <h2>Pay With {{ payment_pnumber.service_name }}</h2> <br> <br>
+                <img src="{{ payment_pnumber.image.url }}" alt="IMG-BANNER">
+                <h4>Please Pay in this following number</h4>
+                <h3>{{ payment_pnumber.phone_number }}</h3>
+                <br> <br>
 
-                    <div>
-                        <form action="">
-                            <label for="email">Customers Bkash Number</label>
-                            <input type="number" class="form-control badge-danger" id="number"
-                                   placeholder="Enter Your Bkash Number">
-                            <input autofocus="" class="form-control bg-dark" id="inputEmail" name="name"
-                                   placeholder="User Name" required=""
-                                   type="text">
-                            <input autofocus="" class="form-control bg-dark" id="input_phone" name="contact_number"
-                                   placeholder="Contact Number" maxlength="11" minlength="11"
-                                   required=""
-                                   type="text">
-                            <input autofocus="" class="form-control bg-dark" id="inputEmail" name="address"
-                                   placeholder="Address" required=""
-                                   type="text"> <br>
-                            <label for="cars">City :
-                                <select name="" id="">
+                <div>
+                    <form action="">
+                        <label for="email">Customers Bkash Number</label>
+                        <input type="number" class="form-control badge-danger" id="number"
+                               placeholder="Enter Your Bkash Number">
+                        <input autofocus="" class="form-control bg-dark" id="inputEmail" name="name"
+                               placeholder="User Name" required=""
+                               type="text">
+                        <input autofocus="" class="form-control " id="input_phone" name="contact_number"
+                               placeholder="Contact Number" maxlength="11" minlength="11"
+                               required=""
+                               type="text">
+                        <input autofocus="" class="form-control " id="inputEmail" name="address"
+                               placeholder="Address" required=""
+                               type="text"> <br>
+                        <label for="cars">City :
+                            <select name="" id="">
                                 <option value="">Dhaka</option>
                                 <option value="">Rajshahi</option>
                                 <option value="">Chottogram</option>
@@ -606,68 +606,68 @@
                                 <option value="">Maymensingh</option>
                                 <option value="">Rangpur</option>
                             </select>
-                            </label>
+                        </label>
 
-                        </form>
-                    </div>
-					<div>
-						<button class="btn btn-success" type="submit">Confirm Order</button>
-					</div>
-
-
+                    </form>
                 </div>
-            </div>
+                <div>
+                    <button class="btn btn-success" type="submit">Confirm Order</button>
+                </div>
 
-{#            <div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">#}
-{#                <!-- Block1 -->#}
-{#                <div class="block1 wrap-pic-w">#}
-{#                    <h2>Pay With Rocket</h2> <br> <br>#}
-{#                    <img src="images/dutch-bangla-rocket.png" alt="IMG-BANNER">#}
-{#                    <h4>Please Pay in this following number</h4>#}
-{#                    <h3>01701045945</h3>#}
-{##}
-{#                    <br> <br>#}
-{##}
-{#                    <div>#}
-{#                        <form action="">#}
-{#                            <label for="email">Customers Bkash Number</label>#}
-{#                            <input type="number" class="form-control bg-primary" id="number"#}
-{#                                   placeholder="Enter Your Rocket Number">#}
-{#                        </form>#}
-{#                    </div>#}
-{#					<div>#}
-{#						<button class="btn btn-success" type="submit">Send</button>#}
-{#					</div>#}
-{##}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#            <div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">#}
-{#                <!-- Block1 -->#}
-{#                <div class="block1 wrap-pic-w ">#}
-{#                    <h2>Pay With Nagad</h2> <br> <br>#}
-{#                    <img src="images/Nagad-Logo-Vector.png" alt="IMG-BANNER">#}
-{#                    <h4>Please Pay in this following number</h4>#}
-{#                    <h3>01701045945</h3>#}
-{##}
-{#                    <br> <br>#}
-{##}
-{#                    <div>#}
-{#                        <form action="">#}
-{#                            <label for="email">Customers Bkash Number</label>#}
-{#                            <input type="number" class="form-control bg-warning" id="number" placeholder="Enter Your Nagad Number">#}
-{#                        </form>#}
-{#                    </div>#}
-{#					<div>#}
-{#						<button class="btn btn-success" type="submit">Send</button>#}
-{#					</div>#}
-{##}
-{##}
-{#                </div>#}
-{#            </div>#}
+
+            </div>
         </div>
+
+        {#            <div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">#}
+        {#                <!-- Block1 -->#}
+        {#                <div class="block1 wrap-pic-w">#}
+        {#                    <h2>Pay With Rocket</h2> <br> <br>#}
+        {#                    <img src="images/dutch-bangla-rocket.png" alt="IMG-BANNER">#}
+        {#                    <h4>Please Pay in this following number</h4>#}
+        {#                    <h3>01701045945</h3>#}
+        {##}
+        {#                    <br> <br>#}
+        {##}
+        {#                    <div>#}
+        {#                        <form action="">#}
+        {#                            <label for="email">Customers Bkash Number</label>#}
+        {#                            <input type="number" class="form-control bg-primary" id="number"#}
+        {#                                   placeholder="Enter Your Rocket Number">#}
+        {#                        </form>#}
+        {#                    </div>#}
+        {#					<div>#}
+        {#						<button class="btn btn-success" type="submit">Send</button>#}
+        {#					</div>#}
+        {##}
+        {#                </div>#}
+        {#            </div>#}
+        {##}
+        {#            <div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">#}
+        {#                <!-- Block1 -->#}
+        {#                <div class="block1 wrap-pic-w ">#}
+        {#                    <h2>Pay With Nagad</h2> <br> <br>#}
+        {#                    <img src="images/Nagad-Logo-Vector.png" alt="IMG-BANNER">#}
+        {#                    <h4>Please Pay in this following number</h4>#}
+        {#                    <h3>01701045945</h3>#}
+        {##}
+        {#                    <br> <br>#}
+        {##}
+        {#                    <div>#}
+        {#                        <form action="">#}
+        {#                            <label for="email">Customers Bkash Number</label>#}
+        {#                            <input type="number" class="form-control bg-warning" id="number" placeholder="Enter Your Nagad Number">#}
+        {#                        </form>#}
+        {#                    </div>#}
+        {#					<div>#}
+        {#						<button class="btn btn-success" type="submit">Send</button>#}
+        {#					</div>#}
+        {##}
+        {##}
+        {#                </div>#}
+        {#            </div>#}
     </div>
 </div>
+{#</div>#}
 
 
 <!-- Footer -->
@@ -983,7 +983,7 @@
 {#    </div>#}
 {#</div>#}
 
-    <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>

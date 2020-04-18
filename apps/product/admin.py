@@ -1,4 +1,4 @@
-from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend
+from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend, PaymentPhoneNumber
 from django.contrib import admin
 
 
@@ -26,3 +26,8 @@ class UpdateNewsAdmin(admin.ModelAdmin):
 @admin.register(Trend)
 class TrendAdmin(admin.ModelAdmin):
     list_display = ('trend_name', 'image', 'position')
+
+
+@admin.register(PaymentPhoneNumber)
+class PaymentPhoneNumberAdmin(admin.ModelAdmin):
+    list_display = ('service_name', 'phone_number')
