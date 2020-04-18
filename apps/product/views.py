@@ -286,3 +286,7 @@ def payment(request):
 
 def privacy(request):
     return render(request, 'privacy.html', {})
+
+
+def invoice(request):
+    return render(request, 'invoice.html', {})
