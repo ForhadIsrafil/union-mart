@@ -577,42 +577,40 @@
                 <h2 class="text-center p-t-5"><b>Pay With {{ payment_pnumber.service_name }}</b></h2> <br> <br>
                 <img src="{{ payment_pnumber.image.url }}" alt="IMG-BANNER">
                 <br>
-                <h4 class="text-center p-t-5"> <b>নিম্ন লিখিত নম্বরটিতে টাকা পাঠান </b> </h4>
+                <h4 class="text-center p-t-5"><b>নিম্ন লিখিত নম্বরটিতে টাকা পাঠান </b></h4>
                 <h3><b>{{ payment_pnumber.phone_number }}</b></h3>
                 <br> <br>
 
                 <div>
-                    <form action="">
+                    <form action="{% url 'product:payment' %}" method="post">{% csrf_token %}
                         <label class="text-center" for="email"><b>আপনি যে নম্বরটি থেকে টাকা পাঠিয়েছেন তা লিখুন </b></label>
-                        <input type="number" class="form-control badge-danger" id="number"
-                               placeholder="Enter Your {{ payment_pnumber.service_name }} Number">
-                        <input style="color: white" autofocus="" class="form-control bg-primary" id="inputEmail" name="name"
-                               placeholder="User Name" required=""
+                        <input type="tel" class="form-control badge-danger" id="number" name="payment_number" maxlength="11"
+                               placeholder="Enter Your {{ payment_pnumber.service_name }} Number" required="">
+                        {#                        <input style="color: white" autofocus="" class="form-control bg-primary" id="inputEmail" name="name"#}
+                        {#                               placeholder="User Name" required=""#}
+                        {#                               type="text">#}
+                        <input style="color: white" autofocus="" class="form-control bg-primary" id="inputEmail" name="delivery_location"
+                               placeholder="Delivery Location" required=""
                                type="text">
-                        <input style="color: white" autofocus="" class="form-control bg-primary" id="input_phone" name="contact_number"
+                        <input type="tel" style="color: white" autofocus="" class="form-control bg-primary" id="input_phone" name="contact_number"
                                placeholder="Contact Number" maxlength="11" minlength="11"
-                               required=""
-                               type="text">
-                        <input style="color: white" autofocus="" class="form-control bg-primary" id="inputEmail" name="address"
-                               placeholder="Address" required=""
-                               type="text"> <br>
+                               required="" type="tel"><br>
                         <label class="p-l-5" for="city" style="color: darkblue">City :
-                            <select class="bg-primary rounded" name="" id="">
-                                <option value="">Dhaka</option>
-                                <option value="">Rajshahi</option>
-                                <option value="">Chottogram</option>
-                                <option value="">Khulna</option>
-                                <option value="">Sylhet</option>
-                                <option value="">Barisal</option>
-                                <option value="">Maymensingh</option>
-                                <option value="">Rangpur</option>
+                            <select class="bg-info rounded" name="city" id="">
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Chottogram">Chottogram</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Barisal">Barisal</option>
+                                <option value="Maymensingh">Maymensingh</option>
+                                <option value="Rangpur">Rangpur</option>
                             </select>
                         </label>
-
+                        <div style="text-align: center">
+                            <button class="btn btn-success" type="submit">Confirm Order</button>
+                        </div>
                     </form>
-                </div>
-                <div style="text-align: center">
-                    <button class="btn btn-success" type="submit">Confirm Order</button>
                 </div>
 
 

@@ -714,12 +714,12 @@
                     </button>
                     <br> <br>
 
-                <div style="text-align: center">
-                    <h3>বিকাশ, নগদ বা রকেট এর মাধ্যমে টাকা পাঠালে নিচের একটি লিংক এ ক্লিক করুন </h3> <br>
-                    <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?service_name=Bkash">Bkash</a></button>
-                    <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?service_name=Rocket">Rocket</a></button>
-                    <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?service_name=Nagad">Nagad</a></button>
-                </div>
+                    <div style="text-align: center">
+                        <h3>বিকাশ, নগদ বা রকেট এর মাধ্যমে টাকা পাঠালে নিচের একটি লিংক এ ক্লিক করুন </h3> <br>
+                        <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Bkash">Bkash</a></button>
+                        <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Rocket">Rocket</a></button>
+                        <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Nagad">Nagad</a></button>
+                    </div>
 
 
                 </div>
@@ -728,53 +728,52 @@
     </div>
 </form>
 
-{% if total_price < 5000 %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="add">
-                    <form action="" method="post">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="name">User Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Name">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="phone">Phone</label>
-                                <input type="number" class="form-control" id="phone" placeholder="Phone">
-                            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="add">
+                <form action="" method="post">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="name">User Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name">
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <div class="form-group col-md-6">
+                            <label for="phone">Phone</label>
+                            <input type="number" class="form-control" id="phone" placeholder="Phone">
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
 
 
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                                Check me out
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Order</button>
-                    </form>
-                </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Order</button>
+                </form>
             </div>
         </div>
     </div>
-{% endif %}
+</div>
+
 <!-- Cart Page End -->
 
 

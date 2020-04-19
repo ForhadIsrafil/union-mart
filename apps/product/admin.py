@@ -1,4 +1,4 @@
-from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend, PaymentPhoneNumber
+from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend, PaymentPhoneNumber, OrderPayment
 from django.contrib import admin
 
 
@@ -11,7 +11,7 @@ class ProductPhotoInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ProductPhotoInline,)
     list_display = ('name', 'price', 'stock', 'category', 'sub_category', 'stock', 'upload_date',)
-    search_fields = ('name', 'category', 'sub_category', 'trend_name',)
+    search_fields = ('id', 'name', 'category', 'sub_category', 'trend_name',)
 
 
 @admin.register(Slider)
@@ -31,4 +31,10 @@ class TrendAdmin(admin.ModelAdmin):
 
 @admin.register(PaymentPhoneNumber)
 class PaymentPhoneNumberAdmin(admin.ModelAdmin):
-    list_display = ('service_name', 'phone_number',)
+    list_display = ('payment_gateway', 'phone_number',)
+
+
+@admin.register(OrderPayment)
+class OrderPaymentAdmin(admin.ModelAdmin):
+    list_display = ('user', 'invoice_no', 'delivery_location', 'contact_number',)
+    search_fields = ('id', 'user', 'invoice_no', 'contact_number',)

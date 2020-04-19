@@ -1,8 +1,6 @@
-from django.contrib.postgres.forms import JSONField
-
 from apps.users.views import User
+from django.contrib.postgres.forms import JSONField
 from django.db import models
-from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
@@ -165,7 +163,7 @@ class PaymentPhoneNumber(models.Model):
     SERVICE_NAME_CHOICES = (("Bkash", "Bkash"), ("Rocket", "Rocket"), ("Nagad", "Nagad"),)
 
     phone_number = models.PositiveSmallIntegerField(help_text="Phone Number.", null=True, blank=True)
-    service_name = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
+    payment_gateway = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
     image = models.ImageField(upload_to="service_image")
 
     class Meta:
@@ -184,14 +182,15 @@ class PaymentPhoneNumber(models.Model):
         return reverse('product:invoice', args=[self.id])
 
 
-class Payment(models.Model):
+class OrderPayment(models.Model):
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
-    invoice_no = models.PositiveIntegerField()
-    product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
+    invoice_no = models.PositiveIntegerField(unique=True, auto_created=True)
     product_list = JSONField()
-    quantity = models.PositiveIntegerField()
-    address = models.CharField(max_length=100)
-    contact_number = models.CharField(max_length=15)
+    delivery_location = models.CharField(max_length=255)
+    contact_number = models.CharField(max_length=11)
+    payment_number = models.CharField(max_length=11)
+    delivery_charge = models.CharField(max_length=50, default='Depends on courier.')
     total = models.CharField(max_length=255)
-
-
+    order_date = models.DateField(auto_now_add=True)
+    city = models.CharField(max_length=20)
+    payment_gateway = models.CharField(max_length=20, default='Cash on delivery.')

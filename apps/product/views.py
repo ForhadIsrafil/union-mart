@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber, OrderPayment
 from .send_data_to_spread_sheet import send_to_spreadsheet
 
 
@@ -274,6 +274,40 @@ def cart_list(request):
     return render(request, 'shoping-cart.html', context)
 
 
+@login_required
+def order_payment(request):
+    payment_gateway = request.GET.get('payment_gateway')
+    payment_number = request.POST.get('payment_number')
+    contact_number = request.POST.get('contact_number')
+    delivery_location = request.POST.get('delivery_location')
+    city = request.POST.get('city')
+
+    payment_pnumber_ins = PaymentPhoneNumber.objects.filter(payment_gateway=payment_gateway).first()
+    if payment_pnumber_ins:
+        context = {
+            'payment_pnumber': payment_pnumber_ins
+        }
+        return render(request, 'payment.html', context)
+    elif request.POST:
+        order_payment = OrderPayment(payment_gateway=payment_gateway, payment_number=payment_number,
+                                     delivery_location=delivery_location, contact_number=contact_number, city=city)
+        order_payment.product_list = 'json product_list'
+        order_payment.delivery_charge = 60 if city == 'Dhaka' else 'Depends on courier.'
+        order_payment.total = request.user.id
+        order_payment.save()
+    else:
+        return redirect('product:carts')
+    context = {
+        'payment_pnumber': payment_pnumber_ins
+    }
+    return render(request, 'payment.html', context)
+
+
+@login_required
+def invoice(request, id):
+    return render(request, 'invoice.html', {})
+
+
 def about(request, ):
     return render(request, 'about.html', {})
 
@@ -281,28 +315,10 @@ def about(request, ):
 def contact(request):
     return render(request, 'contact.html', {})
 
-#
-# def payment(request):
-#     service_name = request.GET.get('service_name')
-#     payment_pnumber = PaymentPhoneNumber.objects.filter(service_name=service_name).first()
-#     if payment_pnumber:
-#         context = {
-#             "payment_pnumber": payment_pnumber
-#         }
-#         return render(request, 'payment.html', context)
-#     else:
-#         return redirect('product:carts')
-
-
-def privacy(request):
-    return render(request, 'privacy.html', {})
-
-
-def invoice(request, id):
-    return render(request, 'invoice.html', {})
 
 def reward(request):
     return render(request, 'reward.html')
 
-def payment(request):
-    return render(request, 'payment.html')
+
+def privacy(request):
+    return render(request, 'privacy.html', {})
