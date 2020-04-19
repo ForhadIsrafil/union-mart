@@ -3943,3 +3943,65 @@ iframe {border: none;}
 	background-color: rgba(0,0,0,.1);
 
 }
+
+
+/* Map Start */
+.map h3{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color:#717fe0;
+}
+/* Map End */
+
+/* .foot{
+	margin-top: 230px;
+	position: absloute;
+} */
+
+/* Reward Start */
+.rewaard{
+	padding-top: 90px;
+	padding-bottom: 24px;
+
+}
+
+.r_txt h3{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center!important;
+	text-align: justify;
+
+
+}
+.r_txt p{
+	margin-top: 10px;
+	justify-content: center;
+	font-weight: bold;
+}
+.mmbrshps img{
+	max-width: 100%;
+
+}
+
+.mmbrshps p{
+	text-align: center;
+	font-weight: bold;
+}
+
+.mb_table{
+color: #ffffff;
+
+}
+
+
+/* reward End */
+
+/* payment End */
+
+.pay-box{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
