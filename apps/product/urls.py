@@ -12,6 +12,6 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('payment/', payment, name='payment'),
     path('privacy/', privacy, name='privacy'),
-    path('invoice/', invoice, name='invoice'),
+    path('invoice/<int:id>/', invoice, name='invoice'),
 
 ]

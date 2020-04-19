@@ -11,6 +11,7 @@ class ProductPhotoInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ProductPhotoInline,)
     list_display = ('name', 'price', 'stock', 'category', 'sub_category', 'stock', 'upload_date',)
+    search_fields = ('name', 'category', 'sub_category', 'trend_name',)
 
 
 @admin.register(Slider)
@@ -30,4 +31,4 @@ class TrendAdmin(admin.ModelAdmin):
 
 @admin.register(PaymentPhoneNumber)
 class PaymentPhoneNumberAdmin(admin.ModelAdmin):
-    list_display = ('service_name', 'phone_number')
+    list_display = ('service_name', 'phone_number',)

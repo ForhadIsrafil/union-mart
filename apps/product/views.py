@@ -298,5 +298,5 @@ def privacy(request):
     return render(request, 'privacy.html', {})
 
 
-def invoice(request):
+def invoice(request, id):
     return render(request, 'invoice.html', {})

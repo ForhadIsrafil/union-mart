@@ -1,5 +1,7 @@
 from apps.users.views import User
 from django.db import models
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -63,14 +65,13 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        from django.urls import reverse
-
-        return reverse(
-            "product:product",
-            # args=[self.chapter.course.slug, self.chapter.position, self.position],
-            args=[self.id],
-        )
+    # def get_absolute_url(self):
+    #
+    #     return reverse(
+    #         "product:product",
+    #         # args=[self.chapter.course.slug, self.chapter.position, self.position],
+    #         args=[self.id],
+    #     )
 
 
 class ProductPhoto(models.Model):
@@ -173,10 +174,9 @@ class PaymentPhoneNumber(models.Model):
         return self.service_name
 
     def get_absolute_url(self):
-        from django.urls import reverse
-
-        return reverse(
-            "product:invoice",
-            # args=[self.chapter.course.slug, self.chapter.position, self.position],
-            # args=[self.id],
-        )
+        # return reverse(
+        #     "product:invoice",
+        #     # kwargs={"phone_number": self.phone_number, 'service_name': self.service_name},
+        #     args=[self.id],
+        # )
+        return reverse('product:invoice', args=[self.id])
