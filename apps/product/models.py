@@ -1,3 +1,5 @@
+from django.contrib.postgres.forms import JSONField
+
 from apps.users.views import User
 from django.db import models
 from django.shortcuts import redirect
@@ -51,9 +53,9 @@ class Product(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20, default=CATEGORY_CHOICES[0])
     sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20, default=SUB_CATEGORY_CHOICES[0])
     offer = models.CharField(max_length=50, null=True, blank=True)
-    delevery_charge = models.CharField(max_length=20, null=True, blank=True)
+    # delevery_charge = models.CharField(max_length=20, null=True, blank=True)
     default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
-    free_delivery = models.BooleanField(default=False)
+    # free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
     trend_name = models.CharField(max_length=50, null=True, blank=True)
     discount = models.SmallIntegerField(blank=True, null=True)
@@ -162,7 +164,7 @@ class Review(models.Model):
 class PaymentPhoneNumber(models.Model):
     SERVICE_NAME_CHOICES = (("Bkash", "Bkash"), ("Rocket", "Rocket"), ("Nagad", "Nagad"),)
 
-    phone_number = models.PositiveSmallIntegerField(help_text="Phone Number.", max_length=11, null=True, blank=True)
+    phone_number = models.PositiveSmallIntegerField(help_text="Phone Number.", null=True, blank=True)
     service_name = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
     image = models.ImageField(upload_to="service_image")
 
@@ -180,3 +182,16 @@ class PaymentPhoneNumber(models.Model):
         #     args=[self.id],
         # )
         return reverse('product:invoice', args=[self.id])
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    invoice_no = models.PositiveIntegerField()
+    product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
+    product_list = JSONField()
+    quantity = models.PositiveIntegerField()
+    address = models.CharField(max_length=100)
+    contact_number = models.CharField(max_length=15)
+    total = models.CharField(max_length=255)
+
+

@@ -281,17 +281,17 @@ def about(request, ):
 def contact(request):
     return render(request, 'contact.html', {})
 
-
-def payment(request):
-    service_name = request.GET.get('service_name')
-    payment_pnumber = PaymentPhoneNumber.objects.filter(service_name=service_name).first()
-    if payment_pnumber:
-        context = {
-            "payment_pnumber": payment_pnumber
-        }
-        return render(request, 'payment.html', context)
-    else:
-        return redirect('product:carts')
+#
+# def payment(request):
+#     service_name = request.GET.get('service_name')
+#     payment_pnumber = PaymentPhoneNumber.objects.filter(service_name=service_name).first()
+#     if payment_pnumber:
+#         context = {
+#             "payment_pnumber": payment_pnumber
+#         }
+#         return render(request, 'payment.html', context)
+#     else:
+#         return redirect('product:carts')
 
 
 def privacy(request):
@@ -300,3 +300,9 @@ def privacy(request):
 
 def invoice(request, id):
     return render(request, 'invoice.html', {})
+
+def reward(request):
+    return render(request, 'reward.html')
+
+def payment(request):
+    return render(request, 'payment.html')
