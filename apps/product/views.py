@@ -1,10 +1,15 @@
 import math
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
+from django.db import transaction
+from django.core.mail import EmailMessage
 
 from apps.users.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber, OrderPayment
 from .send_data_to_spread_sheet import send_to_spreadsheet
@@ -191,6 +196,7 @@ def product_details(request, product_id):
 
 
 @login_required
+@transaction.atomic
 def cart_list(request):
     user = User.objects.filter(id=request.user.id).first()
     delete_cart_id = request.GET.get('delete_cart_id')
@@ -275,6 +281,7 @@ def cart_list(request):
 
 
 @login_required
+@transaction.atomic
 def order_payment(request):
     payment_gateway = request.GET.get('payment_gateway')
     payment_number = request.POST.get('payment_number')
@@ -295,13 +302,31 @@ def order_payment(request):
         order_payment.delivery_charge = 60 if city == 'Dhaka' else 'Depends on courier.'
         order_payment.total = request.user.id
         order_payment.save()
+        messages.INFO(request, _('Successfully order done!'))
+
+        # email = EmailMessage(mail_subject, message, to=[request.user.email])
+        # email.send()
+        return reverse('product:payment', kwargs={'payment_gateway': payment_gateway})
     else:
         return redirect('product:carts')
-    context = {
-        'payment_pnumber': payment_pnumber_ins
-    }
-    return render(request, 'payment.html', context)
-
+    
+'''
+    def send_confirmation_link(self, user):
+        current_site = get_current_site(self.request)
+        mail_subject = "Activate your codefolio account."
+        message = render_to_string(
+            self.activation_email_template,
+            {
+                "protocol": "https" if self.request.is_secure() else "http",
+                "user": user,
+                "domain": current_site.domain,
+                "uid": urlsafe_base64_encode(force_bytes(user.id)),
+                "token": account_activation_token.make_token(user),
+            },
+        )
+        to_email = user.email
+        email = EmailMessage(mail_subject, message, to=[to_email])
+        email.send()'''
 
 @login_required
 def invoice(request, id):

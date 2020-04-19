@@ -194,3 +194,10 @@ class OrderPayment(models.Model):
     order_date = models.DateField(auto_now_add=True)
     city = models.CharField(max_length=20)
     payment_gateway = models.CharField(max_length=20, default='Cash on delivery.')
+
+    class Meta:
+        verbose_name = _("Order and Payment")
+        verbose_name_plural = _("Order and Payments")
+
+    def __str__(self):
+        return self.payment_gateway
