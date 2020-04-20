@@ -3,7 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 
 # =================== send data to spreadsheet start ==================
-def send_to_spreadsheet(product_ins):
+def send_to_spreadsheet(order_payment):
     # use creds to create a client to interact with the Google Drive API
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_name('order_data_list.json', scope)
@@ -14,29 +14,32 @@ def send_to_spreadsheet(product_ins):
     sheet = client.open("order_data_list").sheet1
 
     '''
-    product_ins.name,
-    product_ins.description,
-    product_ins.price,
-    product_ins.stock,
-    product_ins.category,
-    product_ins.sub_category,
-    product_ins.offer,
-    product_ins.delevery_charge,
-    product_ins.free_delivery,
-    product_ins.upload_date,
-    product_ins.trend_name,
+    order_payment.user,
+    order_payment.invoice_no,
+    order_payment.product_list,
+    order_payment.delivery_location,
+    order_payment.contact_number,
+    order_payment.payment_number,
+    order_payment.delivery_charge,
+    order_payment.total,
+    order_payment.order_date,
+    order_payment.city,
+    order_payment.payment_gateway,
+    order_payment.is_delivered,
     '''
-    row = [product_ins.name,
-           product_ins.description,
-           product_ins.price,
-           product_ins.stock,
-           product_ins.category,
-           product_ins.sub_category,
-           product_ins.offer,
-           product_ins.delevery_charge,
-           product_ins.free_delivery,
-           str(product_ins.upload_date),
-           product_ins.trend_name, ]
+    user = 'User ID: ' + str(order_payment.user.id) + ' user_name: ' + str(order_payment.user.user_name)
+    row = [user,
+           order_payment.invoice_no,
+           order_payment.product_list,
+           order_payment.delivery_location,
+           order_payment.contact_number,
+           order_payment.payment_number,
+           order_payment.delivery_charge,
+           order_payment.total,
+           str(order_payment.order_date),
+           order_payment.city,
+           order_payment.payment_gateway,
+           order_payment.is_delivered, ]
     index = 2
     sheet.insert_row(row, index)
     return True

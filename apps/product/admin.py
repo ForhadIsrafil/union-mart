@@ -38,3 +38,11 @@ class PaymentPhoneNumberAdmin(admin.ModelAdmin):
 class OrderPaymentAdmin(admin.ModelAdmin):
     list_display = ('user', 'invoice_no', 'delivery_location', 'contact_number',)
     search_fields = ('id', 'user', 'invoice_no', 'contact_number',)
+    readonly_fields = ('user', 'invoice_no', 'product_list', 'delivery_location', 'contact_number', 'payment_number',
+                       'delivery_charge', 'total', 'order_date', 'city', 'payment_gateway')
+
+    # def get_readonly_fields(self, request, obj=None):
+    #     return [f.name for f in self.model._meta.fields]
+
+    # def has_change_permission(self, request, obj=None):
+    #     return False

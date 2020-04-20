@@ -1,3 +1,4 @@
+import json
 import math
 
 from apps.product.product_order_amouint import product_total_amount
@@ -201,7 +202,6 @@ def product_details(request, product_id):
 def cart_list(request):
     user = User.objects.filter(id=request.user.id).first()
     delete_cart_id = request.GET.get('delete_cart_id')
-    num_product1 = request.GET.get('num-product1')
 
     cart_ins = Cart.objects.filter(user_id=request.user.id).order_by('-quantity')
     product_arr = []
@@ -273,11 +273,6 @@ def cart_list(request):
     if delete_cart_id:
         cart_ins = cart_ins.filter(id=delete_cart_id).first()
         cart_ins.delete()
-
-    if num_product1:
-        product_ins = Product.objects.all().first()
-        # send to spread sheet
-        send_to_spreadsheet(product_ins)
     return render(request, 'shoping-cart.html', context)
 
 
@@ -310,7 +305,7 @@ def order_payment(request):
         payment_gateway = request.POST.get('payment_gateway')
         order_payment = OrderPayment(payment_number=payment_number,
                                      delivery_location=delivery_location, contact_number=contact_number, city=city)
-        order_payment.product_list = product_id_arr
+        order_payment.product_list = json.dumps(product_id_arr)
         order_payment.delivery_charge = 60 if city == 'Dhaka' else 'Depends on courier.'
         order_payment.user_id = user.id
         order_payment.total = product_total['total_price'] + 60
@@ -331,8 +326,12 @@ def order_payment(request):
                 "products": product_total['products'],
             },
         )
+        # send mail to user about products and payment
         email = EmailMessage(mail_subject, message, to=[request.user.email])
         email.send()
+
+        # send data to spread sheet about products and payment
+        send_to_spreadsheet(order_payment)
         return redirect('product:carts')
     else:
         return redirect('product:carts')
@@ -340,7 +339,17 @@ def order_payment(request):
 
 @login_required
 def invoice(request, id):
-    return render(request, 'invoice.html', {})
+    order_payment_ins = OrderPayment.objects.filter(id=id).first()
+    user = User.objects.filter(id=order_payment_ins.user.id).first()
+    product_total = product_total_amount(user)
+
+    context = {
+        "user": user,
+        "order_payment": order_payment_ins,
+        "sub_total": product_total['total_price'],
+        "products": product_total['products'],
+    }
+    return render(request, 'invoice.html', context)
 
 
 def about(request, ):

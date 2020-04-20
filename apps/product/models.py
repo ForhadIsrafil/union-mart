@@ -193,6 +193,7 @@ class OrderPayment(models.Model):
     order_date = models.DateField(auto_now_add=True)
     city = models.CharField(max_length=20)
     payment_gateway = models.CharField(max_length=50, default='Cash on delivery.', editable=False)
+    is_delivered = models.BooleanField(default=False, help_text=_('Is products are delivered?'))
 
     class Meta:
         verbose_name = _("Order and Payment")
