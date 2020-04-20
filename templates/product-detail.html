@@ -1507,7 +1507,26 @@
     $('.js-addcart-detail').each(function () {
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function () {
-            swal(nameProduct, "is added to cart !", "success");
+            var quantity_id = document.getElementById("quantity_id").value;
+            $.ajax({
+                type: "GET",
+                data: "quantity_id=" + quantity_id,
+                success: function (response) {
+                    if (response.valid == false) {
+                        swal(nameProduct, response.message, "info");
+                    } else {
+                        swal(nameProduct, "is added to cart!", "success");
+                    }
+                },
+                error: function (jqXHR) {
+                    swal("Error!", "Please login", "error");
+                    setTimeout(function () {
+                        window.location = {% url 'login' %};
+                    }, 2000);
+                }
+            })
+
+            {#swal(nameProduct, "is added to cart !", "success");#}
         });
     });
 </script>
@@ -1558,7 +1577,7 @@
 </body>
 <!-- for page load 2 times -->
 <script>
-if(window.location.href.indexOf('?reloaded') === -1) window.location.href = window.location.href + "?reloaded=true";
+    if (window.location.href.indexOf('?reloaded') === -1) window.location.href = window.location.href + "?reloaded=true";
 </script>
 
 </html>

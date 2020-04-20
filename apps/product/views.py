@@ -1,5 +1,6 @@
 import math
 
+from apps.product.product_order_amouint import product_total_amount
 from apps.users.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -291,6 +292,7 @@ def order_payment(request):
     delivery_location = request.POST.get('delivery_location')
     city = request.POST.get('city')
 
+    product_total = product_total_amount(user)
     payment_pnumber_ins = PaymentPhoneNumber.objects.filter(payment_gateway=payment_gateway).first()
     if payment_pnumber_ins:
         context = {
@@ -298,14 +300,20 @@ def order_payment(request):
         }
         return render(request, 'payment.html', context)
     elif request.POST:
-        # import pdb;pdb.set_trace()
+        cart_list = Cart.objects.filter(user_id=request.user.id)
+        product_id_arr = []
+        for cart in cart_list:
+            temp = {}
+            temp['product_id'] = cart.product.id
+            product_id_arr.append(temp)
+
         payment_gateway = request.POST.get('payment_gateway')
         order_payment = OrderPayment(payment_number=payment_number,
                                      delivery_location=delivery_location, contact_number=contact_number, city=city)
-        order_payment.product_list = 'json product_list'
+        order_payment.product_list = product_id_arr
         order_payment.delivery_charge = 60 if city == 'Dhaka' else 'Depends on courier.'
         order_payment.user_id = user.id
-        order_payment.total = 215645
+        order_payment.total = product_total['total_price'] + 60
         if payment_gateway is None:
             order_payment.payment_gateway = 'Cash on delivery.'
         else:
@@ -318,6 +326,9 @@ def order_payment(request):
             mail_template,
             {
                 "user": user,
+                "order_payment": order_payment,
+                "sub_total": product_total['total_price'],
+                "products": product_total['products'],
             },
         )
         email = EmailMessage(mail_subject, message, to=[request.user.email])
