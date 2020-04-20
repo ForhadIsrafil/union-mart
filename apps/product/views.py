@@ -1,15 +1,15 @@
 import math
-from django.contrib import messages
-from django.utils.translation import ugettext_lazy as _
-from django.db import transaction
-from django.core.mail import EmailMessage
 
 from apps.users.models import User
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
+from django.db import transaction
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber, OrderPayment
 from .send_data_to_spread_sheet import send_to_spreadsheet
@@ -283,6 +283,8 @@ def cart_list(request):
 @login_required
 @transaction.atomic
 def order_payment(request):
+    mail_template = 'invoice.html'
+    user = User.objects.filter(id=request.user.id).first()
     payment_gateway = request.GET.get('payment_gateway')
     payment_number = request.POST.get('payment_number')
     contact_number = request.POST.get('contact_number')
@@ -296,20 +298,35 @@ def order_payment(request):
         }
         return render(request, 'payment.html', context)
     elif request.POST:
-        order_payment = OrderPayment(payment_gateway=payment_gateway, payment_number=payment_number,
+        # import pdb;pdb.set_trace()
+        payment_gateway = request.POST.get('payment_gateway')
+        order_payment = OrderPayment(payment_number=payment_number,
                                      delivery_location=delivery_location, contact_number=contact_number, city=city)
         order_payment.product_list = 'json product_list'
         order_payment.delivery_charge = 60 if city == 'Dhaka' else 'Depends on courier.'
-        order_payment.total = request.user.id
+        order_payment.user_id = user.id
+        order_payment.total = 215645
+        if payment_gateway is None:
+            order_payment.payment_gateway = 'Cash on delivery.'
+        else:
+            order_payment.payment_gateway = payment_gateway
         order_payment.save()
-        messages.INFO(request, _('Successfully order done!'))
+        messages.add_message(request, messages.INFO, _('Successfully order done!'))
 
-        # email = EmailMessage(mail_subject, message, to=[request.user.email])
-        # email.send()
-        return reverse('product:payment', kwargs={'payment_gateway': payment_gateway})
+        mail_subject = " Order Confirmation."
+        message = render_to_string(
+            mail_template,
+            {
+                "user": user,
+            },
+        )
+        email = EmailMessage(mail_subject, message, to=[request.user.email])
+        email.send()
+        return redirect('product:carts')
     else:
         return redirect('product:carts')
-    
+
+
 '''
     def send_confirmation_link(self, user):
         current_site = get_current_site(self.request)
@@ -327,6 +344,7 @@ def order_payment(request):
         to_email = user.email
         email = EmailMessage(mail_subject, message, to=[to_email])
         email.send()'''
+
 
 @login_required
 def invoice(request, id):

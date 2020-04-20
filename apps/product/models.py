@@ -183,17 +183,24 @@ class PaymentPhoneNumber(models.Model):
 
 
 class OrderPayment(models.Model):
+    def number():
+        no = OrderPayment.objects.count()
+        if no is None:
+            return 1
+        else:
+            return no + 1
+
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
-    invoice_no = models.PositiveIntegerField(unique=True, auto_created=True)
+    invoice_no = models.PositiveIntegerField(unique=True, default=number)
     product_list = JSONField()
     delivery_location = models.CharField(max_length=255)
     contact_number = models.CharField(max_length=11)
-    payment_number = models.CharField(max_length=11)
+    payment_number = models.CharField(max_length=11, null=True, blank=True)
     delivery_charge = models.CharField(max_length=50, default='Depends on courier.')
     total = models.CharField(max_length=255)
     order_date = models.DateField(auto_now_add=True)
     city = models.CharField(max_length=20)
-    payment_gateway = models.CharField(max_length=20, default='Cash on delivery.')
+    payment_gateway = models.CharField(max_length=50, default='Cash on delivery.', editable=False)
 
     class Meta:
         verbose_name = _("Order and Payment")
@@ -201,3 +208,8 @@ class OrderPayment(models.Model):
 
     def __str__(self):
         return self.payment_gateway
+
+    # def save(self, *args, **kwargs):
+    #     if self.payment_gateway is None:
+    #         self.payment_gateway = 'Cash on delivery.'
+    #     return super(OrderPayment, self).save(*args, **kwargs)

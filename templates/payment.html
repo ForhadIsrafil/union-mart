@@ -574,7 +574,7 @@
         <div class="col-md-6 col-lg-6 p-b-30 m-lr-auto">
             <!-- Block1 -->
             <div class="block1 wrap-pic-w mt-1 pay-box">
-                <h2 class="text-center p-t-5"><b>Pay With {{ payment_pnumber.service_name }}</b></h2> <br> <br>
+                <h2 class="text-center p-t-5"><b>Pay With {{ payment_pnumber.payment_gateway }}</b></h2> <br> <br>
                 <img src="{{ payment_pnumber.image.url }}" alt="IMG-BANNER">
                 <br>
                 <h4 class="text-center p-t-5"><b>নিম্ন লিখিত নম্বরটিতে টাকা পাঠান </b></h4>
@@ -584,6 +584,7 @@
                 <div>
                     <form action="{% url 'product:payment' %}" method="post">{% csrf_token %}
                         <label class="text-center" for="email"><b>আপনি যে নম্বরটি থেকে টাকা পাঠিয়েছেন তা লিখুন </b></label>
+                        <input type="text" name="payment_gateway" required="" hidden value="{{ payment_pnumber.payment_gateway }}">
                         <input type="tel" class="form-control badge-danger" id="number" name="payment_number" maxlength="11"
                                placeholder="Enter Your {{ payment_pnumber.payment_gateway }} Number" required="">
                         {#                        <input style="color: white" autofocus="" class="form-control bg-primary" id="inputEmail" name="name"#}
@@ -594,7 +595,7 @@
                                type="text">
                         <input type="tel" style="color: white" autofocus="" class="form-control bg-primary" id="input_phone" name="contact_number"
                                placeholder="Contact Number" maxlength="11" minlength="11"
-                               required="" type="tel"><br>
+                               required=""><br>
                         <label class="p-l-5" for="city" style="color: darkblue">City :
                             <select class="bg-info rounded" name="city" id="">
                                 <option value="Dhaka">Dhaka</option>
