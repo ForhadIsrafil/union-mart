@@ -1,6 +1,6 @@
+from datetime import date
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
 
 # =================== send data to spreadsheet start ==================
 def send_to_spreadsheet(order_payment):
@@ -36,7 +36,7 @@ def send_to_spreadsheet(order_payment):
            order_payment.payment_number,
            order_payment.delivery_charge,
            order_payment.total,
-           str(order_payment.order_date),
+           str(date.strftime(order_payment.order_date, '%d-%m-%Y')),
            order_payment.city,
            order_payment.payment_gateway,
            order_payment.is_delivered, ]

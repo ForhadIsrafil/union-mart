@@ -88,7 +88,7 @@
                             <td>{{ product.product_id }}</td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.quantity }}</td>
-                            <td>{{ product.discount }}</td>
+                            <td>{% if product.discount %}{{ product.discount }}{% else %}-{% endif %}</td>
                             <td>{{ product.per_total }}</td>
                         </tr>
                     {% endfor %}
