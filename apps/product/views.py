@@ -338,25 +338,6 @@ def order_payment(request):
         return redirect('product:carts')
 
 
-'''
-    def send_confirmation_link(self, user):
-        current_site = get_current_site(self.request)
-        mail_subject = "Activate your codefolio account."
-        message = render_to_string(
-            self.activation_email_template,
-            {
-                "protocol": "https" if self.request.is_secure() else "http",
-                "user": user,
-                "domain": current_site.domain,
-                "uid": urlsafe_base64_encode(force_bytes(user.id)),
-                "token": account_activation_token.make_token(user),
-            },
-        )
-        to_email = user.email
-        email = EmailMessage(mail_subject, message, to=[to_email])
-        email.send()'''
-
-
 @login_required
 def invoice(request, id):
     return render(request, 'invoice.html', {})

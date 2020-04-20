@@ -171,15 +171,7 @@ class PaymentPhoneNumber(models.Model):
         verbose_name_plural = _("Payment Phone Numbers")
 
     def __str__(self):
-        return self.service_name
-
-    def get_absolute_url(self):
-        # return reverse(
-        #     "product:invoice",
-        #     # kwargs={"phone_number": self.phone_number, 'service_name': self.service_name},
-        #     args=[self.id],
-        # )
-        return reverse('product:invoice', args=[self.id])
+        return self.payment_gateway
 
 
 class OrderPayment(models.Model):
@@ -213,3 +205,6 @@ class OrderPayment(models.Model):
     #     if self.payment_gateway is None:
     #         self.payment_gateway = 'Cash on delivery.'
     #     return super(OrderPayment, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('product:invoice', args=[self.id])
