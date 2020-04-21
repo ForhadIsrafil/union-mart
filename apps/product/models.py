@@ -209,3 +209,9 @@ class OrderPayment(models.Model):
 
     def get_absolute_url(self):
         return reverse('product:invoice', args=[self.id])
+
+
+class Reward(models.Model):
+    image = models.ImageField(upload_to='reward_images')
+    reward_title = models.CharField(max_length=50, null=True, blank=True)
+    position = models.PositiveSmallIntegerField(null=True)

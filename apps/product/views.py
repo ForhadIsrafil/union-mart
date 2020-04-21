@@ -367,6 +367,9 @@ def reward(request):
 def privacy(request):
     return render(request, 'privacy.html', {})
 
+def notfound(request):
+    return render(request, '404notfound.html')
+
 
 def footer(request):
     social_links = SocialLink.objects.first()

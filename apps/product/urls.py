@@ -15,5 +15,6 @@ urlpatterns = [
     path('reward/', reward, name='reward'),
     path('invoice/<int:id>/', invoice, name='invoice'),
     path('footer/', footer, name='footer'),
+    path('not-found/', notfound, name='not_found'),
 
 ]
