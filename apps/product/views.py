@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber, OrderPayment
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber, OrderPayment, SocialLink
 from .send_data_to_spread_sheet import send_to_spreadsheet
 
 
@@ -366,3 +366,11 @@ def reward(request):
 
 def privacy(request):
     return render(request, 'privacy.html', {})
+
+
+def footer(request):
+    social_links = SocialLink.objects.first()
+    context = {
+        'social_links': social_links
+    }
+    return render(request, 'footer.html', context)

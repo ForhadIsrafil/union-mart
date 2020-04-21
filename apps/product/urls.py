@@ -14,5 +14,6 @@ urlpatterns = [
     path('privacy/', privacy, name='privacy'),
     path('reward/', reward, name='reward'),
     path('invoice/<int:id>/', invoice, name='invoice'),
+    path('footer/', footer, name='footer'),
 
 ]
