@@ -17,4 +17,9 @@ urlpatterns = [
     path('footer/', footer, name='footer'),
     path('not-found/', notfound, name='not_found'),
 
+
+    # test
+    path('testheader/', testheader, name='testheader'),
+
+
 ]

@@ -8,7 +8,7 @@
 	<title>Unionmartbd</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="{% static '/images/icons/favicon.png' %}"/>
+    <link rel="icon" type="image/png" href="{% static '/images/icons/favicon.png' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static '/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css"
           href="{% static '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
@@ -27,6 +27,10 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
+    <link rel="stylesheet" type="text/css" href="{% static '/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/all.min.css' %}">
+    <link media="all" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="animsition">
 
@@ -137,30 +141,30 @@
 			<div>
                 <div class="flex-c-m flex-w p-b-18" style="font-size: 12px!important;">
                     <a href="{{ social_links.facebook }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-facebook">Facebook</i>
+                        <i class="fab fa-facebook">facebook</i>
                     </a>
 
                     <a href="{{ social_links.twitter }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-twitter">Twitter</i>
+                        <i class="fab fa-twitter-square">twitter</i>
                     </a>
 
                     <a href="{{ social_links.youtube }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-youtube">Youtube</i>
+                        <i class="fab fa-youtube-square">youtube</i>
                     </a>
 
                     <a href="{{ social_links.instagram }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-instagram">Instagram</i>
+                        <i class="fab fa-instagram-square"></i>
                     </a>
-                    <a href="{{ social_links.contact_mail }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"><i class="fa">Contact mail</i></a>
-                    <a href="{{ social_links.information_mail }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"><i class="fa">Information mail</i></a>
-                    <a href="{{ social_links.customer_care }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"><i class="fa">Customer Care</i></a>
-                    <a href="{{ social_links.complain_suggestion }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"><i class="fa">Complain & Suggestion</i></a>
-                    <a href="{{ social_links.order_confirmation }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"><i class="fa">Order Confirmation</i></a>
+                    <a href="{{ social_links.contact_mail }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">Contact mail</a>
+                    <a href="{{ social_links.information_mail }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">Information mail</a>
+                    <a href="{{ social_links.customer_care }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">Customer Care</a>
+                    <a href="{{ social_links.complain_suggestion }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">Complain & Suggestion</a>
+                    <a href="{{ social_links.order_confirmation }}" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">Order Confirmation</a>
                 </div>
 
                 <p class="stext-107 cl6 txt-center">
                     Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                    All rights reserved | This template is made with <i class="far fa-heart"></i> by
                     <a href="#" target="_blank">Team</a>
                 </p>
 			</div>
@@ -171,39 +175,10 @@
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
+			<i class="fas fa-angle-up"></i>
 		</span>
 	</div>
 
 
-{#    <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>#}
-{#    <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>#}
-{##}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>#}
-{##}
-{#    <script type="text/javascript" src="{% static '/js/main.js' %}"></script>#}
 </body>
 </html>

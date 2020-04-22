@@ -22,7 +22,7 @@
     {#          href="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">#}
     {#    <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">#}
     {#   <link rel="stylesheet" type="text/css" href="{% sticon-header-notiatic '/css/main.css' %}">#}
-
+    <link media="all" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
     {% include 'header.html' %}
 </head>
@@ -979,7 +979,9 @@
             <!-- Search form -->
             <form action="{% url 'product:home' %}" method="post" class="form-inline my-2 my-lg-0">{% csrf_token %}
                 <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" name="search_product">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i>Search</button>
+
             </form>
         </div>
 
