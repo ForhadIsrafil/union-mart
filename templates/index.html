@@ -27,7 +27,14 @@
     {% include 'header.html' %}
 </head>
 <body class="animsition">
-
+<style>
+    html {
+        scroll-behavior: auto;
+    }
+</style>
+{% if search_product %}
+    <script>window.location.href = '#search-products'</script>
+{% endif %}
 <!-- Header -->
 {#	<header class="header-v3">#}
 {#		<!-- Header desktop -->#}
@@ -936,7 +943,7 @@
 
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-130">
-    <div class="container">
+    <div class="container" id="search-products">
         <div class="p-b-10">
             <h3 class="ltext-103 cl5">
                 Product Overview
@@ -968,14 +975,12 @@
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
                     Watches
                 </button>
-                <!-- Search form -->
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-
             </div>
-
+            <!-- Search form -->
+            <form action="{% url 'product:home' %}" method="post" class="form-inline my-2 my-lg-0">{% csrf_token %}
+                <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" name="search_product">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
 
         <div class="row isotope-grid">

@@ -174,7 +174,7 @@
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
                     <div class="flex-c-m h-full p-r-25 bor6">
-                        <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
+                        <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{% if cart_count %}{{ cart_count }}{% else %}0{% endif %}"> <!-- js-show-cart -->
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </a>
                     </div>
@@ -211,21 +211,21 @@
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
             <div class="flex-c-m h-full p-r-25 bor6">
-                        <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </a>
-                    </div>
-                    {% if user.is_authenticated %}
-                        <div class="flex-c-m h-full p-lr-10">
-                            <div class="cl0  p-lr-8">
-                                {% if user.first_name %}{{ user.first_name }}
-                                {% elif user.last_name %} {{ user.last_name }}
-                                {% else %} {{ user.user_name }}
-                                {% endif %}
+                <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
+                    <i class="zmdi zmdi-shopping-cart"></i>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="flex-c-m h-full p-lr-10">
+                    <div class="cl0  p-lr-8">
+                        {% if user.first_name %}{{ user.first_name }}
+                        {% elif user.last_name %} {{ user.last_name }}
+                        {% else %} {{ user.user_name }}
+                        {% endif %}
 
-                            </div>
-                        </div>
-                    {% endif %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
 
         <!-- Button show menu -->

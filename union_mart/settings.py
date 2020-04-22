@@ -85,6 +85,8 @@ TEMPLATES = [
 
                 'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',  # <-- Here
+                # count carts on header
+                'apps.product.context_processors.count_cart'
             ],
         },
     },
@@ -201,3 +203,5 @@ SECURE_SSL_REDIRECT = False
 # Force HTTPS in the final URIs
 # SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
 # ===============SSL==================
+
+CART_COUNT = 0

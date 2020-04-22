@@ -18,6 +18,7 @@ from .send_data_to_spread_sheet import send_to_spreadsheet
 
 
 def home(request):
+    search_product = request.POST.get('search_product', None)
     slider_ins = Slider.objects.all().order_by('-id')
     product_ins = Product.objects.all().order_by('-upload_date')
     updated_news_ins = UpdateNews.objects.all().order_by('-id')
@@ -27,7 +28,28 @@ def home(request):
     bag_ins = product_ins.filter(sub_category='Bag')[:3]
     shoe_ins = product_ins.filter(sub_category='Shoe')[:3]
     watch_ins = product_ins.filter(sub_category='Watch')[:3]
-    cart_count = Cart.objects.filter(user_id=request.user.id).count()
+
+    if search_product:
+        strip_regex = search_product.strip()
+        arr_regex = strip_regex.split(' ')
+        str_regex = ''
+        for element in arr_regex:
+            str_regex += r'\b' + str(element) + r'\b|'
+        str_regex = str_regex[:-1]
+        product_ins = product_ins.filter(Q(description__iregex=r"" + str_regex.strip() + ""))
+        context = {
+            'products': product_ins,
+            'sliders': slider_ins,
+            'updated_news': updated_news_ins,
+            'trends': trend_ins,
+            'womens': women_ins,
+            'mens': men_ins,
+            'bags': bag_ins,
+            'shoes': shoe_ins,
+            'watches': watch_ins,
+            'search_product': search_product,
+        }
+        return render(request, 'index.html', context)
 
     context = {
         'products': product_ins,
@@ -39,7 +61,6 @@ def home(request):
         'bags': bag_ins,
         'shoes': shoe_ins,
         'watches': watch_ins,
-        'cart_count': cart_count if cart_count else 0,
     }
     return render(request, 'index.html', context)
 
@@ -366,6 +387,7 @@ def reward(request):
 
 def privacy(request):
     return render(request, 'privacy.html', {})
+
 
 def notfound(request):
     return render(request, '404notfound.html')
