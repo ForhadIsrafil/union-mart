@@ -208,3 +208,7 @@ class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot pa
 
 class DashboardView(TemplateView):  # LoginRequiredMixin
     template_name = "users/dashboard.html"
+
+
+def page_not_found(request, exception, *args, **kwargs):
+    return render(request, '404.html',  status=404)

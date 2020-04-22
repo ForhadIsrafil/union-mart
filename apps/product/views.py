@@ -390,7 +390,7 @@ def privacy(request):
 
 
 def notfound(request):
-    return render(request, '404notfound.html')
+    return render(request, '404.html')
 
 
 def footer(request):
