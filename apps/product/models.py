@@ -2,6 +2,8 @@ from apps.users.views import User
 from django.contrib.postgres.forms import JSONField
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
@@ -66,13 +68,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #
-    #     return reverse(
-    #         "product:product",
-    #         # args=[self.chapter.course.slug, self.chapter.position, self.position],
-    #         args=[self.id],
-    #     )
+
+@receiver(post_delete, sender=Product)
+def submission_delete(sender, instance, **kwargs):
+    instance.default_photo.delete(False)
 
 
 class ProductPhoto(models.Model):
@@ -90,6 +89,11 @@ class ProductPhoto(models.Model):
         qs = ProductPhoto.objects.count()
         if qs == 3:
             raise ValidationError('Can add only 3 images please.')
+
+
+@receiver(post_delete, sender=ProductPhoto)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
 
 
 class Cart(models.Model):
@@ -118,6 +122,11 @@ class Slider(models.Model):
         qs = Slider.objects.count()
         if qs == 3:
             raise ValidationError('Can not add more row. Can add only 3 rows please.')
+
+
+@receiver(post_delete, sender=Slider)
+def submission_delete(sender, instance, **kwargs):
+    instance.photo.delete(False)
 
 
 class UpdateNews(models.Model):
@@ -153,6 +162,11 @@ class Trend(models.Model):
         qs = Trend.objects.count()
         if qs == 4:
             raise ValidationError('Can not add more row. Can add only 4 rows please.')
+
+
+@receiver(post_delete, sender=Trend)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
 
 
 class SocialLink(models.Model):
@@ -200,6 +214,11 @@ class PaymentPhoneNumber(models.Model):
         return self.payment_gateway
 
 
+@receiver(post_delete, sender=PaymentPhoneNumber)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
+
+
 class OrderPayment(models.Model):
     def number():
         no = OrderPayment.objects.count()
@@ -245,4 +264,9 @@ class Reward(models.Model):
     def clean(self):
         qs = Reward.objects.count()
         if qs == 4:
-            raise ValidationError('Can not add more row.Can add only four rows please.')
+            raise ValidationError('Can not add more row.Can add only 4 rows please.')
+
+
+@receiver(post_delete, sender=Reward)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
