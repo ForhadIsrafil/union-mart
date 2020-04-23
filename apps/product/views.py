@@ -338,7 +338,7 @@ def order_payment(request):
 
         mail_subject = " Order Confirmation."
         message = render_to_string(
-            'invoice2.html',
+            'invoice.html',
             {
                 "user": user,
                 "order_payment": order_payment,
