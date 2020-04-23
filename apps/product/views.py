@@ -13,8 +13,8 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, PaymentPhoneNumber, OrderPayment, SocialLink
-from .send_data_to_spread_sheet import send_to_spreadsheet
+from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, \
+    PaymentPhoneNumber, OrderPayment, SocialLink, Reward
 
 
 def home(request):
@@ -381,10 +381,6 @@ def contact(request):
     return render(request, 'contact.html', {})
 
 
-def reward(request):
-    return render(request, 'reward.html')
-
-
 def privacy(request):
     return render(request, 'privacy.html', {})
 
@@ -401,7 +397,16 @@ def footer(request):
     return render(request, 'footer.html', context)
 
 
-#testing
+# testing
 
 def testheader(request):
     return render(request, 'header.html')
+
+
+def reward(request):
+    rewards = Reward.objects.all().order_by('position')[:4]
+    print(rewards)
+    context = {
+        'rewards': rewards
+    }
+    return render(request, 'reward.html', context)

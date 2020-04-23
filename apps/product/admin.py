@@ -1,4 +1,5 @@
-from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend, PaymentPhoneNumber, OrderPayment
+from apps.product.models import Product, ProductPhoto, Slider, UpdateNews, Trend, PaymentPhoneNumber, OrderPayment, Reward, \
+    SocialLink
 from django.contrib import admin
 
 
@@ -46,3 +47,14 @@ class OrderPaymentAdmin(admin.ModelAdmin):
 
     # def has_change_permission(self, request, obj=None):
     #     return False
+
+
+@admin.register(Reward)
+class RewardAdmin(admin.ModelAdmin):
+    list_display = ('reward_title', 'position',)
+
+
+@admin.register(SocialLink)
+class SocialLinkAdmin(admin.ModelAdmin):
+    list_display = ('facebook', 'twitter', 'youtube', 'instagram', 'contact_mail',
+                    'information_mail', 'customer_care', 'complain_suggestion',)

@@ -721,9 +721,9 @@
 
                     <div style="text-align: center">
                         <h3>বিকাশ, নগদ বা রকেট এর মাধ্যমে টাকা পাঠালে নিচের একটি লিংক এ ক্লিক করুন </h3> <br>
-                        <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Bkash">Bkash</a></button>
-                        <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Rocket">Rocket</a></button>
-                        <button class="btn flex-c-m stext-10 cl0 size-16 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Nagad">Nagad</a></button>
+                        <button class="btn cl0 size-16 bg3"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Bkash">Bkash</a></button>
+                        <button class="btn cl0 size-16 bg3"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Rocket">Rocket</a></button>
+                        <button class="btn cl0 size-16 bg3"><a style="color: white" href="{% url 'product:payment' %}?payment_gateway=Nagad">Nagad</a></button>
                     </div>
 
 
@@ -750,12 +750,12 @@
                     {#                    </div>#}
                     <div class="form-group">
                         <label for="inputAddress">Delivery Location</label>
-                        <input class="form-control" autofocus="" name="delivery_location" placeholder="Delivery Location" required=""
+                        <input class="form-control" name="delivery_location" placeholder="Delivery Location" required=""
                                type="text">
                     </div>
                     <div class="form-group">
                         <label for="inputAddress2">Contact Number</label>
-                        <input class="form-control" type="tel" autofocus="" id="input_phone" name="contact_number"
+                        <input class="form-control" type="tel" id="input_phone" name="contact_number"
                                placeholder="Contact Number" maxlength="11" minlength="11"
                                required="">
                     </div>
@@ -938,66 +938,66 @@
 <script type="text/javascript">
     $('.parallax100').parallax100();
 </script>
-<script type="text/javascript">
-    $('.gallery-lb').each(function () { // the containers for all your galleries
-        $(this).magnificPopup({
-            delegate: 'a', // the selector for gallery item
-            type: 'image',
-            gallery: {
-                enabled: true
-            },
-            mainClass: 'mfp-fade'
-        });
-    });
-</script>
-<script type="text/javascript">
-    $('.js-addwish-b2').on('click', function (e) {
-        e.preventDefault();
-    });
-
-    $('.js-addwish-b2').each(function () {
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function () {
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
-        });
-    });
-
-    $('.js-addwish-detail').each(function () {
-        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-        $(this).on('click', function () {
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-detail');
-            $(this).off('click');
-        });
-    });
-
-    $('.js-addcart-detail').each(function () {
-        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-        $(this).on('click', function () {
-            swal(nameProduct, "is added to cart !", "success");
-        });
-    });
-</script>
-<script type="text/javascript">
-    $('.js-pscroll').each(function () {
-        $(this).css('position', 'relative');
-        $(this).css('overflow', 'hidden');
-        var ps = new PerfectScrollbar(this, {
-            wheelSpeed: 1,
-            scrollingThreshold: 1000,
-            wheelPropagation: false,
-        });
-
-        $(window).on('resize', function () {
-            ps.update();
-        })
-    });
-</script>
+{#<script type="text/javascript">#}
+{#    $('.gallery-lb').each(function () { // the containers for all your galleries#}
+{#        $(this).magnificPopup({#}
+{#            delegate: 'a', // the selector for gallery item#}
+{#            type: 'image',#}
+{#            gallery: {#}
+{#                enabled: true#}
+{#            },#}
+{#            mainClass: 'mfp-fade'#}
+{#        });#}
+{#    });#}
+{#</script>#}
+{#<script type="text/javascript">#}
+{#    $('.js-addwish-b2').on('click', function (e) {#}
+{#        e.preventDefault();#}
+{#    });#}
+{##}
+{#    $('.js-addwish-b2').each(function () {#}
+{#        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();#}
+{#        $(this).on('click', function () {#}
+{#            swal(nameProduct, "is added to wishlist !", "success");#}
+{##}
+{#            $(this).addClass('js-addedwish-b2');#}
+{#            $(this).off('click');#}
+{#        });#}
+{#    });#}
+{##}
+{#    $('.js-addwish-detail').each(function () {#}
+{#        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();#}
+{##}
+{#        $(this).on('click', function () {#}
+{#            swal(nameProduct, "is added to wishlist !", "success");#}
+{##}
+{#            $(this).addClass('js-addedwish-detail');#}
+{#            $(this).off('click');#}
+{#        });#}
+{#    });#}
+{##}
+{#    $('.js-addcart-detail').each(function () {#}
+{#        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();#}
+{#        $(this).on('click', function () {#}
+{#            swal(nameProduct, "is added to cart !", "success");#}
+{#        });#}
+{#    });#}
+{#</script>#}
+{#<script type="text/javascript">#}
+{#    $('.js-pscroll').each(function () {#}
+{#        $(this).css('position', 'relative');#}
+{#        $(this).css('overflow', 'hidden');#}
+{#        var ps = new PerfectScrollbar(this, {#}
+{#            wheelSpeed: 1,#}
+{#            scrollingThreshold: 1000,#}
+{#            wheelPropagation: false,#}
+{#        });#}
+{##}
+{#        $(window).on('resize', function () {#}
+{#            ps.update();#}
+{#        })#}
+{#    });#}
+{#</script>#}
 <!--===============================================================================================-->
 <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>

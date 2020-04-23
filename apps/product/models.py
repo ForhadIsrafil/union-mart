@@ -1,5 +1,6 @@
 from apps.users.views import User
 from django.contrib.postgres.forms import JSONField
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -76,7 +77,7 @@ class Product(models.Model):
 
 class ProductPhoto(models.Model):
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product_images')
+    image = models.ImageField(upload_to='product_images', help_text='Can add only 3 images please.')
 
     class Meta:
         verbose_name = _("Product Photo")
@@ -84,6 +85,11 @@ class ProductPhoto(models.Model):
 
     def __str__(self):
         return f"{self.product.id} - {self.product.name}"
+
+    def clean(self):
+        qs = ProductPhoto.objects.count()
+        if qs == 3:
+            raise ValidationError('Can add only 3 images please.')
 
 
 class Cart(models.Model):
@@ -108,6 +114,11 @@ class Slider(models.Model):
     def __str__(self):
         return self.title
 
+    def clean(self):
+        qs = Slider.objects.count()
+        if qs == 3:
+            raise ValidationError('Can not add more row. Can add only 3 rows please.')
+
 
 class UpdateNews(models.Model):
     news = models.CharField(max_length=100)
@@ -119,6 +130,11 @@ class UpdateNews(models.Model):
 
     def __str__(self):
         return self.news
+
+    def clean(self):
+        qs = UpdateNews.objects.count()
+        if qs == 2:
+            raise ValidationError('Can not add more row. Can add only 2 rows please.')
 
 
 class Trend(models.Model):
@@ -132,6 +148,11 @@ class Trend(models.Model):
 
     def __str__(self):
         return self.trend_name
+
+    def clean(self):
+        qs = Trend.objects.count()
+        if qs == 4:
+            raise ValidationError('Can not add more row. Can add only 4 rows please.')
 
 
 class SocialLink(models.Model):
@@ -151,6 +172,11 @@ class SocialLink(models.Model):
 
     def __str__(self):
         return self.facebook
+
+    def clean(self):
+        qs = SocialLink.objects.count()
+        if qs == 1:
+            raise ValidationError('Can not add more row. Can add only 1 rows please.')
 
 
 class Review(models.Model):
@@ -213,5 +239,10 @@ class OrderPayment(models.Model):
 
 class Reward(models.Model):
     image = models.ImageField(upload_to='reward_images')
-    reward_title = models.CharField(max_length=50, null=True, blank=True)
+    reward_title = models.CharField(max_length=50, null=True, blank=True, verbose_name='Reward Title')
     position = models.PositiveSmallIntegerField(null=True)
+
+    def clean(self):
+        qs = Reward.objects.count()
+        if qs == 4:
+            raise ValidationError('Can not add more row.Can add only four rows please.')

@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import *
 
 app_name = 'product'
@@ -12,14 +13,12 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('payment/', order_payment, name='payment'),
     path('privacy/', privacy, name='privacy'),
-    path('reward/', reward, name='reward'),
     path('invoice/<int:id>/', invoice, name='invoice'),
     path('footer/', footer, name='footer'),
     path('not-found/', notfound, name='not_found'),
-
+    path('rewards/', reward, name='rewards'),
 
     # test
     path('testheader/', testheader, name='testheader'),
-
 
 ]
