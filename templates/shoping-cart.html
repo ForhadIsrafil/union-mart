@@ -559,7 +559,7 @@
 <!-- Cart Page Start -->
 <!-- Shoping Cart -->
 <form class="bg0 p-t-175 p-b-85">
-    <div class="container">
+    <div class="container-fluid">
         {% if messages %}{% for message in messages %}
             <div class="alert alert-info text-center" role="alert">
                 {{ message }}
@@ -606,7 +606,7 @@
                                     <td class="txt-center column5">{% if cart.discount %}{{ cart.discount }} %{% else %}-{% endif %}</td>
                                     <td class="column-6">{{ cart.per_total }}</td>
                                     <td class="m-r-25 column7">
-                                        <button style="font-size:24px"><i class="fa fa-remove"></i></button>
+                                        <button style="font-size:24px"><i class="far fa-times-circle"></i></button>
                                     </td>
                                 </tr>
                             {% endfor %}

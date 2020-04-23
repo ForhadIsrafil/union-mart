@@ -300,7 +300,7 @@ def cart_list(request):
 @login_required
 @transaction.atomic
 def order_payment(request):
-    mail_template = 'invoice.html'
+    mail_template = 'invoice2.html'
     user = User.objects.filter(id=request.user.id).first()
     payment_gateway = request.GET.get('payment_gateway')
     payment_number = request.POST.get('payment_number')
@@ -352,7 +352,7 @@ def order_payment(request):
         email.send()
 
         # send data to spread sheet about products and payment
-        send_to_spreadsheet(order_payment)
+        # send_to_spreadsheet(order_payment)
         return redirect('product:carts')
     else:
         return redirect('product:carts')
@@ -399,3 +399,9 @@ def footer(request):
         'social_links': social_links
     }
     return render(request, 'footer.html', context)
+
+
+#testing
+
+def testheader(request):
+    return render(request, 'header.html')

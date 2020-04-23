@@ -26,6 +26,11 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
+    <link rel="stylesheet" type="text/css" href="{% static '/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/all.min.css' %}">
+    <link media="all" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
@@ -40,6 +45,10 @@
     <script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+
+    <script type="text/javascript" src="{% static '/js/all.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/all.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/fontawesome.min.js' %}"></script>
 </head>
 <body class="animsition">
 
@@ -169,13 +178,21 @@
 
                     </ul>
                 </div>
+                <div class="menu-desktop">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="{% url 'login' %}">login/sign up</a>
+                        </li>
+
+                    </ul>
+                </div>
 
 
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
                     <div class="flex-c-m h-full p-r-25 bor6">
                         <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{% if cart_count %}{{ cart_count }}{% else %}0{% endif %}"> <!-- js-show-cart -->
-                            <i class="zmdi zmdi-shopping-cart"></i>
+                            <i class="fas fa-cart-arrow-down"></i>
                         </a>
                     </div>
                     {% if user.is_authenticated %}
@@ -193,7 +210,7 @@
 
                     <div class="flex-c-m h-full p-lr-19">
                         <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-                            <i class="zmdi zmdi-menu"></i>
+                            <i class="fas fa-caret-down"></i>
                         </div>
                     </div>
                 </div>
@@ -202,17 +219,17 @@
     </div>
 
     <!-- Header Mobile -->
-    <div class="wrap-header-mobile">
+    <div class="wrap-header-mobile bg-dark">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="{% url 'product:home' %}">Union Mart.BD</a>
+            <a style="color: white" href="{% url 'product:home' %}">Union Mart.BD</a>
         </div>
 
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
             <div class="flex-c-m h-full p-r-25 bor6">
                 <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{{ cart_count }}"> <!-- js-show-cart -->
-                    <i class="zmdi zmdi-shopping-cart"></i>
+                    <i class="fas fa-cart-arrow-down bg-dark"></i>
                 </a>
             </div>
             {% if user.is_authenticated %}
@@ -357,6 +374,11 @@
 												</span>
                 </li>
             </ul>
+            <ul class="main-menu-m">
+                <li>
+                    <a href="{% url 'login' %}">login/sign up</a>
+                </li>
+            </ul>
 
         </ul>
     </div>
@@ -387,7 +409,7 @@
     <div class="sidebar flex-col-l p-t-22 p-b-25">
         <div class="flex-r w-full p-b-30 p-r-27">
             <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
-                <i class="zmdi zmdi-close"></i>
+                <i class="far fa-times-circle"></i>
             </div>
         </div>
 
@@ -605,20 +627,5 @@
         });
     });
 </script>
-{#<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/js/main.js' %}"></script>#}
 </body>
 </html>
