@@ -300,7 +300,6 @@ def cart_list(request):
 @login_required
 @transaction.atomic
 def order_payment(request):
-    mail_template = 'invoice2.html'
     user = User.objects.filter(id=request.user.id).first()
     payment_gateway = request.GET.get('payment_gateway')
     payment_number = request.POST.get('payment_number')
@@ -339,7 +338,7 @@ def order_payment(request):
 
         mail_subject = " Order Confirmation."
         message = render_to_string(
-            mail_template,
+            'invoice2.html',
             {
                 "user": user,
                 "order_payment": order_payment,
@@ -349,6 +348,7 @@ def order_payment(request):
         )
         # send mail to user about products and payment
         email = EmailMessage(mail_subject, message, to=[request.user.email])
+        email.content_subtype = "html"
         email.send()
 
         # send data to spread sheet about products and payment
