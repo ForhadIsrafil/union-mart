@@ -61,7 +61,8 @@
 
                 <!-- Logo desktop -->
                 <a href="{% url 'product:home' %}" class="logo">
-                    <h3 style="color: aliceblue;">Unionmart.BD</h3>
+{#                    <h3 style="color: aliceblue;">Unionmart.BD</h3>#}
+                    <img src="{%  static 'images/u_logo.png' %}" alt="#">
                 </a>
 
                 <!-- Menu desktop -->
@@ -232,7 +233,9 @@
     <div class="wrap-header-mobile bg-dark">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a style="color: white" href="{% url 'product:home' %}">Union Mart.BD</a>
+            <a style="color: white" href="{% url 'product:home' %}"></a>
+            <img src="{%  static 'images/u_logo.png' %}" alt="#">
+
         </div>
 
         <!-- Icon header -->
