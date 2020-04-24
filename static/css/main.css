@@ -1244,7 +1244,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   color: rgba(0,0,0,0.3);
   position: absolute;
   opacity: 0;
-  
+
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);

@@ -588,7 +588,7 @@
                                         </div>
                                     </td>
                                     <td class="column-2"><a href="{% url 'product:product_details' cart.product_id %}">{{ cart.name }}</a></td>
-                                    <td class="column-3">{{ cart.price }}</td>
+                                    <td class="column-3" style="padding-left: 10px">{{ cart.price }}</td>
                                     <td class="column-4">
                                         <div class="flex-w ">
                                             {#                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">#}
@@ -596,17 +596,17 @@
                                             {#                                            </div>#}
 
                                             {#                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="{{ cart.quantity }}">#}
-                                            <p class="txt-center m-l-100">{{ cart.quantity }}</p>
+                                            <p class="txt-center m-l-25">{{ cart.quantity }}</p>
 
                                             {#                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">#}
                                             {#                                                <i class="fs-16 zmdi zmdi-plus"></i>#}
                                             {#                                            </div>#}
                                         </div>
                                     </td>
-                                    <td class="txt-center column5">{% if cart.discount %}{{ cart.discount }} %{% else %}-{% endif %}</td>
-                                    <td class="column-6">{{ cart.per_total }}</td>
-                                    <td class="m-r-25 column7">
-                                        <button style="font-size:24px"><i class="far fa-times-circle"></i></button>
+                                    <td class="column-5" style="padding-left: 30px">{% if cart.discount %}{{ cart.discount }} %{% else %}0%{% endif %}</td>
+                                    <td class="column-6" style="padding-left: 20px">{{ cart.per_total }}</td>
+                                    <td class="column-7" style="padding-left: 20px">
+                                        <button style="font-size:24px; color: red"><i class="far fa-times-circle"></i></button>
                                     </td>
                                 </tr>
                             {% endfor %}
