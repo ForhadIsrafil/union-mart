@@ -390,9 +390,9 @@ def notfound(request):
 
 
 def footer(request):
-    social_links = SocialLink.objects.first()
+    # social_links = SocialLink.objects.first()
     context = {
-        'social_links': social_links
+        # 'social_links': social_links
     }
     return render(request, 'footer.html', context)
 
