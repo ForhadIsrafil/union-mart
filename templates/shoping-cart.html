@@ -606,7 +606,7 @@
                                     <td class="column-5" style="padding-left: 30px">{% if cart.discount %}{{ cart.discount }} %{% else %}0%{% endif %}</td>
                                     <td class="column-6" style="padding-left: 20px">{{ cart.per_total }}</td>
                                     <td class="column-7" style="padding-left: 20px">
-                                        <button style="font-size:24px; color: red"><i class="far fa-times-circle"></i></button>
+                                        <a href="{% url 'product:carts' %}?delete_cart_id={{ cart.cart_id }}" style="font-size:24px; color: red"><i class="far fa-times-circle"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -14,7 +14,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, \
-    PaymentPhoneNumber, OrderPayment, SocialLink, Reward
+    PaymentPhoneNumber, OrderPayment, Reward
 
 
 def home(request):
@@ -230,6 +230,7 @@ def cart_list(request):
     if user.has_discount:
         for cart in cart_ins:
             temp = {}
+            temp['cart_id'] = cart.id
             temp['product_id'] = cart.product.id
             temp['name'] = cart.product.name
             temp['price'] = cart.product.price
@@ -262,6 +263,7 @@ def cart_list(request):
 
     for cart in cart_ins:
         temp = {}
+        temp['cart_id'] = cart.id
         temp['product_id'] = cart.product.id
         temp['name'] = cart.product.name
         temp['price'] = cart.product.price
@@ -294,6 +296,7 @@ def cart_list(request):
     if delete_cart_id:
         cart_ins = cart_ins.filter(id=delete_cart_id).first()
         cart_ins.delete()
+        return redirect('product:carts')
     return render(request, 'shoping-cart.html', context)
 
 
