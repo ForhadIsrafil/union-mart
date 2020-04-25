@@ -152,8 +152,9 @@ api/temp
 # Temporary folders
 temp
 .idea/workspace.xml
-.media
-.media/product-images/*
-./media
+./media/
+#.media/product-images/*
+#./media
 ./static
 order_data_list.json
+

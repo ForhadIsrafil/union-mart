@@ -1,0 +1,151 @@
+{% load static %}
+<html lang="en">
+<head>
+    <title>Unionmartbd</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'header.html' %}
+    <!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+<section class="bg-img1 txt-center p-lr-20 p-t-150">
+    <h1 class="ltext-105 cl0 txt-center text-dark">
+        <b>কিভাবে পণ্য অর্ডার করবেন ?</b>
+    </h1>
+</section>
+
+
+<!-- Content page -->
+<section class="bg0 p-t-15 p-b-120">
+    <div class="container">
+        <div class="row p-b-148">
+{#            <div class="col-md-7 col-lg-8">#}
+{#                <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">#}
+
+
+            <table class="table" width="100%">
+
+                <thead class="thead-dark text-center">
+                <tr>
+                    <th style="width: 7%; text-align: center" scope="col">Sl No.</th>
+                    <th style="width: 33%; text-align: center" scope="col">Description</th>
+                    <th style="width: 60%; text-align: center" scope="col">Image</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>১.</th>
+                    <th>প্রথমে ওয়েবসাইট এর signup লিংক থেকে অবশ্যই signup করতে হবে ।</th>
+                    <td style="text-align: center"><img style="height: 200px; width: 150px"
+                                                        src="{% static 'images/how_2_buy_img/signup.png' %}" alt="">
+                    </td>
+                </tr>
+                <tr>
+                    <th>২.</th>
+
+                    <th>  এর পর login পেজ এ গিয়ে লগইন করতে হবে ।</th>
+                    <td style="text-align: center"><img style="height: 200px; width: 150px"
+                                                        src="{% static 'images/how_2_buy_img/login.png' %}" alt=""></td>
+
+                </tr>
+                <tr>
+                    <th>৩.</th>
+
+                    <th>  প্রোডাক্ট দেখে আপনি আপনার পছন্দ মতো প্রোডাক্ট সিলেক্ট করতে পারবেন । এ ক্ষেত্রে পছন্দের
+                        প্রোডাক্ট উপর মাউস নিয়ে গেলে এটি quick view নামের একটি বাটন দেখতে পারবেন । সেটাতে ক্লিক করবেন।
+                    </th>
+                    <td style="text-align: center"><img style="height: 200px; width: 300px"
+                                                        src="{% static 'images/how_2_buy_img/product.png' %}" alt="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>৪.</th>
+
+                    <th>  এখন আপনি প্রোডাক্ট এর যাবতীয় তথ্য সহ একটি পেজ দেখতে পারবেন । এখন আপনি এই পণ্যটি কিনতে চাইলে
+                        Add To Cart বাটনে ক্লিক করতে হবে । এভাবে আপনি একাধিক পণ্য Add করতে পারবেন ।
+                    </th>
+                    <td style="text-align: center"><img style="height: 250px; width: 600px"
+                                                        src="{% static 'images/how_2_buy_img/addtocart.png' %}" alt="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>৫.</th>
+
+                    <th>  আপনার পণ্য টি cart পেজ এ সংযুক্ত হয়েছে ।
+                    </th>
+                    <td style="text-align: center"><img style="height: 250px; width: 400px"
+                                                        src="{% static 'images/how_2_buy_img/addtocartok.png' %}" alt="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>৬.</th>
+
+                    <th> যে সকল পণ্য সিলেক্ট করা হয়েছে সেগুলো দেখার জন্য আপনাকে cart বাটন এ ক্লিক করতে হবে । বাটন টি আপনি মেনুবারে দেখতে পারবেন । </th>
+                    <td style="text-align: center"><img style="height: 100px; width: 600px"
+                                                        src="{% static 'images/how_2_buy_img/cart.png' %}" alt=""></td>
+
+                </tr>
+                <tr>
+                    <th>৭.</th>
+
+                    <th>  cart বাটনটি ক্লিক করার পর আপনি আপনার সিলেক্ট করা পণ্যের লিস্ট দেখতে পারবেন। আপনি চাইলে এখন থেকে পণ্য রিমুভ ও করতে পারবেন।  </th>
+                    <td style="text-align: center"><img style="height: 300px; width: 600px"
+                                                        src="{% static 'images/how_2_buy_img/product_details.png' %}" alt=""></td>
+
+                </tr>
+                <tr>
+                    <th>৮.</th>
+
+                    <th>  অর্ডারটি আপনি ২ ভাবে করতে পারবেন । cash on delivery অথবা বিকাশ , রকেট  বা নগদ এর মাধ্যমে । যদি cash on delivery এর মাধ্যমে পণ্য কিনতে চান তাহলে আপনাকে আপনার লোকেশন  আর ফোন নম্বরটি দিয়ে order বাটনে ক্লিক করবেন।  </th>
+                    <td style="text-align: center"><img style="height: 250px; width: 500px"
+                                                        src="{% static 'images/how_2_buy_img/cashondelivery.png' %}" alt=""></td>
+
+                </tr>
+                <tr>
+                    <th>৯.</th>
+
+                    <th>  যদি বিকাশ, রকেট বা নগদ এর মাদ্ধমে পণ্য ক্রয় করতে চান তাহলে Bkash , Rocket বা Nagod বাটনে ক্লিক করতে হবে ।</th>
+                    <td style="text-align: center"><img style="height: 250px; width: 500px"
+                                                        src="{% static 'images/how_2_buy_img/paymentgateway.png' %}" alt=""></td>
+
+                </tr>
+                <tr>
+                    <th>১০.</th>
+
+                    <th>   আপনি এখন নতুন আরেকটি পেজ পাবেন । এখানে আপনি যে নাম্বারে টাকা পাঠাবেন সেটি উল্লেখ থাকবে । আপনাকে সেই নাম্বারে টাকা পাঠাতে হবে । টাকা পাঠানোর পরে আপনি যে নাম্বার থেকে টাকা পাঠিয়েছেন সেই নাম্বারটি উল্লেখ করে দিতে হবে । এবং আপনার  নাম্বার আর লোকেশন উল্লেখ করে দিতে হবে । </th>
+                    <td style="text-align: center"><img style="height: 250px; width: 500px"
+                                                        src="{% static 'images/how_2_buy_img/paymentgateway.png' %}" alt=""></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+{% include 'footer.html' %}
+<!--===============================================================================================-->
+<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+
+</body>
+</html>
