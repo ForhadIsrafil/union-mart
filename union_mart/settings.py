@@ -26,7 +26,7 @@ env.read_env()
 SECRET_KEY = env.str('SECRET_KEY', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.str('DEBUG', default='False')
+DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
@@ -67,8 +67,8 @@ AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = [
     # 'social_core.backends.linkedin.LinkedinOAuth2',
     # 'social_core.backends.instagram.InstagramOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
 ]
 
 TEMPLATES = [
@@ -85,6 +85,9 @@ TEMPLATES = [
 
                 'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',  # <-- Here
+                # count carts on header
+                'apps.product.context_processors.count_cart',
+                'apps.product.context_processors.social_links',
             ],
         },
     },
@@ -102,6 +105,7 @@ DATABASES = {
     }
 }
 
+# DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -137,6 +141,7 @@ DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="unionmar@unionmartbd
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+# TIME_ZONE = 'GMT'
 
 USE_I18N = True
 
@@ -200,3 +205,5 @@ SECURE_SSL_REDIRECT = False
 # Force HTTPS in the final URIs
 # SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
 # ===============SSL==================
+
+CART_COUNT = 0

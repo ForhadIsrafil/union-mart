@@ -1,0 +1,211 @@
+{% load static i18n %}
+<html lang="en">
+<head>
+    <title>Unionmartbd</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <!--===============================================================================================-->
+    {% include 'header.html' %}
+</head>
+
+<body class="animsition">
+
+
+<!-- Reward Section Start -->
+<div class="rewaard">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="r_txt">
+                    <h3>My union Reward</h3>
+
+                    <p>
+                        ‘My union Rewards’ is a membership scheme regular and loyal customers of “Unionmart.bd”.
+                        The mission is to strengthen the rapport with the existing and potential customers by
+                        providing the best customer experience.
+                        Through this program our loyal customers can make most out of their membership by unlocking
+                        exciting reward options beyond earning points..
+                        To know your reward point get shopping and will visible to you order invoice. You can use
+                        this point after 100 reword point.
+                        1 Reward point = 1tk.
+                    </p>
+                    <p><b>Our Membership cards are:</b></p>
+
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="font-weight: bold;">
+                                There are four available categories of ‘My union Rewards’ membership
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mamber image Start -->
+<div class="mmbrshps">
+    <div class="container">
+        <div class="row">
+
+            {% for reward in rewards %}
+                <div class="col-md-3">
+                    <img src="{{ reward.image.url }}" alt="">
+                    <p>{{ reward.reward_title }}</p>
+                </div>
+            {% endfor %}
+            {#                <div class="col-md-3">#}
+            {#                    <img src="{% static 'images/mem_card.png' %}" alt="">#}
+            {#                    <p>Union platinum Member</p>#}
+            {#                </div>#}
+            {#                <div class="col-md-3">#}
+            {#                    <img src="{% static 'images/mem_card.png' %}" alt="">#}
+            {#                    <p>Union Silver Member </p>#}
+            {#                </div>#}
+            {#                <div class="col-md-3">#}
+            {#                    <img src="{% static 'images/mem_card.png' %}" alt="">#}
+            {#                    <p>Union Category Card </p>#}
+            {#                </div>#}
+
+        </div>
+    </div>
+</div>
+<!-- Mamber image End -->
+<!-- Reward Section End-->
+
+<!-- memberships table start -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb_table">
+                <table class="table table-hover  table-bordered bg-dark table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="col">To get and card</th>
+                        <th scope="col">platinum Member</th>
+                        <th scope="col">Golden Member</th>
+                        <th scope="col">Silver Member</th>
+                        <th scope="col">Monthly Promo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td> shopping</td>
+                        <td>50000> in 1month</td>
+                        <td>30000> in 1 month</td>
+                        <td>10000> in 1month from 2 or more category</td>
+                        <td>We will contact if you will get promo card</td>
+                    </tr>
+                    <tr>
+                        <td>Point in per 100 tk shopping</td>
+                        <td>3 point all category</td>
+                        <td>2 point all category</td>
+                        <td>1 point all category</td>
+                        <td>Get special discount for 1 month</td>
+                    </tr>
+                    <tr>
+                        <td>Validity</td>
+                        <td>3 year</td>
+                        <td>2 year</td>
+                        <td>1 year</td>
+                        <td>1 Month</td>
+                    </tr>
+                    <tr>
+                        <td>Discount</td>
+                        <td>3% From all Invoice</td>
+                        <td>2% From all Invoice</td>
+                        <td>1% From all Invoice</td>
+                        <td>You will know from reward mail</td>
+                    </tr>
+                    <tr>
+                        <td>Special Benefit</td>
+                        <td> √</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>--</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- memberships table end -->
+
+<!-- Memberships get Start -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mmbr-ins">
+                <p><b>How to achieve membership card. </b></p>
+                <ul>
+                    <li> 1.Customers spending Tk. 50000\30000\10000 or above are eligible to apply for the union
+                        membership
+                    </li>
+                </ul>
+                <p><b>The way it works</b></p>
+                <ul>
+                    <li>•“Silver membership card” members will earn 1 reward point. Tk. 100 spent at
+                        collecting a minimum of 100 points entitles the member to redeem points.
+                    </li>
+                    <li>•“Gold membership card” will earn 2 reward points and Tk. 100 spent at collecting a
+                        minimum of 100 points entitles the member to redeem points.
+                    </li>
+                    <li>•“Platinum membership card” will earn 3 rewards points for every Tk. 100 spent at collecting
+                        a minimum of 100
+                        points entitles the member to redeem points. 1 point equal to Tk.1
+                    </li>
+
+                </ul>
+                <p><b>Terms and conditions</b></p>
+                <ul>
+                    <li>• You can avail A Membership Card by shopping for the required
+                        amounts (for example Tk. 10000 for Silver membership Card
+                    </li>
+                    <li>• A minimum of 100 points need to be earned in order to redeem. This means collecting a
+                        minimum of 100 points entitles the customer to redeem.
+                    </li>
+                    <li>• 1 point is equivalent to Tk.1.</li>
+                    <li>• Membership Card cannot be used on discounted or promotional items.</li>
+
+                </ul>
+                <p><b>How to check reward points </b></p>
+                <p><b>- To know your reward point please text us on messenger. It may take few minutes to reply.
+
+                    For more information please contact with us
+                </b></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Memberships End -->
+
+
+{% include 'footer.html' %}
+
+{#<!--===============================================================================================-->#}
+<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+{#    <script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>#}
+<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>
+{#    <script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>#}
+<script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -1,5 +1,10 @@
 from apps.users.views import User
+from django.contrib.postgres.forms import JSONField
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -49,11 +54,12 @@ class Product(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20, default=CATEGORY_CHOICES[0])
     sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20, default=SUB_CATEGORY_CHOICES[0])
     offer = models.CharField(max_length=50, null=True, blank=True)
-    delevery_charge = models.CharField(max_length=20)
+    # delevery_charge = models.CharField(max_length=20, null=True, blank=True)
     default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
-    free_delivery = models.BooleanField(default=False)
+    # free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
     trend_name = models.CharField(max_length=50, null=True, blank=True)
+    discount = models.SmallIntegerField(blank=True, null=True)
 
     class Meta:
         verbose_name = _("Product")
@@ -62,19 +68,15 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        from django.urls import reverse
 
-        return reverse(
-            "product:product",
-            # args=[self.chapter.course.slug, self.chapter.position, self.position],
-            args=[self.id],
-        )
+@receiver(post_delete, sender=Product)
+def submission_delete(sender, instance, **kwargs):
+    instance.default_photo.delete(False)
 
 
 class ProductPhoto(models.Model):
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product_images')
+    image = models.ImageField(upload_to='product_images', help_text='Can add only 3 images please.')
 
     class Meta:
         verbose_name = _("Product Photo")
@@ -83,32 +85,25 @@ class ProductPhoto(models.Model):
     def __str__(self):
         return f"{self.product.id} - {self.product.name}"
 
-
-# class Subcategory(models.Model):
-#     SUB_CATEGORY_CHOICES = (
-#         ('Belt', 'belt'),
-#         ('Watch', 'Watch')
-#     )
-#     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
-#     category = models.CharField(max_length=40)
-# 
-#     class Meta:
-#         verbose_name = _("Sub-category")
-#         verbose_name_plural = _("Sub-categories")
-# 
-#     def __str__(self):
-#         return f"{self.product.id} - {self.category}"
+    def clean(self):
+        qs = ProductPhoto.objects.count()
+        if qs == 3:
+            raise ValidationError('Can add only 3 images please.')
 
 
-# class Comment(models.Model):
-#     user_id = models.Foreignkey()
-#     product_id = models.Foreignkey(Product)
-#     details = models.CharField(max_length=255)
+@receiver(post_delete, sender=ProductPhoto)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
 
 
-class Card(models.Model):
+class Cart(models.Model):
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
+    quantity = models.SmallIntegerField(default=1)
+
+    class Meta:
+        verbose_name = _("Cart")
+        verbose_name_plural = _("Carts")
 
 
 class Slider(models.Model):
@@ -123,6 +118,16 @@ class Slider(models.Model):
     def __str__(self):
         return self.title
 
+    def clean(self):
+        qs = Slider.objects.count()
+        if qs == 3:
+            raise ValidationError('Can not add more row. Can add only 3 rows please.')
+
+
+@receiver(post_delete, sender=Slider)
+def submission_delete(sender, instance, **kwargs):
+    instance.photo.delete(False)
+
 
 class UpdateNews(models.Model):
     news = models.CharField(max_length=100)
@@ -134,6 +139,11 @@ class UpdateNews(models.Model):
 
     def __str__(self):
         return self.news
+
+    def clean(self):
+        qs = UpdateNews.objects.count()
+        if qs == 2:
+            raise ValidationError('Can not add more row. Can add only 2 rows please.')
 
 
 class Trend(models.Model):
@@ -148,9 +158,115 @@ class Trend(models.Model):
     def __str__(self):
         return self.trend_name
 
+    def clean(self):
+        qs = Trend.objects.count()
+        if qs == 4:
+            raise ValidationError('Can not add more row. Can add only 4 rows please.')
+
+
+@receiver(post_delete, sender=Trend)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
+
 
 class SocialLink(models.Model):
     facebook = models.URLField(max_length=250)
     twitter = models.URLField(max_length=250)
     youtube = models.URLField(max_length=250)
     instagram = models.URLField(max_length=250)
+    contact_mail = models.EmailField(max_length=120)
+    information_mail = models.EmailField(max_length=250)
+    customer_care = models.URLField(max_length=250)
+    complain_suggestion = models.URLField(max_length=250)
+    order_confirmation = models.URLField(max_length=250)
+
+    class Meta:
+        verbose_name = _("Social Link")
+        verbose_name_plural = _("Social Links")
+
+    def __str__(self):
+        return self.facebook
+
+    def clean(self):
+        qs = SocialLink.objects.count()
+        if qs == 1:
+            raise ValidationError('Can not add more row. Can add only 1 rows please.')
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
+    description = models.TextField()
+
+
+class PaymentPhoneNumber(models.Model):
+    SERVICE_NAME_CHOICES = (("Bkash", "Bkash"), ("Rocket", "Rocket"), ("Nagad", "Nagad"),)
+
+    phone_number = models.PositiveSmallIntegerField(help_text="Phone Number.", null=True, blank=True)
+    payment_gateway = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
+    image = models.ImageField(upload_to="service_image")
+
+    class Meta:
+        verbose_name = _("Payment Phone Number")
+        verbose_name_plural = _("Payment Phone Numbers")
+
+    def __str__(self):
+        return self.payment_gateway
+
+
+@receiver(post_delete, sender=PaymentPhoneNumber)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
+
+
+class OrderPayment(models.Model):
+    def number():
+        no = OrderPayment.objects.count()
+        if no is None:
+            return 1
+        else:
+            return no + 1
+
+    user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
+    invoice_no = models.PositiveIntegerField(unique=True, default=number)
+    product_list = JSONField()
+    delivery_location = models.CharField(max_length=255)
+    contact_number = models.CharField(max_length=11)
+    payment_number = models.CharField(max_length=11, null=True, blank=True)
+    delivery_charge = models.CharField(max_length=50, default='Depends on courier.')
+    total = models.CharField(max_length=255)
+    order_date = models.DateField(auto_now_add=True)
+    city = models.CharField(max_length=20)
+    payment_gateway = models.CharField(max_length=50, default='Cash on delivery.', editable=False)
+    is_delivered = models.BooleanField(default=False, help_text=_('Is products are delivered?'))
+
+    class Meta:
+        verbose_name = _("Order and Payment")
+        verbose_name_plural = _("Order and Payments")
+
+    def __str__(self):
+        return self.payment_gateway
+
+    # def save(self, *args, **kwargs):
+    #     if self.payment_gateway is None:
+    #         self.payment_gateway = 'Cash on delivery.'
+    #     return super(OrderPayment, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('product:invoice', args=[self.id])
+
+
+class Reward(models.Model):
+    image = models.ImageField(upload_to='reward_images')
+    reward_title = models.CharField(max_length=50, null=True, blank=True, verbose_name='Reward Title')
+    position = models.PositiveSmallIntegerField(null=True)
+
+    def clean(self):
+        qs = Reward.objects.count()
+        if qs == 4:
+            raise ValidationError('Can not add more row.Can add only 4 rows please.')
+
+
+@receiver(post_delete, sender=Reward)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)

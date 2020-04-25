@@ -840,7 +840,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.34;  
+  -moz-transition: all 0.3s;
   transition: all 0.4s;
 
   box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
@@ -897,7 +897,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.34;  
+  -moz-transition: all 0.3s;
   transition: all 0.4s;
 }
 
@@ -936,7 +936,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.34;  
+  -moz-transition: all 0.3s;
   transition: all 0.4s;
 
   box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
@@ -1244,7 +1244,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   color: rgba(0,0,0,0.3);
   position: absolute;
   opacity: 0;
-  
+
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -1922,32 +1922,42 @@ input.num-product::-webkit-inner-spin-button {
   border-bottom: 1px solid #e6e6e6;
 }
 
-.table-shopping-cart .column-1 {
-  width: 133px;
-  padding-left: 50px;
-}
+/*.table-shopping-cart .column-1 {*/
+/*  !*width: 133px;*!*/
+/*  padding-left: 20px;*/
+/*}*/
 
-.table-shopping-cart .column-2 {
-  width: 220px;
-  font-size: 15px;
-}
+/*.table-shopping-cart .column-2 {*/
+/*  !*width: 120px;*!*/
+/*  font-size: 15px;*/
+/*}*/
 
-.table-shopping-cart .column-3 {
-  width: 120px;
-  font-size: 16px;
-}
+/*.table-shopping-cart .column-3 {*/
+/*  !*width: 120px;*!*/
+/*  font-size: 16px;*/
+/*}*/
 
-.table-shopping-cart .column-4 {
-  width: 145px;
-  text-align: right;
-}
+/*.table-shopping-cart .column-4 {*/
+/*  !*width: 145px;*!*/
+/*  text-align: left;*/
+/*}*/
 
-.table-shopping-cart .column-5 {
-  width: 172px;
-  padding-right: 50px;
-  text-align: right;
-  font-size: 16px;
-}
+/*.table-shopping-cart .column-5 {*/
+/*  !*width: 172px;*!*/
+/*  padding-right: 20px;*/
+/*  text-align: left;*/
+/*  font-size: 16px;*/
+/*}*/
+/*.table-shopping-cart .column-6 {*/
+/*  !*width: 172px;*!*/
+/*  text-align: left;*/
+/*  font-size: 16px;*/
+/*}*/
+/*.table-shopping-cart .column-7 {*/
+/*  !*width: 172px;*!*/
+/*  text-align: left;*/
+/*  font-size: 16px;*/
+/*}*/
 
 .table-shopping-cart .table_row {
   height: 185px;
@@ -3329,8 +3339,7 @@ input.num-product::-webkit-inner-spin-button {
   /*---------------------------------------------*/
   .respon3 {
     padding: 20px;
-  }
-
+  }}
 /*=========================================================
 	10 -> FOOTER
 ===========================================================*/

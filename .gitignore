@@ -10,7 +10,6 @@ __pycache__/
 .idea
 .idea/*
 
-
 # C extensions
 *.so
 
@@ -157,3 +156,4 @@ temp
 .media/product-images/*
 ./media
 ./static
+order_data_list.json

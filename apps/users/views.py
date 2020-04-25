@@ -1,13 +1,12 @@
 import json
 
-from apps.users.models import User
+from django.apps import apps
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.db import transaction
-from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -17,12 +16,13 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import FormView, TemplateView, UpdateView, View
 
 from .forms import (DeleteAccountForm, LoginForm, SignupForm, )
+from .models import User
 
 
 class SignupView(FormView):
     template_name = "users/signup.html"
     form_class = SignupForm
-    success_url = reverse_lazy("users:login")
+    success_url = reverse_lazy("login")
 
     def form_valid(self, form):
         # import pdb;pdb.set_trace()
@@ -49,7 +49,7 @@ class SignupView(FormView):
 class LoginView(FormView):
     template_name = "users/login.html"
     form_class = LoginForm
-    success_url = reverse_lazy("product:product")
+    success_url = reverse_lazy("product:home")
 
     def get_success_url(self):
         next_url = self.request.GET.get("next")
@@ -85,6 +85,7 @@ class LoginView(FormView):
                 user.is_active = True
                 user.save()
             if user.is_active:
+                user = authenticate(request, username=username, password=password)
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 next_url = self.request.GET.get("next")
 
@@ -185,9 +186,12 @@ class DeleteAccountView(FormView):
 
 
 def logoutUser(request):
+    Cart = apps.get_model('product', 'Cart')
+    carts = Cart.objects.filter(user_id=request.user.id).all()
+    carts.delete()
     logout(request)
-    request.session.flush()
-    return redirect('/')
+    # request.session.flush()
+    return redirect('product:home')
 
 
 class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot password , get email and send acivation-mail
@@ -204,3 +208,7 @@ class PasswordResetView(auth_views.PasswordResetView):  # it's meaning forgot pa
 
 class DashboardView(TemplateView):  # LoginRequiredMixin
     template_name = "users/dashboard.html"
+
+
+def page_not_found(request, exception, *args, **kwargs):
+    return render(request, '404.html',  status=404)
