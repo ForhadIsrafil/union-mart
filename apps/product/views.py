@@ -388,6 +388,10 @@ def privacy(request):
     return render(request, 'privacy.html', {})
 
 
+def howtobuy(request):
+    return render(request, 'how_to_buy.html')
+
+
 def notfound(request):
     return render(request, '404.html')
 
@@ -400,10 +404,6 @@ def footer(request):
     return render(request, 'footer.html', context)
 
 
-# testing
-
-def testheader(request):
-    return render(request, 'header.html')
 
 
 def reward(request):

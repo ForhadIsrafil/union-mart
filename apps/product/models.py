@@ -85,10 +85,7 @@ class ProductPhoto(models.Model):
     def __str__(self):
         return f"{self.product.id} - {self.product.name}"
 
-    def clean(self):
-        qs = ProductPhoto.objects.count()
-        if qs == 3:
-            raise ValidationError('Can add only 3 images please.')
+
 
 
 @receiver(post_delete, sender=ProductPhoto)
