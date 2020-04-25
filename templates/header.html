@@ -61,7 +61,8 @@
 
                 <!-- Logo desktop -->
                 <a href="{% url 'product:home' %}" class="logo">
-                    <h3 style="color: aliceblue;">Unionmart.BD</h3>
+{#                    <h3 style="color: aliceblue;">Unionmart.BD</h3>#}
+                    <img src="{%  static 'images/u_logo.png' %}" alt="#">
                 </a>
 
                 <!-- Menu desktop -->
@@ -187,6 +188,16 @@
                     </ul>
                 </div>
 
+            <!-- log out btn  -->
+{#                <div class="menu-desktop">#}
+{#                    <ul class="main-menu">#}
+{#                        <li>#}
+{#                            <a href="#">logout</a>#}
+{#                        </li>#}
+{##}
+{#                    </ul>#}
+{#                </div>#}
+
 
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
@@ -222,7 +233,9 @@
     <div class="wrap-header-mobile bg-dark">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a style="color: white" href="{% url 'product:home' %}">Union Mart.BD</a>
+            <a style="color: white" href="{% url 'product:home' %}"></a>
+            <img src="{%  static 'images/u_logo.png' %}" alt="#">
+
         </div>
 
         <!-- Icon header -->
@@ -379,6 +392,13 @@
                     <a href="{% url 'login' %}">login/sign up</a>
                 </li>
             </ul>
+            <!-- log out btn  -->
+            <ul class="main-menu-m">
+                <li>
+                    <a href="#">logout</a>
+                </li>
+            </ul>
+
 
         </ul>
     </div>
