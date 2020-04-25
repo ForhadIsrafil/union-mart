@@ -1,5 +1,5 @@
 from apps.users.views import User
-from django.contrib.postgres.forms import JSONField
+from jsonfield import JSONField
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_delete
@@ -85,10 +85,7 @@ class ProductPhoto(models.Model):
     def __str__(self):
         return f"{self.product.id} - {self.product.name}"
 
-    def clean(self):
-        qs = ProductPhoto.objects.count()
-        if qs == 3:
-            raise ValidationError('Can add only 3 images please.')
+
 
 
 @receiver(post_delete, sender=ProductPhoto)
