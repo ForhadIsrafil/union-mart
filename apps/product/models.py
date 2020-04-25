@@ -1,5 +1,5 @@
 from apps.users.views import User
-from django.contrib.postgres.forms import JSONField
+from jsonfield import JSONField
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_delete

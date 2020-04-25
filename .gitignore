@@ -152,7 +152,7 @@ api/temp
 # Temporary folders
 temp
 .idea/workspace.xml
-./media/
+*./media/
 #.media/product-images/*
 #./media
 ./static
