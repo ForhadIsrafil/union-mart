@@ -1,11 +1,11 @@
 from apps.users.views import User
-from jsonfield import JSONField
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+from jsonfield import JSONField
 
 
 class Product(models.Model):
@@ -84,8 +84,6 @@ class ProductPhoto(models.Model):
 
     def __str__(self):
         return f"{self.product.id} - {self.product.name}"
-
-
 
 
 @receiver(post_delete, sender=ProductPhoto)
@@ -199,7 +197,7 @@ class Review(models.Model):
 class PaymentPhoneNumber(models.Model):
     SERVICE_NAME_CHOICES = (("Bkash", "Bkash"), ("Rocket", "Rocket"), ("Nagad", "Nagad"),)
 
-    phone_number = models.PositiveSmallIntegerField(help_text="Phone Number.", null=True, blank=True)
+    phone_number = models.CharField(help_text="Phone Number.", null=True, blank=True, max_length=11, )
     payment_gateway = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
     image = models.ImageField(upload_to="service_image")
 

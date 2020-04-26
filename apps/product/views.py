@@ -404,8 +404,6 @@ def footer(request):
     return render(request, 'footer.html', context)
 
 
-
-
 def reward(request):
     rewards = Reward.objects.all().order_by('position')[:4]
     print(rewards)
