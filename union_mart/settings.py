@@ -29,7 +29,7 @@ SECRET_KEY = env.str('SECRET_KEY', default='')
 DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-
+MODE = env.str('MODE', default='local')
 # Application definition
 
 INSTALLED_APPS = [
@@ -164,14 +164,21 @@ GRAPPELLI_ADMIN_TITLE = 'Union-Mart'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 # static
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "staticfiles"),
 ]
 # Media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# =======================
+if MODE == 'local':
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    STATIC_ROOT = '/home/unionmar/unionmart_project/static'
+    MEDIA_ROOT = '/home/unionmar/unionmart_project/media'
+# =======================
 
 # File and Data size
 DATA_UPLOAD_MAX_MEMORY_SIZE = env.int("DATA_UPLOAD_MAX_MEMORY_SIZE", default=20024200)
