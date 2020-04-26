@@ -187,8 +187,8 @@ if MODE == 'local':
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 elif MODE == 'production':
-    STATIC_ROOT = '/home/unionmar/public_html/static'
-    MEDIA_ROOT = '/home/unionmar/public_html/media'
+    STATIC_ROOT = '/home/' + env.str('USERNAME') + '/public_html/static'
+    MEDIA_ROOT = '/home/' + env.str('USERNAME') + '/public_html/media'
 # =======================
 
 # File and Data size
