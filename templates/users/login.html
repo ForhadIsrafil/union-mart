@@ -29,7 +29,6 @@
 <body class="animsition">
 
 
-
 <!-- Login Start -->
 <div class="lgn">
     <div class="txt_lgn">
@@ -44,11 +43,13 @@
         <div id="logreg-forms">
             <form class="form-signin pay-box" method="post">{% csrf_token %}
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Log in</h1>
-                <div class="social-login">
-                    <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
+                {% if not user.is_authenticated %}
+                    <div class="social-login">
+                        <button href="{% url 'social:begin' 'facebook' %}" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
 							Facebook</span></button>
 
-                </div>
+                    </div>
+                {% endif %}
                 <h1>{{ form.errors }}</h1>
                 {#                <h1>{{ messages }}</h1>#}
                 <p style="text-align:center"> OR </p>
@@ -62,7 +63,7 @@
                 </button>
                 <a href="{% url 'password_reset' %}" class="btn btn-outline-danger btn-block" type="submit"><a href="{% url 'password_reset' %}"><b>Forgot password?</b></a>
                 </a>
-                 <!-- id="forgot_pswd -->
+                <!-- id="forgot_pswd -->
                 <hr>
                 <!-- <p>Don't have an account!</p>  -->
                 {#				<button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i>#}
@@ -78,7 +79,6 @@
 
 </div>
 {% include 'footer.html' %}
-
 
 
 <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
