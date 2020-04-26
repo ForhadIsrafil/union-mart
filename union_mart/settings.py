@@ -87,6 +87,7 @@ TEMPLATES = [
                 'social_django.context_processors.login_redirect',  # <-- Here
                 # count carts on header
                 'apps.product.context_processors.count_cart',
+                # social_links in footer
                 'apps.product.context_processors.social_links',
             ],
         },

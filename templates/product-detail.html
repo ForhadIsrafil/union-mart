@@ -1508,23 +1508,27 @@
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function () {
             var quantity_id = document.getElementById("quantity_id").value;
-            $.ajax({
-                type: "GET",
-                data: "quantity_id=" + quantity_id,
-                success: function (response) {
-                    if (response.valid == false) {
-                        swal(nameProduct, response.message, "info");
-                    } else {
-                        swal(nameProduct, "is added to cart!", "success");
+            if (quantity_id <= 0) {
+                swal(nameProduct, 'Product quantity can not be 0.', "error");
+            } else {
+                $.ajax({
+                    type: "GET",
+                    data: "quantity_id=" + quantity_id,
+                    success: function (response) {
+                        if (response.valid == false) {
+                            swal(nameProduct, response.message, "info");
+                        } else {
+                            swal(nameProduct, "is added to cart!", "success");
+                        }
+                    },
+                    error: function (jqXHR) {
+                        swal("Error!", "Please login", "error");
+                        setTimeout(function () {
+                            window.location = {% url 'login' %};
+                        }, 2000);
                     }
-                },
-                error: function (jqXHR) {
-                    swal("Error!", "Please login", "error");
-                    setTimeout(function () {
-                        window.location = {% url 'login' %};
-                    }, 2000);
-                }
-            })
+                })
+            }
 
             {#swal(nameProduct, "is added to cart !", "success");#}
         });
