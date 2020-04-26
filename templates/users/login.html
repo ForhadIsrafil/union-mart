@@ -45,7 +45,7 @@
             <form class="form-signin pay-box" method="post">{% csrf_token %}
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Log in</h1>
                 <div class="social-login">
-                    <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
+                    <button href="{% url 'social:begin' 'facebook' %}" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
 							Facebook</span></button>
 
                 </div>

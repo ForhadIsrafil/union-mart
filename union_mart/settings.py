@@ -159,20 +159,10 @@ LOGOUT_REDIRECT_URL = 'login'
 
 # PHONENUMBER_DB_FORMAT = 'NATIONAL'
 # PHONENUMBER_DEFAULT_REGION = 'BD'
-GRAPPELLI_ADMIN_TITLE = 'Union-Mart'
+GRAPPELLI_ADMIN_TITLE = 'UnionMartbd'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-# static
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]
-# # Media
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
 
 # =======================
 # Media
@@ -197,8 +187,9 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = env.int("DATA_UPLOAD_MAX_MEMORY_SIZE", default=200
 FILE_UPLOAD_MAX_MEMORY_SIZE = env.int("FILE_UPLOAD_MAX_MEMORY_SIZE", default=20024200)
 
 # facebook ===============================
-# SOCIAL_AUTH_FACEBOOK_KEY = env.int('SOCIAL_AUTH_FACEBOOK_KEY', default='')  # App ID
-# SOCIAL_AUTH_FACEBOOK_SECRET = env.str('SOCIAL_AUTH_FACEBOOK_SECRET', default='')  # App Secret
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# SOCIAL_AUTH_FACEBOOK_KEY = env.int('SOCIAL_AUTH_FACEBOOK_KEY')  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = env.str('SOCIAL_AUTH_FACEBOOK_SECRET')  # App Secret
 #
 # SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', ]  # add this
 # SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {  # add this

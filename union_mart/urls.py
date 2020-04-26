@@ -26,6 +26,7 @@ urlpatterns = [
     path("_nested_admin/", include("nested_admin.urls")),
     path('', include('apps.product.urls')),
     path('', include('apps.users.urls')),
+    path('', include('social_django.urls', namespace="social")),
 
     # user related
     path("login/", user_views.LoginView.as_view(), name="login"),
