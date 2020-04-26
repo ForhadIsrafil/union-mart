@@ -65,6 +65,8 @@ def home(request):
     return render(request, 'index.html', context)
 
 
+@login_required
+@transaction.atomic
 def product(request):
     category = request.GET.get('category', None)
     sub_category = request.GET.get('sub_category', None)
@@ -175,6 +177,8 @@ def product(request):
     return render(request, 'product.html', context)
 
 
+@login_required
+@transaction.atomic
 def product_details(request, product_id):
     product_ins = Product.objects.filter(id=product_id).first()
     reviews = Review.objects.filter(product_id=product_id).order_by('-id')

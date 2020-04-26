@@ -67,8 +67,8 @@ AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = [
     # 'social_core.backends.linkedin.LinkedinOAuth2',
     # 'social_core.backends.instagram.InstagramOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 TEMPLATES = [
@@ -186,8 +186,8 @@ elif MODE == 'production':
 DATA_UPLOAD_MAX_MEMORY_SIZE = env.int("DATA_UPLOAD_MAX_MEMORY_SIZE", default=20024200)
 FILE_UPLOAD_MAX_MEMORY_SIZE = env.int("FILE_UPLOAD_MAX_MEMORY_SIZE", default=20024200)
 
-# facebook ===============================
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# ===============facebook===============
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
 # SOCIAL_AUTH_FACEBOOK_KEY = env.int('SOCIAL_AUTH_FACEBOOK_KEY')  # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = env.str('SOCIAL_AUTH_FACEBOOK_SECRET')  # App Secret
 #
@@ -201,18 +201,13 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 #     ('picture', 'picture'),
 #     ('link', 'profile_url'),
 # ]
+#
+# FACEBOOK_SOCIAL_AUTH_RAISE_EXCEPTIONS = env.bool('FACEBOOK_SOCIAL_AUTH_RAISE_EXCEPTIONS')
+# SOCIAL_AUTH_RAISE_EXCEPTIONS = env.bool('SOCIAL_AUTH_RAISE_EXCEPTIONS')
+# RAISE_EXCEPTIONS = env.bool('RAISE_EXCEPTIONS')
+# SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = env.list('SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS')
+# ===============facebook===============
 
-FACEBOOK_SOCIAL_AUTH_RAISE_EXCEPTIONS = env.bool('FACEBOOK_SOCIAL_AUTH_RAISE_EXCEPTIONS')
-SOCIAL_AUTH_RAISE_EXCEPTIONS = env.bool('SOCIAL_AUTH_RAISE_EXCEPTIONS')
-RAISE_EXCEPTIONS = env.bool('RAISE_EXCEPTIONS')
-SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = env.list('SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS')
-print(SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS)
-# facebook ===============================
-
-
-# ======
-SECURE_SSL_REDIRECT = False
-# ======
 # ===============SSL==================
 # Force https redirect
 # SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT', default=False)  # it was True
@@ -221,5 +216,11 @@ SECURE_SSL_REDIRECT = False
 # Force HTTPS in the final URIs
 # SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
 # ===============SSL==================
+
+
+# ======
+SECURE_SSL_REDIRECT = False
+# ======
+
 
 CART_COUNT = 0
