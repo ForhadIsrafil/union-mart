@@ -29,7 +29,7 @@ SECRET_KEY = env.str('SECRET_KEY', default='')
 DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-MODE = env.str('MODE', default='local')
+MODE = env.str('MODE', default='production')
 # Application definition
 
 INSTALLED_APPS = [
@@ -163,13 +163,13 @@ GRAPPELLI_ADMIN_TITLE = 'Union-Mart'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# Media
+MEDIA_URL = '/media/'
 # static
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
-# Media
-MEDIA_URL = '/media/'
 
 # =======================
 if MODE == 'local':
