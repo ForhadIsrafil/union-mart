@@ -175,7 +175,7 @@ MEDIA_URL = '/media/'
 if MODE == 'local':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
+elif MODE == 'production':
     STATIC_ROOT = '/home/unionmar/unionmart_project/static'
     MEDIA_ROOT = '/home/unionmar/unionmart_project/media'
 # =======================
