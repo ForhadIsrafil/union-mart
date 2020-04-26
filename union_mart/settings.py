@@ -163,21 +163,32 @@ GRAPPELLI_ADMIN_TITLE = 'Union-Mart'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# static
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
+# # Media
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+
+# =======================
 # Media
 MEDIA_URL = '/media/'
 # static
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # =======================
 if MODE == 'local':
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 elif MODE == 'production':
-    STATIC_ROOT = '/home/unionmar/unionmart_project/static'
-    MEDIA_ROOT = '/home/unionmar/unionmart_project/media'
+    STATIC_ROOT = '/home/unionmar/public_html/static'
+    MEDIA_ROOT = '/home/unionmar/public_html/media'
 # =======================
 
 # File and Data size
