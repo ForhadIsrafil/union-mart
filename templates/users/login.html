@@ -50,19 +50,21 @@
 
                     </div>
                 {% endif %}
-                <h1>{{ form.errors }}</h1>
-                {#                <h1>{{ messages }}</h1>#}
-                <p style="text-align:center"> OR </p>
+                {% if messages %}{% for message in messages %}
+                    <div class="alert alert-light text-center alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}{% endif %}
+                <p class="text-center font-weight-bold"> OR </p>
                 <input type="email" id="inputEmail" class="form-control bg-dark" name="username"
                        placeholder="Email address" required=""
                        autofocus="">
                 <input type="password" id="inputPassword" class="form-control bg-dark" name="password"
                        placeholder="Password" required="">
-
                 <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in
                 </button>
-                <a href="{% url 'password_reset' %}" class="btn btn-outline-danger btn-block" type="submit"><a href="{% url 'password_reset' %}"><b>Forgot password?</b></a>
-                </a>
+                <a href="{% url 'password_reset' %}">Forgot password?</a>
                 <!-- id="forgot_pswd -->
                 <hr>
                 <!-- <p>Don't have an account!</p>  -->
