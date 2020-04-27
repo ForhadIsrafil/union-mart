@@ -588,7 +588,7 @@
                                         </div>
                                     </td>
                                     <td class="column-2"><a href="{% url 'product:product_details' cart.product_id %}">{{ cart.name }}</a></td>
-                                    <td class="column-3" style="padding-left: 10px">{{ cart.price }}</td>
+                                    <td class="column-3" style="padding-left: 10px">{{ cart.price }}Tk</td>
                                     <td class="column-4">
                                         <div class="flex-w ">
                                             {#                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">#}
@@ -604,7 +604,7 @@
                                         </div>
                                     </td>
                                     <td class="column-5" style="padding-left: 30px">{% if cart.discount %}{{ cart.discount }} %{% else %}0%{% endif %}</td>
-                                    <td class="column-6" style="padding-left: 20px">{{ cart.per_total }}</td>
+                                    <td class="column-6" style="padding-left: 20px">{{ cart.per_total }}Tk</td>
                                     <td class="column-7" style="padding-left: 20px">
                                         <a href="{% url 'product:carts' %}?delete_cart_id={{ cart.cart_id }}" style="font-size:24px; color: red"><i class="far fa-times-circle"></i></a>
                                     </td>
@@ -667,7 +667,7 @@
 
                         <div class="size-209">
 							<span class="mtext-110 cl2">
-								{{ total_price }}
+								{{ total_price }} Tk
 							</span>
                         </div>
                     </div>
@@ -685,9 +685,9 @@
                             </p>
 
                             <div class="p-t-15">
-								<span class="stext-112 cl8">
-									Calculate Shipping
-								</span>
+{#								<span class="stext-112 cl8">#}
+{#									Calculate Shipping#}
+{#								</span>#}
 
 
                                 <div class="flex-w">
@@ -709,7 +709,7 @@
 
                         <div class="size-209 p-t-1">
 							<span class="mtext-110 cl2">
-								{{ total_price }}
+								{{ total_price }} Tk
 							</span>
                         </div>
                     </div>

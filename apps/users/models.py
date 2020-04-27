@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, user_name, password, **extra_fields):
         if password is None:
             raise TypeError(_("Superusers must have a password."))
 
@@ -42,7 +42,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser=True."))
 
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(user_name, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):

@@ -455,21 +455,26 @@
                 </li>
 
                 <li class="p-b-13">
-                    <a href="about.html" class="stext-102 cl2 hov-cl1 trans-04">
+                    <a href="{% url 'product:about' %}" class="stext-102 cl2 hov-cl1 trans-04">
                         About US
                     </a>
                 </li>
 
                 <li class="p-b-13">
-                    <a href="contact.html" class="stext-102 cl2 hov-cl1 trans-04">
+                    <a href="{% url 'product:contact' %}" class="stext-102 cl2 hov-cl1 trans-04">
                         Contact US
                     </a>
                 </li>
 
 
                 <li class="p-b-13">
-                    <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                        Help & FAQs
+                    <a href="{% url 'product:rewards' %}" class="stext-102 cl2 hov-cl1 trans-04">
+                        Reward
+                    </a>
+                </li>
+                <li class="p-b-13">
+                    <a href="{% url 'product:how_to_buy' %}" class="stext-102 cl2 hov-cl1 trans-04">
+                        How To Buy
                     </a>
                 </li>
             </ul>
@@ -536,15 +541,15 @@
             {#                </div>#}
             {#            </div>#}
 
-            <div class="sidebar-gallery w-full">
-					<span class="mtext-101 cl5">
-						About Us
-					</span>
-
-                <p class="stext-108 cl6 p-t-27">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.
-                </p>
-            </div>
+{#            <div class="sidebar-gallery w-full">#}
+{#					<span class="mtext-101 cl5">#}
+{#						About Us#}
+{#					</span>#}
+{##}
+{#                <p class="stext-108 cl6 p-t-27">#}
+{#                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.#}
+{#                </p>#}
+{#            </div>#}
         </div>
     </div>
 </aside>
