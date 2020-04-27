@@ -51,11 +51,14 @@ class Product(models.Model):
     description = models.TextField(max_length=255)
     price = models.PositiveIntegerField(verbose_name=_('Product Price'))
     stock = models.PositiveIntegerField(verbose_name=_('Stock of Products'))
-    category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20, default=CATEGORY_CHOICES[0])
-    sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20, default=SUB_CATEGORY_CHOICES[0])
+    category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20,
+                                default=CATEGORY_CHOICES[0])
+    sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20,
+                                    default=SUB_CATEGORY_CHOICES[0])
     offer = models.CharField(max_length=50, null=True, blank=True)
     # delevery_charge = models.CharField(max_length=20, null=True, blank=True)
-    default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
+    default_photo = models.ImageField(upload_to='default_photo',
+                                      help_text="size must be ato ato pixel.")  # size must be ato ato pixel
     # free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
     trend_name = models.CharField(max_length=50, null=True, blank=True)
@@ -105,6 +108,8 @@ class Slider(models.Model):
     title = models.CharField(max_length=40)
     sub_title = models.CharField(max_length=40)
     photo = models.ImageField(upload_to='slider_image')
+    position = models.PositiveSmallIntegerField()
+    product_id = models.PositiveSmallIntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name = _("Slider")
@@ -144,7 +149,7 @@ class UpdateNews(models.Model):
 class Trend(models.Model):
     trend_name = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(upload_to='trend_images')
-    position = models.PositiveSmallIntegerField(null=True)
+    position = models.PositiveSmallIntegerField()
 
     class Meta:
         verbose_name = _("Trend")

@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'union_mart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
-DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+# DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -217,10 +217,9 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = env.int("FILE_UPLOAD_MAX_MEMORY_SIZE", default=200
 # SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.str('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default='True')
 # ===============SSL==================
 
-
 # ======
 SECURE_SSL_REDIRECT = False
 # ======
-
+facebook = 'https://www.facebook.com'
 
 CART_COUNT = 0
