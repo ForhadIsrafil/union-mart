@@ -65,7 +65,6 @@ def home(request):
     return render(request, 'index.html', context)
 
 
-@login_required
 @transaction.atomic
 def product(request):
     category = request.GET.get('category', None)

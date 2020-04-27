@@ -29,7 +29,7 @@
 </head>
 
 {#{% block content %}#}
-    <body class="animsition">
+<body class="animsition">
 {##}
 {#    <!-- Header -->#}
 {#    <header class="header-v3">#}
@@ -569,69 +569,93 @@
 {#        </div>#}
 {#    </div>#}
 
-    <!-- Login Start -->
-    <div class="lgn">
-        <div class="txt_lgn">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                    </div>
+<!-- Login Start -->
+<div class="lgn">
+    <div class="txt_lgn">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
                 </div>
             </div>
         </div>
-        <div class="lg_bck">
-            <div id="logreg-forms">
-                <form class="form-signin pay-box" method="post" action="{% url 'users:signup' %}"> {% csrf_token %}
-                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
-                    <div class="social-login">
-                        <button class="btn facebook-btn social-btn" type="button"><span><i
-                                class="fab fa-facebook-f"></i> Sign in with
+    </div>
+    <div class="lg_bck">
+        <div id="logreg-forms">
+            <form class="form-signin pay-box" method="post" action="{% url 'users:signup' %}"> {% csrf_token %}
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
+                <div class="social-login">
+                    <button class="btn facebook-btn social-btn" type="button"><span><i
+                            class="fab fa-facebook-f"></i> Sign in with
 							Facebook</span></button>
 
+                </div>
+                <p style="text-align:center"> OR </p>
+                {#                <h1>{{ form.errors }}</h1>#}
+                <input autofocus="" class="form-control bg-dark" id="input_name" name="first_name"
+                       placeholder="Name"
+                       required=""
+                       type="name">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.first_name.errors.0 }}
                     </div>
-                    <p style="text-align:center"> OR </p>
-                    <h1>{{ form.errors }}</h1>
-                    <input autofocus="" class="form-control bg-dark" id="input_name" name="first_name"
-                           placeholder="Name"
-                           required=""
-                           type="name">
-                    <input autofocus="" class="form-control bg-dark" id="input_user_name" name="user_name"
-                           placeholder="User Name" required=""
-                           type="name">
-                    <input autofocus="" class="form-control bg-dark" id="inputEmail" name="email"
-                           placeholder="Email address" required=""
-                           type="email">
-                    <input autofocus="" class="form-control bg-dark" id="input_phone" name="phone_number"
-                           placeholder="Phone" maxlength="11" minlength="11"
-                           required=""
-                           type="text">
-                    <input autofocus="" class="form-control bg-dark" id="input_date" name="date_of_birth"
-                           placeholder="Birth Date" required=""
-                           type="date">
-                    <input class="form-control bg-dark" id="inputPassword" name="password" minlength="8" placeholder="Password"
-                           required=""
-                           type="password">
+                {% endif %}
+                <input autofocus="" class="form-control bg-dark" id="input_user_name" name="user_name"
+                       placeholder="User Name" required=""
+                       type="name">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.user_name.errors.0 }}
+                    </div>
+                {% endif %}
+                <input autofocus="" class="form-control bg-dark" id="inputEmail" name="email"
+                       placeholder="Email address" required=""
+                       type="email">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.email.errors.0 }}
+                    </div>
+                {% endif %}
+                <input autofocus="" class="form-control bg-dark" id="input_phone" name="phone_number"
+                       placeholder="Phone" maxlength="11" minlength="11"
+                       required=""
+                       type="text">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.phone_number.errors.0 }}
+                    </div>
+                {% endif %}
+                <input autofocus="" class="form-control bg-dark" id="input_date" name="date_of_birth"
+                       placeholder="Birth Date" required=""
+                       type="date">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.date_of_birth.errors.0 }}
+                    </div>
+                {% endif %}
+                <input class="form-control bg-dark" id="inputPassword" name="password" minlength="8" placeholder="Password"
+                       required=""
+                       type="password">
 
-                    <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign up
-                    </button>
-                    <!-- <p>Don't have an account!</p>  -->
-                    <!--                <button class="btn btn-primary btn-block" type="button"><i class="fas fa-user-plus"></i>-->
-                    <a class="btn btn-primary btn-block" href="{% url 'login' %}"><i class="fas fa-user"></i>Already
-                        Have a
-                        account? Log in here</a>
-                    <!--                </button>-->
-                </form>
+                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign up
+                </button>
+                <!-- <p>Don't have an account!</p>  -->
+                <!--                <button class="btn btn-primary btn-block" type="button"><i class="fas fa-user-plus"></i>-->
+                <a class="btn btn-primary btn-block" href="{% url 'login' %}"><i class="fas fa-user"></i>Already
+                    Have a
+                    account? Log in here</a>
+                <!--                </button>-->
+            </form>
 
 
-            </div>
         </div>
-        <p style="text-align:center"> UNIONMARTBD</p>
-
     </div>
+    <p style="text-align:center"> UNIONMARTBD</p>
 
-    <!-- Login End -->
+</div>
+
+<!-- Login End -->
 {% include 'footer.html' %}
-
 
 
 <script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
@@ -651,6 +675,6 @@
 <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
 <script type="text/javascript" src="{% static '/js/log.js' %}"></script>
 
-    </body>
+</body>
 
 </html>

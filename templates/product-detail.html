@@ -659,7 +659,7 @@
                                         <i class="fas fa-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" id="quantity_id" maxlength="3" minlength="1" type="number" disabled name="num-product" value="1">
+                                    <input class="mtext-104 cl3 txt-center num-product" id="quantity_id" type="number" name="num-product" maxlength="3" minlength="1"  value="1" required>
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fas fa-plus"></i>
@@ -1509,7 +1509,7 @@
         $(this).on('click', function () {
             var quantity_id = document.getElementById("quantity_id").value;
             if (quantity_id <= 0) {
-                swal(nameProduct, 'Product quantity can not be 0.', "error");
+                swal(nameProduct, 'Product quantity can not be empty or 0.', "error");
             } else {
                 $.ajax({
                     type: "GET",

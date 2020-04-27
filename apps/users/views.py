@@ -28,7 +28,7 @@ class SignupView(FormView):
         # import pdb;pdb.set_trace()
         user = form.save(commit=False)
         user.is_active = True
-        user.phone_number = '+88' + form.cleaned_data["phone_number"]
+        # user.phone_number = '+88' + form.cleaned_data["phone_number"]
         user.set_password(form.cleaned_data["password"])
         user.save()
         # login(self.request, user)
@@ -40,7 +40,7 @@ class SignupView(FormView):
             self.request,
             messages.INFO,
             _(
-                "Your account successfully created! And enjoy shopping!"
+                "Your account successfully created! Loging and enjoy shopping!"
             ),
         )
         return super().form_valid(form)
@@ -85,8 +85,9 @@ class LoginView(FormView):
                 user.is_active = True
                 user.save()
             if user.is_active:
-                user = authenticate(request, username=username, password=password)
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                user = authenticate(request, username=username, password=password)
+
                 next_url = self.request.GET.get("next")
 
                 if next_url:
@@ -187,8 +188,8 @@ class DeleteAccountView(FormView):
 
 def logoutUser(request):
     Cart = apps.get_model('product', 'Cart')
-    carts = Cart.objects.filter(user_id=request.user.id).all()
-    carts.delete()
+    # carts = Cart.objects.filter(user_id=request.user.id).all()
+    # carts.delete()
     logout(request)
     # request.session.flush()
     return redirect('product:home')

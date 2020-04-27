@@ -582,7 +582,7 @@
                 <br> <br>
 
                 <div>
-                    <form action="{% url 'product:payment' %}" method="post">{% csrf_token %}
+                    <form action="{% url 'product:order_payment' %}" method="post">{% csrf_token %}
                         <label class="text-center" for="email"><b>আপনি যে নম্বরটি থেকে টাকা পাঠিয়েছেন তা লিখুন </b></label>
                         <input type="text" name="payment_gateway" required="" hidden value="{{ payment_pnumber.payment_gateway }}">
                         <input type="tel" class="form-control badge-danger" id="number" name="payment_number" maxlength="11"
