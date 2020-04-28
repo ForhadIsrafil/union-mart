@@ -107,7 +107,7 @@ class Cart(models.Model):
 class Slider(models.Model):
     title = models.CharField(max_length=40)
     sub_title = models.CharField(max_length=40)
-    photo = models.ImageField(upload_to='slider_image', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1920px and width: 930px format.</h2>'))
+    photo = models.ImageField(upload_to='slider_image', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1920px and width: 930px format.Can add only 3 rows.</h2>'))
     position = models.PositiveSmallIntegerField()
     product_id = models.PositiveSmallIntegerField(null=True, blank=True)
 
@@ -148,7 +148,7 @@ class UpdateNews(models.Model):
 
 class Trend(models.Model):
     trend_name = models.CharField(max_length=50, null=True, blank=True)
-    image = models.ImageField(upload_to='trend_images', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1200px and width: 809px format.</h2>'))
+    image = models.ImageField(upload_to='trend_images', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1200px and width: 809px format.Can not add more row. Can add only 4 rows.</h2>'))
     position = models.PositiveSmallIntegerField()
 
     class Meta:
@@ -204,7 +204,7 @@ class PaymentPhoneNumber(models.Model):
 
     phone_number = models.CharField(help_text="Phone Number.", null=True, blank=True, max_length=11, )
     payment_gateway = models.CharField(max_length=20, choices=SERVICE_NAME_CHOICES, default=SERVICE_NAME_CHOICES[0])
-    image = models.ImageField(upload_to="service_image")
+    image = models.ImageField(upload_to="service_image", help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 150px and width: 300px format.</h2><br>'))
 
     class Meta:
         verbose_name = _("Payment Phone Number")
@@ -212,6 +212,11 @@ class PaymentPhoneNumber(models.Model):
 
     def __str__(self):
         return self.payment_gateway
+
+    def clean(self):
+        qs = PaymentPhoneNumber.objects.count()
+        if qs == 1:
+            raise ValidationError('Can not add more row. Can add only 3 rows please.')
 
 
 @receiver(post_delete, sender=PaymentPhoneNumber)
@@ -257,7 +262,7 @@ class OrderPayment(models.Model):
 
 
 class Reward(models.Model):
-    image = models.ImageField(upload_to='reward_images')
+    image = models.ImageField(upload_to='reward_images', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 308px and width: 184px format.Can add only 4 rows.</h2><br>'))
     reward_title = models.CharField(max_length=50, null=True, blank=True, verbose_name='Reward Title')
     position = models.PositiveSmallIntegerField(null=True)
 
