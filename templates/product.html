@@ -745,11 +745,12 @@
 
         </div>
     </div>
-
+<h5>{{ request.GET.category }}</h5>
+<h5>{{ request.GET.sub_category }}</h5>
     {% if products.has_other_pages %}
         <ul class="pagination justify-content-center">
             {% if products.has_previous %}
-                <li><a href="?page={{ products.previous_page_number }}">Previous&nbsp;&nbsp;</a></li>
+                <li><a href="?{% if request.GET.category %}category={{ request.GET.category }}{% endif %}{% if request.GET.sub_category %}&sub_category={{ request.GET.sub_category }}{% endif %}&page={{ products.previous_page_number }}">Previous&nbsp;&nbsp;</a></li>
             {% else %}
                 <li class="disabled"><span>Previous&nbsp;&nbsp;</span></li>
             {% endif %}
@@ -762,7 +763,7 @@
                 {% if products.number == i %}
                     <li class="active"><span>&nbsp;{{ i }} <span class="sr-only">(current)</span></span></li>
                 {% elif i > products.number|add:'-5' and i < products.number|add:'5' %}
-                    <li><a href="?page={{ i }}">&nbsp;{{ i }}</a></li>
+                    <li><a href="?{% if request.GET.category %}category={{ request.GET.category }}{% endif %}{% if request.GET.sub_category %}&sub_category={{ request.GET.sub_category }}{% endif %}&page={{ i }}">&nbsp;{{ i }}</a></li>
 {#                {% else %}#}
 {#                    <li><a href="?page={{ i }}">&nbsp;{{ i }}</a></li>#}
                 {% endif %}
@@ -773,7 +774,7 @@
 {#            {% endif %}#}
 
             {% if products.has_next %}
-                <li><a href="?page={{ products.next_page_number }}">&nbsp;&nbsp;Next</a></li>
+                <li><a href="?{% if request.GET.category %}category={{ request.GET.category }}{% endif %}{% if request.GET.sub_category %}&sub_category={{ request.GET.sub_category }}{% endif %}&page={{ products.next_page_number }}">&nbsp;&nbsp;Next</a></li>
             {% else %}
                 <li class="disabled"><span>&nbsp;&nbsp;Next</span></li>
             {% endif %}
