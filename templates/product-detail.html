@@ -603,13 +603,14 @@
                     <h4 class="mtext-105 cl2 js-name-detail p-b-14">
                         {{ product_details.name }}
                     </h4>
-
                     <span class="mtext-106 cl2">
 							{{ product_details.price }}
 						</span>
-
+                    <span class="stext-105 cl3">
+									{% if product_details.discount %}<small>Discount: {{ product_details.discount }}%</small>{% endif %}
+								</span>
                     <p class="stext-102 cl3 p-t-23">
-                        আপনার ইচ্ছে মতো পণ্যের সংখ্যা উল্লেখ করুন।  আপনি নিজে টাইপ করে বসাতে পারেন অথবা বাটন এর সাহায্যে বাড়াতে বা কমাতে পারবেন।  এক্ষেত্রে ২ করে বৃদ্ধি বা হ্রাস পাবে।
+                        আপনার ইচ্ছে মতো পণ্যের সংখ্যা উল্লেখ করুন। আপনি নিজে টাইপ করে বসাতে পারেন অথবা বাটন এর সাহায্যে বাড়াতে বা কমাতে পারবেন। এক্ষেত্রে ২ করে বৃদ্ধি বা হ্রাস পাবে।
                     </p>
 
                     <!--  -->
@@ -659,7 +660,7 @@
                                         <i class="fas fa-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" id="quantity_id" type="number" name="num-product" maxlength="3" minlength="1"  value="1" required>
+                                    <input class="mtext-104 cl3 txt-center num-product" id="quantity_id" type="number" name="num-product" maxlength="3" minlength="1" value="1" required>
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fas fa-plus"></i>
@@ -914,6 +915,9 @@
                                     <span class="stext-105 cl3">
 										{{ product.price }}
 									</span>
+                                    <span class="stext-105 cl3">
+									{% if product.discount %}<small>Discount: {{ product.discount }}%</small>{% endif %}
+								</span>
                                 </div>
 
                                 {#                            <div class="block2-txt-child2 flex-r p-t-3">#}

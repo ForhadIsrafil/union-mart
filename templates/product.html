@@ -723,7 +723,7 @@
 									{{ product.price }} Tk
 								</span>
                                 <span class="stext-105 cl3">
-									<h5>Discount: {{ product.discount }} %</h5>
+									{% if product.discount %}<small>Discount: {{ product.discount }}%</small>{% endif %}
 								</span>
                             </div>
 
@@ -746,6 +746,41 @@
         </div>
     </div>
 
+    {% if products.has_other_pages %}
+        <ul class="pagination justify-content-center">
+            {% if products.has_previous %}
+                <li><a href="?page={{ products.previous_page_number }}">Previous&nbsp;&nbsp;</a></li>
+            {% else %}
+                <li class="disabled"><span>Previous&nbsp;&nbsp;</span></li>
+            {% endif %}
+
+{#            {% if products.number|add:'-4' > 1 %}#}
+{#                <li><a href="?page={{ products.number|add:'-5' }}">&nbsp;.&nbsp;.</a></li>#}
+{#            {% endif %}#}
+
+            {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                    <li class="active"><span>&nbsp;{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% elif i > products.number|add:'-5' and i < products.number|add:'5' %}
+                    <li><a href="?page={{ i }}">&nbsp;{{ i }}</a></li>
+{#                {% else %}#}
+{#                    <li><a href="?page={{ i }}">&nbsp;{{ i }}</a></li>#}
+                {% endif %}
+            {% endfor %}
+
+{#            {% if products.paginator.num_pages > products.number|add:'4' %}#}
+{#                <li><a href="?page={{ products.number|add:'5' }}">&nbsp;.&nbsp;</a></li>#}
+{#            {% endif %}#}
+
+            {% if products.has_next %}
+                <li><a href="?page={{ products.next_page_number }}">&nbsp;&nbsp;Next</a></li>
+            {% else %}
+                <li class="disabled"><span>&nbsp;&nbsp;Next</span></li>
+            {% endif %}
+
+            &nbsp;&nbsp;<h5 class="text-dark"> {{ products.paginator.count }}</h5>
+        </ul>
+    {% endif %}
 
     <!-- Footer -->
 {#    <footer class="bg3 p-t-75 p-b-32">#}
