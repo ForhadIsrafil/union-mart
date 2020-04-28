@@ -45,15 +45,14 @@
             <form class="form-signin pay-box" method="post" action="{% url 'users:signup' %}"> {% csrf_token %}
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
                 <div class="social-login">
-                    <button class="btn facebook-btn social-btn" type="button"><span><i
-                            class="fab fa-facebook-f"></i> Sign in with
-							Facebook</span></button>
+                    <a href="{% url 'social:begin' 'facebook' %}" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
+							Facebook</span></a>
 
                 </div>
                 <p style="text-align:center"> OR </p>
                 {#                <h1>{{ form.errors }}</h1>#}
                 <input autofocus="" class="form-control bg-dark" id="input_name" name="first_name"
-                       placeholder="Name"
+                       placeholder="Name" maxlength="10" minlength="5"
                        required=""
                        type="name">
                 {% if form.errors %}
@@ -61,7 +60,7 @@
                         {{ form.first_name.errors.0 }}
                     </div>
                 {% endif %}
-                <input autofocus="" class="form-control bg-dark" id="input_user_name" name="user_name"
+                <input autofocus="" class="form-control bg-dark" id="input_user_name" name="user_name" maxlength="10" minlength="5"
                        placeholder="User Name" required=""
                        type="name">
                 {% if form.errors %}
