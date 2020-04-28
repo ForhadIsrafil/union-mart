@@ -607,49 +607,49 @@
             <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10">
                 <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-                    <div class="filter-col1 p-r-15 p-b-27">
-                        <div class="mtext-102 cl2 p-b-15">
-                            Sort By
-                        </div>
-
-                        <ul>
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    Default
-                                </a>
-                            </li>
-
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    Popularity
-                                </a>
-                            </li>
-
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    Average rating
-                                </a>
-                            </li>
-
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                    Newness
-                                </a>
-                            </li>
-
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    Price: Low to High
-                                </a>
-                            </li>
-
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    Price: High to Low
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+{#                    <div class="filter-col1 p-r-15 p-b-27">#}
+{#                        <div class="mtext-102 cl2 p-b-15">#}
+{#                            Sort By#}
+{#                        </div>#}
+{##}
+{#                        <ul>#}
+{#                            <li class="p-b-6">#}
+{#                                <a href="#" class="filter-link stext-106 trans-04">#}
+{#                                    Default#}
+{#                                </a>#}
+{#                            </li>#}
+{##}
+{#                            <li class="p-b-6">#}
+{#                                <a href="#" class="filter-link stext-106 trans-04">#}
+{#                                    Popularity#}
+{#                                </a>#}
+{#                            </li>#}
+{##}
+{#                            <li class="p-b-6">#}
+{#                                <a href="#" class="filter-link stext-106 trans-04">#}
+{#                                    Average rating#}
+{#                                </a>#}
+{#                            </li>#}
+{##}
+{#                            <li class="p-b-6">#}
+{#                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">#}
+{#                                    Newness#}
+{#                                </a>#}
+{#                            </li>#}
+{##}
+{#                            <li class="p-b-6">#}
+{#                                <a href="#" class="filter-link stext-106 trans-04">#}
+{#                                    Price: Low to High#}
+{#                                </a>#}
+{#                            </li>#}
+{##}
+{#                            <li class="p-b-6">#}
+{#                                <a href="#" class="filter-link stext-106 trans-04">#}
+{#                                    Price: High to Low#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
 
                     <div class="filter-col2 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
@@ -720,16 +720,19 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-									{{ product.price }}
+									{{ product.price }} Tk
+								</span>
+                                <span class="stext-105 cl3">
+									{% if product.discount %}<small>Discount: {{ product.discount }}%</small>{% endif %}
 								</span>
                             </div>
 
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="{% static '/images/icons/icon-heart-01.png' %}" alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{% static '/images/icons/icon-heart-02.png' %}" alt="ICON">
-                                </a>
-                            </div>
+{#                            <div class="block2-txt-child2 flex-r p-t-3">#}
+{#                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">#}
+{#                                    <img class="icon-heart1 dis-block trans-04" src="{% static '/images/icons/icon-heart-01.png' %}" alt="ICON">#}
+{#                                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{% static '/images/icons/icon-heart-02.png' %}" alt="ICON">#}
+{#                                </a>#}
+{#                            </div>#}
                         </div>
                     </div>
                 </div>
@@ -743,6 +746,41 @@
         </div>
     </div>
 
+    {% if products.has_other_pages %}
+        <ul class="pagination justify-content-center">
+            {% if products.has_previous %}
+                <li><a href="?page={{ products.previous_page_number }}">Previous&nbsp;&nbsp;</a></li>
+            {% else %}
+                <li class="disabled"><span>Previous&nbsp;&nbsp;</span></li>
+            {% endif %}
+
+{#            {% if products.number|add:'-4' > 1 %}#}
+{#                <li><a href="?page={{ products.number|add:'-5' }}">&nbsp;.&nbsp;.</a></li>#}
+{#            {% endif %}#}
+
+            {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                    <li class="active"><span>&nbsp;{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% elif i > products.number|add:'-5' and i < products.number|add:'5' %}
+                    <li><a href="?page={{ i }}">&nbsp;{{ i }}</a></li>
+{#                {% else %}#}
+{#                    <li><a href="?page={{ i }}">&nbsp;{{ i }}</a></li>#}
+                {% endif %}
+            {% endfor %}
+
+{#            {% if products.paginator.num_pages > products.number|add:'4' %}#}
+{#                <li><a href="?page={{ products.number|add:'5' }}">&nbsp;.&nbsp;</a></li>#}
+{#            {% endif %}#}
+
+            {% if products.has_next %}
+                <li><a href="?page={{ products.next_page_number }}">&nbsp;&nbsp;Next</a></li>
+            {% else %}
+                <li class="disabled"><span>&nbsp;&nbsp;Next</span></li>
+            {% endif %}
+
+            &nbsp;&nbsp;<h5 class="text-dark"> {{ products.paginator.count }}</h5>
+        </ul>
+    {% endif %}
 
     <!-- Footer -->
 {#    <footer class="bg3 p-t-75 p-b-32">#}

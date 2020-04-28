@@ -49,6 +49,7 @@
 							Facebook</span></button>
 
                     </div>
+                    <hr>
                 {% endif %}
                 {% if messages %}{% for message in messages %}
                     <div class="alert alert-light text-center alert-dismissible" role="alert">
@@ -70,7 +71,7 @@
                 <!-- <p>Don't have an account!</p>  -->
                 {#				<button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i>#}
                 {#					</button>#}
-                <a class="btn btn-primary btn-block" href="{% url 'users:signup' %}"><i class="fas fa-user-plus"></i>Sign
+                <a class="btn btn-primary btn-block text-light" href="{% url 'users:signup' %}"><i class="fas fa-user-plus"></i>Sign
                     up New Account</a>
             </form>
 

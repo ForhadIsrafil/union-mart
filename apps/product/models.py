@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
 
@@ -51,11 +52,13 @@ class Product(models.Model):
     description = models.TextField(max_length=255)
     price = models.PositiveIntegerField(verbose_name=_('Product Price'))
     stock = models.PositiveIntegerField(verbose_name=_('Stock of Products'))
-    category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20, default=CATEGORY_CHOICES[0])
-    sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20, default=SUB_CATEGORY_CHOICES[0])
+    category = models.CharField(choices=CATEGORY_CHOICES, verbose_name=_('Product Category'), max_length=20,
+                                default=CATEGORY_CHOICES[0])
+    sub_category = models.CharField(choices=SUB_CATEGORY_CHOICES, verbose_name=_('Product Sub-Category'), max_length=20,
+                                    default=SUB_CATEGORY_CHOICES[0])
     offer = models.CharField(max_length=50, null=True, blank=True)
     # delevery_charge = models.CharField(max_length=20, null=True, blank=True)
-    default_photo = models.ImageField(upload_to='default_photo', help_text="size must be ato ato pixel.")  # size must be ato ato pixel
+    default_photo = models.ImageField(upload_to='default_photo', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1200px and width: 1486px format.</h2>'))  # size must be ato ato pixel
     # free_delivery = models.BooleanField(default=False)
     upload_date = models.DateField(auto_now_add=True)
     trend_name = models.CharField(max_length=50, null=True, blank=True)
@@ -76,7 +79,7 @@ def submission_delete(sender, instance, **kwargs):
 
 class ProductPhoto(models.Model):
     product = models.ForeignKey(Product, related_name='+', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product_images', help_text='Can add only 3 images please.')
+    image = models.ImageField(upload_to='product_images', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1200px and width: 1486px format.</h2><br>Can add only 3 images please.'))
 
     class Meta:
         verbose_name = _("Product Photo")
@@ -104,7 +107,9 @@ class Cart(models.Model):
 class Slider(models.Model):
     title = models.CharField(max_length=40)
     sub_title = models.CharField(max_length=40)
-    photo = models.ImageField(upload_to='slider_image')
+    photo = models.ImageField(upload_to='slider_image', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1920px and width: 930px format.</h2>'))
+    position = models.PositiveSmallIntegerField()
+    product_id = models.PositiveSmallIntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name = _("Slider")
@@ -143,8 +148,8 @@ class UpdateNews(models.Model):
 
 class Trend(models.Model):
     trend_name = models.CharField(max_length=50, null=True, blank=True)
-    image = models.ImageField(upload_to='trend_images')
-    position = models.PositiveSmallIntegerField(null=True)
+    image = models.ImageField(upload_to='trend_images', help_text=mark_safe('<h2 style="color: #008CBA;">Images size must be height: 1200px and width: 809px format.</h2>'))
+    position = models.PositiveSmallIntegerField()
 
     class Meta:
         verbose_name = _("Trend")

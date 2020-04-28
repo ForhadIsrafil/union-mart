@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from utils.product_pagination import pagination
 
 from .models import Product, UpdateNews, Slider, Trend, ProductPhoto, Cart, Review, \
     PaymentPhoneNumber, OrderPayment, Reward
@@ -72,6 +73,7 @@ def product(request):
     trend = request.GET.get('trend', None)
     search_product = request.POST.get('search_product', None)
     price_filter_first = request.GET.get('price', None)
+    page = request.GET.get('page', 1)
 
     product_ins = Product.objects.all().order_by('-upload_date')
 
@@ -79,6 +81,7 @@ def product(request):
         price_filter = price_filter_first.split('-')
         if category and sub_category:
             product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -88,6 +91,7 @@ def product(request):
             return render(request, 'product.html', context)
         elif category:
             product_ins = product_ins.filter(Q(category=category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -99,6 +103,7 @@ def product(request):
 
         elif trend:
             product_ins = product_ins.filter(Q(category=category) & Q(trend=trend))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -110,6 +115,7 @@ def product(request):
 
         else:
             product_ins = product_ins.filter(Q(sub_category=sub_category) & Q(price__gte=price_filter[0]) & Q(price__lte=price_filter[1]))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -128,6 +134,7 @@ def product(request):
         str_regex = str_regex[:-1]
         if category and sub_category:
             product_ins = product_ins.filter(Q(category=category) & Q(sub_category=sub_category) & Q(description__iregex=r"" + str_regex + ""))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -137,6 +144,7 @@ def product(request):
             return render(request, 'product.html', context)
         elif category:
             product_ins = product_ins.filter(Q(category=category) & Q(description__iregex=r"" + str_regex + ""))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -147,6 +155,7 @@ def product(request):
             return render(request, 'product.html', context)
         else:
             product_ins = product_ins.filter(Q(sub_category=sub_category) & Q(description__iregex=r"" + str_regex + ""))
+            product_ins = pagination(product_ins, page)
             context = {
                 'products': product_ins,
                 'category': category,
@@ -162,9 +171,9 @@ def product(request):
         product_ins = product_ins.filter(category=category)
     elif sub_category:
         product_ins = product_ins.filter(sub_category=sub_category)
-
     else:
         product_ins = product_ins
+    product_ins = pagination(product_ins, page)
 
     context = {
         'products': product_ins,
@@ -176,7 +185,6 @@ def product(request):
     return render(request, 'product.html', context)
 
 
-@login_required
 @transaction.atomic
 def product_details(request, product_id):
     product_ins = Product.objects.filter(id=product_id).first()
