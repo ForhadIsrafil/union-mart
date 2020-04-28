@@ -47,9 +47,9 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    user_name = models.CharField(_("user name"), max_length=150, blank=True, unique=True,
+    first_name = models.CharField(_('first name'), max_length=10)
+    last_name = models.CharField(_('last name'), max_length=10, blank=True)
+    user_name = models.CharField(_("user name"), max_length=10, blank=True, unique=True,
                                  help_text=_("User name can only contain letters, numbers and hyphen."))
     date_of_birth = models.DateField(null=True, blank=True)
 
