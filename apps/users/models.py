@@ -12,24 +12,26 @@ from django.utils.translation import ugettext_lazy as _
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, email, password, **extra_fields):
+    def _create_user(self, email, user_name, password, **extra_fields):
         if email is None:
             raise ValueError(_("The email must be set"))
+        if user_name is None:
+            raise ValueError(_("The user_name must be set"))
 
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=email, user_name=user_name, **extra_fields)
         user.set_password(password)
         user.save()
 
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, user_name, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
         extra_fields.setdefault("is_active", True)
 
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(email, user_name, password, **extra_fields)
 
-    def create_superuser(self, user_name, password, **extra_fields):
+    def create_superuser(self, email, user_name, password, **extra_fields):
         if password is None:
             raise TypeError(_("Superusers must have a password."))
 
@@ -42,7 +44,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser=True."))
 
-        return self._create_user(user_name, password, **extra_fields)
+        return self._create_user(email, user_name, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -74,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     EMAIL_FIELD = "email"
     USERNAME_FIELD = 'user_name'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["email"]
 
     class Meta:
         verbose_name = _("user")
