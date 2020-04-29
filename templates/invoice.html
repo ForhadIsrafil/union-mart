@@ -93,19 +93,19 @@
                         </tr>
                     {% endfor %}
                     <tr class="border">
-                        <td colspan="4">Sub Total</td>
+                        <td colspan="5">Sub Total</td>
                         <td>{{ sub_total }} tk</td>
                     </tr>
                     <tr>
-                        <td colspan="4">Delivery Charge</td>
+                        <td colspan="5">Delivery Charge</td>
                         <td>{{ order_payment.delivery_charge }} tk</td>
                     </tr>
                     <tr>
-                        <td colspan="4">To Pay</td>
-                        <td>{{ order_payment.total }} tk</td>
+                        <td class="font-weight-bold" colspan="5">To Pay</td>
+                        <td class="font-weight-bold">{{ order_payment.total }} tk</td>
                     </tr>
                     <tr>
-                        <td colspan="4">Payment Gateway</td>
+                        <td colspan="5">Payment Gateway</td>
                         <td>{{ order_payment.payment_gateway }}</td>
                     </tr>
 
