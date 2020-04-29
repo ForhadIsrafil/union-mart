@@ -54,16 +54,16 @@
                 <input autofocus="" class="form-control bg-dark" id="input_name" name="first_name"
                        placeholder="Name" maxlength="10" minlength="5"
                        required=""
-                       type="name">
-                {% if form.errors %}
+                       type="text">
+                {% if form.first_name.errors.0 %}
                     <div class="alert alert-danger">
                         {{ form.first_name.errors.0 }}
                     </div>
                 {% endif %}
                 <input autofocus="" class="form-control bg-dark" id="input_user_name" name="user_name" maxlength="10" minlength="5"
                        placeholder="User Name" required=""
-                       type="name">
-                {% if form.errors %}
+                       type="text">
+                {% if form.user_name.errors.0 %}
                     <div class="alert alert-danger">
                         {{ form.user_name.errors.0 }}
                     </div>
@@ -71,7 +71,7 @@
                 <input autofocus="" class="form-control bg-dark" id="inputEmail" name="email"
                        placeholder="Email address" required=""
                        type="email">
-                {% if form.errors %}
+                {% if form.email.errors.0 %}
                     <div class="alert alert-danger">
                         {{ form.email.errors.0 }}
                     </div>
@@ -80,7 +80,7 @@
                        placeholder="Phone" maxlength="11" minlength="11"
                        required=""
                        type="text">
-                {% if form.errors %}
+                {% if form.phone_number.errors.0 %}
                     <div class="alert alert-danger">
                         {{ form.phone_number.errors.0 }}
                     </div>
@@ -88,7 +88,7 @@
                 <input autofocus="" class="form-control bg-dark" id="input_date" name="date_of_birth"
                        placeholder="Birth Date" required=""
                        type="date">
-                {% if form.errors %}
+                {% if form.date_of_birth.errors.0 %}
                     <div class="alert alert-danger">
                         {{ form.date_of_birth.errors.0 }}
                     </div>
