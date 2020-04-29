@@ -200,7 +200,7 @@
 
 
                 <!-- Icon header -->
-                <div class="wrap-icon-header flex-w flex-r-m h-full">
+                <div class="wrap-icon-header flex-w flex-r-m h-full" id="cart_id">
                     <div class="flex-c-m h-full p-r-25 bor6">
                         <a href="{% url 'product:carts' %}" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti " data-notify="{% if cart_count %}{{ cart_count }}{% else %}0{% endif %}"> <!-- js-show-cart -->
                             <i class="fas fa-cart-arrow-down"></i>

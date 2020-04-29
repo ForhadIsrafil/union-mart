@@ -13,6 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = (ProductPhotoInline,)
     list_display = ('name', 'price', 'stock', 'category', 'sub_category', 'stock', 'upload_date',)
     search_fields = ('id', 'name', 'category', 'sub_category', 'trend_name',)
+    list_filter = ('id', 'name', 'category', 'sub_category',)
 
 
 @admin.register(Slider)
@@ -41,7 +42,7 @@ class OrderPaymentAdmin(admin.ModelAdmin):
     search_fields = ('id', 'user', 'invoice_no', 'contact_number',)
     readonly_fields = ('user', 'invoice_no', 'product_list', 'delivery_location', 'contact_number', 'payment_number',
                        'delivery_charge', 'total', 'order_date', 'city', 'payment_gateway')
-
+    list_filter = ('id', 'user', 'invoice_no', 'contact_number',)
     # def get_readonly_fields(self, request, obj=None):
     #     return [f.name for f in self.model._meta.fields]
 

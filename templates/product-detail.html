@@ -1514,6 +1514,8 @@
             var quantity_id = document.getElementById("quantity_id").value;
             if (quantity_id <= 0) {
                 swal(nameProduct, 'Product quantity can not be empty or 0.', "error");
+            } else if (quantity_id > 20) {
+                swal(nameProduct, '20 maximum product quantity.', "error");
             } else {
                 $.ajax({
                     type: "GET",
@@ -1523,6 +1525,7 @@
                             swal(nameProduct, response.message, "info");
                         } else {
                             swal(nameProduct, "is added to cart!", "success");
+                            $( "#cart_id" ).load(window.location.href + " #cart_id" );
                         }
                     },
                     error: function (jqXHR) {
