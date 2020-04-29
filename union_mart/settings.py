@@ -220,6 +220,5 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = env.int("FILE_UPLOAD_MAX_MEMORY_SIZE", default=200
 # ======
 # SECURE_SSL_REDIRECT = False
 # ======
-facebook = 'https://www.facebook.com'
 
 CART_COUNT = 0
