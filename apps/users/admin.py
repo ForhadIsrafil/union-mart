@@ -1,12 +1,10 @@
+from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .forms import AdminUserChangeForm, AdminUserCreationForm
-from . import models
 
-import nested_admin
-from django import forms
-from nested_admin.forms import SortableHiddenMixin
+from . import models
+from .forms import AdminUserChangeForm, AdminUserCreationForm
 
 
 @admin.register(models.User)
@@ -28,11 +26,11 @@ class UserAdmin(AuthUserAdmin):
 
     list_filter = ("is_superuser", "is_active", "is_staff", "date_joined", "last_login", "user_name")
 
-    search_fields = ["email", "first_name", "last_name", "user_name"]
+    search_fields = ["id", "email", "first_name", "last_name", "user_name"]
     ordering = ("date_joined",)
 
     fieldsets = (
-        (_("Personal info"), {"fields": ("email", "first_name", "last_name", "user_name", "image")}),
+        (_("Personal info"), {"fields": ("email", "first_name", "last_name", "user_name", "image", "discount")}),
         (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser", "groups")},),
         (_("Important dates"), {"fields": ("last_login", "date_joined")},),
     )
