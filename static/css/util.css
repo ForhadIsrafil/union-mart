@@ -3772,15 +3772,16 @@ iframe {border: none;}
 /* Login Start */
 
 
-/* sign in FORM */
-#logreg-forms{
-	width:412px;
-	/* margin:10vh auto; */
+#logreg-forms {
+	/* width: 412px; */
+	/* margin: 10vh auto; */
 	margin: auto;
-	background-color:#f3f3f3;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  }
+	background-color: #f3f3f3;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+	margin-top: 113px;
+	margin-bottom: 92px;
+}
   #logreg-forms form {
 	width: 100%;
 	max-width: 410px;
@@ -3921,21 +3922,6 @@ iframe {border: none;}
   .txt_lgn h4:hover{
 	color: #191919;
   }
-  
-  
-  /* login End */
-
-  #logreg-forms {
-    width: 412px;
-    /* margin: 10vh auto; */
-    margin: auto;
-    background-color: #f3f3f3;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    margin-top: 113px;
-    margin-bottom: 92px;
-}
-
 .lgn{
 	background-color: rgb(8, 210, 224);
 }
