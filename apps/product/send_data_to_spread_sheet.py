@@ -1,6 +1,8 @@
 from datetime import date
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+
 
 # =================== send data to spreadsheet start ==================
 def send_to_spreadsheet(order_payment):
