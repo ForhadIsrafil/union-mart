@@ -2,6 +2,7 @@ import json
 import math
 
 from apps.product.product_order_amouint import product_total_amount
+from apps.product.send_data_to_spread_sheet import send_to_spreadsheet
 from apps.users.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -366,7 +367,7 @@ def order_payment(request):
         email.send()
 
         # send data to spread sheet about products and payment
-        # send_to_spreadsheet(order_payment)
+        send_to_spreadsheet(order_payment)
         return redirect('product:carts')
     else:
         return redirect('product:carts')
