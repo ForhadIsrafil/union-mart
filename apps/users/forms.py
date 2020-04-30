@@ -3,7 +3,6 @@ from django import forms
 # from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm, UserCreationForm)
 from django.utils.translation import ugettext_lazy as _
-from phonenumber_field.phonenumber import PhoneNumber, to_python
 
 
 class UserFormValidationMixin(object):
@@ -48,7 +47,7 @@ class LoginForm(AuthenticationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("first_name", "email", "image")
+        fields = ("first_name", "email",)
 
 
 class DeleteAccountForm(forms.Form):
@@ -61,7 +60,7 @@ class UpdateUserInfoForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            "first_name", "last_name", "email", "image", "password",)
+            "first_name", "last_name", "email", "password",)
 
     def save(self, commit=True):
         user = super().save(commit=False)

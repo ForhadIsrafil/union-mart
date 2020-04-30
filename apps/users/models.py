@@ -51,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=10)
     last_name = models.CharField(_('last name'), max_length=10, blank=True)
-    user_name = models.CharField(_("user name"), max_length=10, blank=True, unique=True,
+    user_name = models.CharField(_("user name"), max_length=20, blank=True, unique=True,
                                  help_text=_("User name can only contain letters, numbers and hyphen."))
     date_of_birth = models.DateField(null=True, blank=True)
 
@@ -69,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
-    image = models.ImageField(_("image"), blank=True, null=True, upload_to="media/profile_image/")
+    # image = models.ImageField(_("image"), blank=True, null=True, upload_to="media/profile_image/")
     phone_number = models.CharField(max_length=11)
     discount = models.SmallIntegerField(blank=True, null=True)
 

@@ -30,7 +30,7 @@ class UserAdmin(AuthUserAdmin):
     ordering = ("date_joined",)
 
     fieldsets = (
-        (_("Personal info"), {"fields": ("email", "first_name", "last_name", "user_name", "image", "discount")}),
+        (_("Personal info"), {"fields": ("email", "first_name", "last_name", "user_name", "discount")}),
         (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser", "groups")},),
         (_("Important dates"), {"fields": ("last_login", "date_joined")},),
     )
@@ -43,7 +43,7 @@ class UserAdmin(AuthUserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "first_name", "last_name", "user_name", "password1", "password2", "image"),
+                "fields": ("email", "first_name", "last_name", "user_name", "password1", "password2",),
             },
         ),
     )
