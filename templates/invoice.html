@@ -38,7 +38,7 @@
                 Confirmation email.
             </p> <br> <br>
             <div>
-                <table class="border col-md-6 col-lg-12 p-b-30 m-lr-auto">
+                <table class="border table-responsive col-md-6 col-lg-12 p-b-30 m-lr-auto">
                     <tr>
                         <td class="text-center border" colspan="2"><b>Customer Information</b></td>
                     </tr>
@@ -70,7 +70,7 @@
             </div>
             <br> <br>
             <div>
-                <table class="border col-md-6 col-lg-12 p-b-30 m-lr-auto">
+                <table class="border table-responsive col-md-6 col-lg-12 p-b-30 m-lr-auto">
                     <tr>
                         <td class="text-center border" colspan="5"><b>Order Details</b></td>
                     </tr>
@@ -84,11 +84,11 @@
                     </tr>
                     {% for product in products %}
                         <tr>
-                            <td>{{ forloop.counter }}</td> <!--  -->
-                            <td>{{ product.product_id }}</td>
-                            <td>{{ product.name }}</td>
-                            <td>{{ product.quantity }}</td>
-                            <td>{% if product.discount %}{{ product.discount }}{% else %}-{% endif %}</td>
+                            <td class="text-center">{{ forloop.counter }}</td> <!--  -->
+                            <td class="text-center">{{ product.product_id }}</td>
+                            <td class="text-center">{{ product.name }}</td>
+                            <td class="text-center">{{ product.quantity }}</td>
+                            <td class="text-center">{% if product.discount %}{{ product.discount }}{% else %}-{% endif %}</td>
                             <td>{{ product.per_total }}</td>
                         </tr>
                     {% endfor %}
