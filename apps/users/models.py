@@ -53,7 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=10, blank=True)
     user_name = models.CharField(_("user name"), max_length=20, blank=True, unique=True,
                                  help_text=_("User name can only contain letters, numbers and hyphen."))
-    date_of_birth = models.DateField(null=True, blank=True)
+    # date_of_birth = models.DateField(null=True, blank=True)
 
     is_staff = models.BooleanField(
         _("staff status"),

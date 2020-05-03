@@ -51,7 +51,7 @@
                 </div>
                 <p style="text-align:center"> OR </p>
                 {#                <h1>{{ form.errors }}</h1>#}
-                <input autofocus="" class="form-control bg-dark" id="input_name" name="first_name"
+                <input style="background-color: #1c94c4" autofocus="" class="form-control" id="input_name" name="first_name"
                        placeholder="Name" maxlength="10" minlength="5"
                        required=""
                        type="text">
@@ -60,7 +60,7 @@
                         {{ form.first_name.errors.0 }}
                     </div>
                 {% endif %}
-                <input autofocus="" class="form-control bg-dark" id="input_user_name" name="user_name" maxlength="10" minlength="5"
+                <input style="background-color: #1c94c4" autofocus="" class="form-control" id="input_user_name" name="user_name" maxlength="10" minlength="5"
                        placeholder="User Name" required=""
                        type="text">
                 {% if form.user_name.errors.0 %}
@@ -68,7 +68,7 @@
                         {{ form.user_name.errors.0 }}
                     </div>
                 {% endif %}
-                <input autofocus="" class="form-control bg-dark" id="inputEmail" name="email"
+                <input style="background-color: #1c94c4" autofocus="" class="form-control" id="inputEmail" name="email"
                        placeholder="Email address" required=""
                        type="email">
                 {% if form.email.errors.0 %}
@@ -76,7 +76,7 @@
                         {{ form.email.errors.0 }}
                     </div>
                 {% endif %}
-                <input autofocus="" class="form-control bg-dark" id="input_phone" name="phone_number"
+                <input style="background-color: #1c94c4" autofocus="" class="form-control" id="input_phone" name="phone_number"
                        placeholder="Phone" maxlength="11" minlength="11"
                        required=""
                        type="text">
@@ -85,7 +85,7 @@
                         {{ form.phone_number.errors.0 }}
                     </div>
                 {% endif %}
-                <input autofocus="" class="form-control bg-dark" id="input_date" name="date_of_birth"
+                <input style="background-color: #1c94c4" autofocus="" class="form-control" id="input_date" name="date_of_birth"
                        placeholder="Birth Date" required=""
                        type="date">
                 {% if form.date_of_birth.errors.0 %}
@@ -93,24 +93,22 @@
                         {{ form.date_of_birth.errors.0 }}
                     </div>
                 {% endif %}
-                <input class="form-control bg-dark" id="inputPassword" name="password" minlength="8" placeholder="Password"
+                <input style="background-color: #1c94c4" class="form-control" id="inputPassword" name="password" minlength="8" placeholder="Password"
                        required=""
                        type="password">
 
-                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign up
+                <button style="background-color: orange" class="btn btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign up
                 </button>
-                <!-- <p>Don't have an account!</p>  -->
-                <!--                <button class="btn btn-primary btn-block" type="button"><i class="fas fa-user-plus"></i>-->
+
                 <a class="btn btn-primary btn-block text-light" href="{% url 'login' %}"><i class="fas fa-user"></i>Already
                     Have a
                     account? Log in here</a>
-                <!--                </button>-->
+
             </form>
 
 
         </div>
     </div>
-    <p style="text-align:center"> UNIONMARTBD</p>
 
 </div>
 
@@ -118,20 +116,6 @@
 {% include 'footer.html' %}
 
 
-{#<script type="text/javascript" src="{% static '/vendor/jquery/jquery-3.2.1.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/animsition/js/animsition.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/popper.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/bootstrap/js/bootstrap.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/select2/select2.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/moment.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/daterangepicker/daterangepicker.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/slick/slick.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/js/slick-custom.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/parallax100/parallax100.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/isotope/isotope.pkgd.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/sweetalert/sweetalert.min.js' %}"></script>#}
-{#<script type="text/javascript" src="{% static '/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>#}
 <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
 <script type="text/javascript" src="{% static '/js/log.js' %}"></script>
 

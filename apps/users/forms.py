@@ -28,7 +28,7 @@ class SignupForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name", "user_name", "email", "password", "phone_number", "date_of_birth")
+        fields = ("first_name", "user_name", "email", "password", "phone_number")
 
     # def clean_phone_number(self):
     #     phone_number = self.cleaned_data["phone_number"]
