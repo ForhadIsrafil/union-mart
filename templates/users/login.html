@@ -58,14 +58,14 @@
                     </div>
                 {% endfor %}{% endif %}
                 <p class="text-center font-weight-bold"> OR </p>
-                <input type="email" id="inputEmail" class="form-control bg-dark" name="username"
+                <input style="background-color: #1c94c4" type="email" id="inputEmail" class="form-control" name="username"
                        placeholder="Email address" required=""
                        autofocus="">
-                <input type="password" id="inputPassword" class="form-control bg-dark" name="password"
+                <input style="background-color: #1c94c4" type="password" id="inputPassword" class="form-control" name="password"
                        placeholder="Password" required="">
-                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in
+                <button style="background-color: orange" class="btn btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in
                 </button>
-                <a href="{% url 'password_reset' %}">Forgot password?</a>
+                <a href="{% url 'password_reset' %}"> <b style="color: #1c94c4">Forgot password?</b></a>
                 <!-- id="forgot_pswd -->
                 <hr>
                 <!-- <p>Don't have an account!</p>  -->
@@ -78,7 +78,6 @@
 
         </div>
     </div>
-    <p style="text-align:center"> UNIONMARTBD</p>
 
 </div>
 {% include 'footer.html' %}

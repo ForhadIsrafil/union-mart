@@ -25,11 +25,11 @@ def home(request):
     product_ins = Product.objects.all().order_by('-upload_date')
     updated_news_ins = UpdateNews.objects.all().order_by('-id')
     trend_ins = Trend.objects.all().order_by('-id')
-    women_ins = product_ins.filter(category='Women')[:3]
-    men_ins = product_ins.filter(category='Men')[:3]
-    bag_ins = product_ins.filter(sub_category='Bag')[:3]
-    shoe_ins = product_ins.filter(sub_category='Shoe')[:3]
-    watch_ins = product_ins.filter(sub_category='Watch')[:3]
+    women_ins = product_ins.filter(category='Women')[:6]
+    men_ins = product_ins.filter(category='Men')[:6]
+    bag_ins = product_ins.filter(sub_category='Bag')[:6]
+    shoe_ins = product_ins.filter(sub_category='Shoe')[:6]
+    watch_ins = product_ins.filter(sub_category='Watch')[:6]
 
     if search_product:
         strip_regex = search_product.strip()

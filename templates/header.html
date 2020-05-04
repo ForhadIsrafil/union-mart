@@ -179,24 +179,7 @@
 
                     </ul>
                 </div>
-{#                <div class="menu-desktop">#}
-{#                    <ul class="main-menu">#}
-{#                        <li>#}
-{#                            <a href="{% url 'login' %}">login/sign up</a>#}
-{#                        </li>#}
-{##}
-{#                    </ul>#}
-{#                </div>#}
 
-                <!-- log out btn  -->
-                {#                <div class="menu-desktop">#}
-                {#                    <ul class="main-menu">#}
-                {#                        <li>#}
-                {#                            <a href="#">logout</a>#}
-                {#                        </li>#}
-                {##}
-                {#                    </ul>#}
-                {#                </div>#}
 
 
                 <!-- Icon header -->
@@ -211,7 +194,7 @@
                             <div class="cl0  p-lr-8">
                                 {% if user.first_name %}{{ user.first_name|slice:":5" }}
                                 {% elif user.last_name %} {{ user.last_name|slice:":5" }}
-                                {% else %} {{ user.user_name|slice:":8" }}
+                                {% else %} {{ user.user_name|slice:":10" }}
                                 {% endif %}
 
                             </div>
@@ -259,7 +242,7 @@
         </div>
 
         <!-- Button show menu -->
-        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+        <div class="btn-show-menu-mobile hamburger bg-light hamburger--squeeze">
 				<span class="hamburger-box">
 					<span class="hamburger-inner"></span>
 				</span>
@@ -273,7 +256,7 @@
             <li>
                 <a href="{% url 'product:home' %}">Home</a>
                 <ul class="sub-menu-m">
-                    <!-- 	<li><a href="#">Mens</a></li> -->
+
 
                 </ul>
                 <span class="arrow-main-menu-m">
@@ -396,12 +379,6 @@
                     {% endif %}
                 </li>
             </ul>
-            <!-- log out btn  -->
-            {#            <ul class="main-menu-m">#}
-            {#                <li>#}
-            {#                    <a href="#">logout</a>#}
-            {#                </li>#}
-            {#            </ul>#}
 
 
         </ul>
@@ -413,15 +390,6 @@
             <i class="zmdi zmdi-close"></i>
         </button>
 
-{#        <form class="container-search-header">#}
-{#            <div class="wrap-search-header">#}
-{#                <input class="plh0" type="text" name="search" placeholder="Search...">#}
-{##}
-{#                <button class="flex-c-m trans-04">#}
-{#                    <i class="zmdi zmdi-search"></i>#}
-{#                </button>#}
-{#            </div>#}
-{#        </form>#}
     </div>
 </header>
 
@@ -479,77 +447,7 @@
                 </li>
             </ul>
 
-            {#            <div class="sidebar-gallery w-full p-tb-30">#}
-            {#					<span class="mtext-101 cl5">#}
-            {#					UNIONMART BD#}
-            {#					</span>#}
-            {##}
-            {#                <div class="flex-w flex-sb p-t-36 gallery-lb">#}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-01.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-01.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-02.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-02.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-03.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-03.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-04.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-04.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-05.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-05.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-06.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-06.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-07.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-07.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-08.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-08.jpg');"></a>#}
-            {#                    </div>#}
-            {##}
-            {#                    <!-- item gallery sidebar -->#}
-            {#                    <div class="wrap-item-gallery m-b-10">#}
-            {#                        <a class="item-gallery bg-img1" href="{% static '/images/gallery-09.jpg' %}" data-lightbox="gallery"#}
-            {#                           style="background-image: url('images/gallery-09.jpg');"></a>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
 
-{#            <div class="sidebar-gallery w-full">#}
-{#					<span class="mtext-101 cl5">#}
-{#						About Us#}
-{#					</span>#}
-{##}
-{#                <p class="stext-108 cl6 p-t-27">#}
-{#                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.#}
-{#                </p>#}
-{#            </div>#}
         </div>
     </div>
 </aside>
