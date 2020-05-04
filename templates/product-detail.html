@@ -112,7 +112,7 @@
 
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{ reviews.count }})</a>
                     </li>
                 </ul>
 
@@ -142,7 +142,7 @@
                                             <div class="size-207">
                                                 <div class="flex-w flex-sb-m p-b-17">
 													<span class="mtext-107 cl2 p-r-20">
-														{% if review.user.first_name %}{{ review.user.first_name }}{% elif review.user.first_name %}{{ review.user.last_name }}{% elif review.user.user_name %}{{ review.user.user_name }}{% endif %}
+														{% if review.user.first_name %}{{ review.user.first_name|slice:":10" }}{% elif review.user.last_name %}{{ review.user.last_name|slice:":10" }}{% elif review.user.user_name %}{{ review.user.user_name|slice:":10" }}{% endif %}
 													</span>
 
                                                 </div>
@@ -154,7 +154,7 @@
                                         </div>
                                     {% endfor %}
 
-                                    {% if not user_review %}
+                                    {% if not user_review and user.is_authenticated %}
                                         <form class="w-full" action="{% url 'product:product_details' product_details.id %}" method="post">{% csrf_token %}
                                             <h5 class="mtext-108 cl2 p-b-7">
                                                 Add a review
