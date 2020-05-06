@@ -90,7 +90,7 @@ class ProductPhoto(models.Model):
 
     def clean(self, *args, **kwargs):
         super(ProductPhoto, self).save(*args, **kwargs)
-        qs = ProductPhoto.objects.all()
+        qs = ProductPhoto.objects.filter(product_id=self.product.id)
         if qs.count() > 3 :
             qs.last().delete()
             raise ValidationError('Can not add more row. Can add only 3 images please.')
