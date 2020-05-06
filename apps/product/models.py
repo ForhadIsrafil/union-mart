@@ -88,6 +88,13 @@ class ProductPhoto(models.Model):
     def __str__(self):
         return f"{self.product.id} - {self.product.name}"
 
+    def clean(self, *args, **kwargs):
+        super(ProductPhoto, self).save(*args, **kwargs)
+        qs = ProductPhoto.objects.all()
+        if qs.count() > 3 :
+            qs.last().delete()
+            raise ValidationError('Can not add more row. Can add only 3 images please.')
+
 
 @receiver(post_delete, sender=ProductPhoto)
 def submission_delete(sender, instance, **kwargs):
@@ -118,9 +125,11 @@ class Slider(models.Model):
     def __str__(self):
         return self.title
 
-    def clean(self):
-        qs = Slider.objects.count()
-        if qs == 3:
+    def clean(self, *args, **kwargs):
+        super(Slider, self).save(*args, **kwargs)
+        qs = Slider.objects.all()
+        if qs.count() > 3 :
+            qs.last().delete()
             raise ValidationError('Can not add more row. Can add only 3 rows please.')
 
 
@@ -140,9 +149,11 @@ class UpdateNews(models.Model):
     def __str__(self):
         return self.news
 
-    def clean(self):
-        qs = UpdateNews.objects.count()
-        if qs == 2:
+    def clean(self, *args, **kwargs):
+        super(UpdateNews, self).save(*args, **kwargs)
+        qs = UpdateNews.objects.all()
+        if qs.count() > 2:
+            qs.last().delete()
             raise ValidationError('Can not add more row. Can add only 2 rows please.')
 
 
@@ -158,10 +169,12 @@ class Trend(models.Model):
     def __str__(self):
         return self.trend_name
 
-    def clean(self):
-        qs = Trend.objects.count()
-        if qs == 4:
-            raise ValidationError('Can not add more row. Can add only 4 rows please.')
+    def clean(self, *args, **kwargs):
+        super(Trend, self).save( *args, **kwargs)
+        qs = Trend.objects.all()
+        if qs.count() > 4:
+            qs.last().delete()
+            raise ValidationError('Can not add more row. Can add only 4 trends please.')
 
 
 @receiver(post_delete, sender=Trend)
@@ -187,9 +200,11 @@ class SocialLink(models.Model):
     def __str__(self):
         return self.facebook
 
-    def clean(self):
-        qs = SocialLink.objects.count()
-        if qs == 1:
+    def clean(self, *args, **kwargs):
+        super(SocialLink, self).save(*args, **kwargs)
+        qs = SocialLink.objects.all()
+        if qs.count() > 1:
+            qs.last().delete()
             raise ValidationError('Can not add more row. Can add only 1 rows please.')
 
 
@@ -213,9 +228,11 @@ class PaymentPhoneNumber(models.Model):
     def __str__(self):
         return self.payment_gateway
 
-    def clean(self):
-        qs = PaymentPhoneNumber.objects.count()
-        if qs == 1:
+    def clean(self, *args, **kwargs):
+        super(PaymentPhoneNumber,self).save(*args, **kwargs)
+        qs = PaymentPhoneNumber.objects.all()
+        if qs.count() > 3:
+            qs.last().delete()
             raise ValidationError('Can not add more row. Can add only 3 rows please.')
 
 
@@ -266,9 +283,11 @@ class Reward(models.Model):
     reward_title = models.CharField(max_length=50, null=True, blank=True, verbose_name='Reward Title')
     position = models.PositiveSmallIntegerField(null=True)
 
-    def clean(self):
-        qs = Reward.objects.count()
-        if qs == 4:
+    def clean(self, *args, **kwargs):
+        super(Reward, self).save(*args, **kwargs)
+        qs = Reward.objects.all()
+        if qs.count() > 4:
+            qs.last().delete()
             raise ValidationError('Can not add more row.Can add only 4 rows please.')
 
 
