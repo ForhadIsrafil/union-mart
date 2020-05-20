@@ -14,7 +14,7 @@ django-phonenumber-field==4.0.0
 environs==7.3.1
 google-auth==1.14.0
 gspread==3.4.2
-httplib2==0.17.2
+httplib2==0.18.0
 idna==2.9
 jsonfield==3.1.0
 marshmallow==3.5.1
